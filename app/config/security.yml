@@ -24,3 +24,5 @@ security:
             guard:
                 authenticators:
                     - app.facebook_authenticator
+            logout:
+                path: /logout
