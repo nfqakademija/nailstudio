@@ -22,9 +22,13 @@
 
 {% block body %}
     <div class="title">Here would be NAIL STUDIO website</div>
-    <div>
-        <a href="{{ path('app_facebook_connect') }} "class="btn btn-block btn-social btn-facebook">
-            <span class="fa fa-facebook"></span> Sign in with facebook
-        </a>
+
+    <div class="row">
+        <div class="col-lg-4 col-md-offset-4">
+            <a href="{{ path('app_facebook_connect') }} "class="btn btn-block btn-social btn-primary btn-facebook">
+                <span class="fa fa-facebook"></span> Sign in with facebook
+            </a>
+        </div>
     </div>
+
 {% endblock %}

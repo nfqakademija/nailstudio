@@ -8,12 +8,11 @@
 
 namespace AppBundle\Security;
 
-use AppBundle\Entity\User;
-use Doctrine\ORM\EntityManager;
+
+use AppBundle\Form\FaceBookForm;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\SocialAuthenticator;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
@@ -21,17 +20,15 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 class FacebookAuthenticator extends SocialAuthenticator
 {
     private $clientRegistry;
-    private $em;
-    private $router;
-    public function __construct(ClientRegistry $clientRegistry, EntityManager $em, RouterInterface $router)
+    private $facebookForm;
+    public function __construct(ClientRegistry $clientRegistry, FaceBookForm $facebookForm)
     {
-        $this->em = $em;
         $this->clientRegistry = $clientRegistry;
-        $this->router = $router;
+        $this->facebookForm = $facebookForm;
     }
     public function getCredentials(Request $request)
     {
-        if($request->getPathInfo() != 'connect_facebook_check'){
+        if ($request->getPathInfo() != '/connect/facebook/check') {
             return;
         }
         return $this->fetchAccessToken($this->getFacebookClient());
@@ -45,20 +42,12 @@ class FacebookAuthenticator extends SocialAuthenticator
     {
         $facebookUser = $this->getFacebookClient()
             ->fetchUserFromToken($credentials);
-        $userArray = $facebookUser->toArray();
-        //if user exist, return him
-        $existingUser = $this->em->getRepository('AppBundle:User')
-            ->findOneBy(['facebookId' => $facebookUser->getId()]);
-        if($existingUser){
-            return $existingUser;
-        }
-        $user = new User();
-        $user->setEmail($userArray['email']);
-        $user->setName($userArray['first_name']);
-        $user->setLastname($userArray['last_name']);
-        $user->setFacebookId($facebookUser->getId());
-        $this->em->persist($user);
-        $this->em->flush();
+        $facebookUserArray = $facebookUser->toArray();
+//        $existingUser = $this->userService->updateUser($facebookUserArray);
+//        if ($existingUser) {
+//            return $existingUser;
+//        }
+        $user = $this->facebookForm->createUser($facebookUserArray);
         return $user;
     }
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
@@ -73,7 +62,4 @@ class FacebookAuthenticator extends SocialAuthenticator
     {
         // TODO: Implement start() method.
     }
-
-
-
 }

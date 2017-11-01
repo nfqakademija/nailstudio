@@ -20,8 +20,6 @@ class FacebookController extends Controller
     }
 
 
-
-
     /**
      * @Route("/connect/facebook/check", name="connect_facebook_check")
      */

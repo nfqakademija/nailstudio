@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
@@ -10,212 +11,156 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
-
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=50)
+     * @ORM\Column(type="string", unique=true, nullable=true)
      */
     private $name;
-
     /**
-     * @var string
-     *
-     * @ORM\Column(name="firstname", type="string", length=50)
-     */
-    private $firstname;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="lastname", type="string", length=50)
-     */
-    private $lastname;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(type="string", unique=true)
      */
     private $email;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="hometown", type="string", length=255)
+     * @ORM\Column(type="json_array", nullable=true)
      */
-    private $hometown;
-
+    private $roles = array();
     /**
-     * @var int
-     *
-     * @ORM\Column(name="facebookID", type="integer")
+     * @ORM\Column(type="string", unique=true)
      */
-    private $facebookID;
-
-
+    private $apiToken;
     /**
-     * Get id
-     *
-     * @return int
+     * @ORM\Column(type="datetime", nullable=true)
      */
+    private $lastLoginTime;
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $facebookId;
+
+    public function __construct()
+    {
+        $this->apiToken = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+    }
+
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return User
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
 
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set firstname
-     *
-     * @param string $firstname
-     *
-     * @return User
-     */
-    public function setFirstname($firstname)
-    {
-        $this->firstname = $firstname;
-
-        return $this;
-    }
-
-    /**
-     * Get firstname
-     *
-     * @return string
-     */
-    public function getFirstname()
-    {
-        return $this->firstname;
-    }
-
-    /**
-     * Set lastname
-     *
-     * @param string $lastname
-     *
-     * @return User
-     */
-    public function setLastname($lastname)
-    {
-        $this->lastname = $lastname;
-
-        return $this;
-    }
-
-    /**
-     * Get lastname
-     *
-     * @return string
-     */
-    public function getLastname()
-    {
-        return $this->lastname;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return User
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string
-     */
     public function getEmail()
     {
         return $this->email;
     }
 
-    /**
-     * Set hometown
-     *
-     * @param string $hometown
-     *
-     * @return User
-     */
-    public function setHometown($hometown)
+    public function setEmail($email)
     {
-        $this->hometown = $hometown;
+        $this->email = $email;
+    }
 
-        return $this;
+
+    /**
+     * Returns the roles or permissions granted to the user for security.
+     */
+
+    public function getRoles()
+    {
+        $roles = $this->roles;
+        // guarantees that a user always has at least one role for security
+        if (empty($roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+        return array_unique($roles);
+    }
+
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+    }
+    /**
+     * Returns the salt that was originally used to encode the password.
+     */
+
+    public function getSalt()
+    {
+        // See "Do you need to use a Salt?" at http://symfony.com/doc/current/cookbook/security/entity_provider.html
+        // we're using bcrypt in security.yml to encode the password, so
+        // the salt value is built-in and you don't have to generate one
+        return;
+    }
+    /**
+     * Removes sensitive data from the user.
+     */
+
+    public function eraseCredentials()
+    {
+        // if you had a plainPassword property, you'd nullify it here
+        // $this->plainPassword = null;
+    }
+    /**
+     * @param string $apiToken
+     */
+
+    public function setApiToken($apiToken)
+    {
+        $this->apiToken = $apiToken;
+    }
+
+    public function setLastLoginTime(\DateTime $lastLoginTime)
+    {
+        $this->lastLoginTime = $lastLoginTime;
+    }
+
+    public function getFacebookId()
+    {
+        return $this->facebookId;
+    }
+
+    public function setFacebookId($facebookId)
+    {
+        $this->facebookId = $facebookId;
+    }
+
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+
+    public function setName($name)
+    {
+        $this->name = $name;
     }
 
     /**
-     * Get hometown
+     * Returns the username used to authenticate the user.
      *
-     * @return string
+     * @return string The username
      */
-    public function getHometown()
+    public function getUsername()
     {
-        return $this->hometown;
+        // TODO: Implement getUsername() method.
     }
 
     /**
-     * Set facebookID
+     * Returns the password used to authenticate the user.
      *
-     * @param integer $facebookID
+     * This should be the encoded password. On authentication, a plain-text
+     * password will be salted, encoded, and then compared to this value.
      *
-     * @return User
+     * @return string The password
      */
-    public function setFacebookID($facebookID)
+    public function getPassword()
     {
-        $this->facebookID = $facebookID;
-
-        return $this;
-    }
-
-    /**
-     * Get facebookID
-     *
-     * @return int
-     */
-    public function getFacebookID()
-    {
-        return $this->facebookID;
+        // TODO: Implement getPassword() method.
     }
 }
-

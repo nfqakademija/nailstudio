@@ -10,8 +10,10 @@ security:
     providers:
         # Simple example of loading users via Doctrine
         # To load users from somewhere else: http://symfony.com/doc/current/cookbook/security/custom_provider.html
+        in_memory:
+            memory: ~
         database_users:
-            entity: { class: AppBundle:User, property: username }
+            entity: { class: AppBundle:User, property: email }
 
     firewalls:
         dev:
@@ -23,6 +25,19 @@ security:
             logout: ~
             guard:
                 authenticators:
+#                    - app.form_login_authenticator
+#                    - app.token_authenticator
                     - app.facebook_authenticator
+                                # by default, use the start() function from FormLoginAuthenticator
+#                entry_point:
+#                    app.token_authenticator
             logout:
-                path: /logout
+                path: logout
+
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/user, roles: ROLE_USER }
+        - { path: ^/connect/facebook/check, roles: ROLE_USER }
+
+
+

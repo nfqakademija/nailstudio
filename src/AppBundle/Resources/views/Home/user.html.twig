@@ -22,5 +22,6 @@
 {% endblock %}
 
 {% block body %}
-    <div class="title">You are now connected with facebook. Now you are ({{ user }})</div>
+    <div class="title">You are now connected with facebook. Now you are ({{ app.user ? app.user.email : 'Aquanauts' }})</div>
+
 {% endblock %}
