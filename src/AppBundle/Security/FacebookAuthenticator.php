@@ -9,23 +9,26 @@
 namespace AppBundle\Security;
 
 
-use AppBundle\Form\FaceBookForm;
+use AppBundle\Entity\User;
+use Doctrine\ORM\EntityManager;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\SocialAuthenticator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 class FacebookAuthenticator extends SocialAuthenticator
 {
     private $clientRegistry;
-    private $facebookForm;
-    public function __construct(ClientRegistry $clientRegistry, FaceBookForm $facebookForm)
+    private $em;
+    public function __construct(ClientRegistry $clientRegistry, EntityManager $em)
     {
+        $this->em = $em;
         $this->clientRegistry = $clientRegistry;
-        $this->facebookForm = $facebookForm;
     }
+
     public function getCredentials(Request $request)
     {
         if ($request->getPathInfo() != '/connect/facebook/check') {
@@ -33,23 +36,49 @@ class FacebookAuthenticator extends SocialAuthenticator
         }
         return $this->fetchAccessToken($this->getFacebookClient());
     }
+
     private function getFacebookClient()
     {
         return $this->clientRegistry
             ->getClient('facebook_main');
     }
+
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
         $facebookUser = $this->getFacebookClient()
             ->fetchUserFromToken($credentials);
         $facebookUserArray = $facebookUser->toArray();
-//        $existingUser = $this->userService->updateUser($facebookUserArray);
-//        if ($existingUser) {
-//            return $existingUser;
-//        }
-        $user = $this->facebookForm->createUser($facebookUserArray);
+        $existingUser = $this->updateUser($facebookUserArray);
+        if ($existingUser) {
+            return $existingUser;
+        }
+        $user = $this->createUser($facebookUserArray);
         return $user;
     }
+
+    public function createUser($userArray){
+        $user = new User();
+        $user->setEmail($userArray['email']);
+        $user->setFacebookId($userArray['facebookId']);
+        $user->setRoles($userArray['roles']);
+        $user->setName($userArray['name']);
+        $this->em->persist($user);
+        $this->em->flush();
+        return $user;
+    }
+
+    public function updateUser($userArray)
+    {
+        $existingUser = $this->em->getRepository('AppBundle:User')
+            ->findOneBy(['facebookId' => $userArray['id']]);
+        if($existingUser){
+            $this->em->persist($existingUser);
+            $this->em->flush();
+            return $existingUser;
+        }
+        return null;
+    }
+
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
         // TODO: Implement onAuthenticationSuccess() method.
@@ -62,4 +91,21 @@ class FacebookAuthenticator extends SocialAuthenticator
     {
         // TODO: Implement start() method.
     }
+
+    /**
+     * Return a UserInterface object based on the credentials.
+     *
+     * The *credentials* are the return value from getCredentials()
+     *
+     * You may throw an AuthenticationException if you wish. If you return
+     * null, then a UsernameNotFoundException is thrown for you.
+     *
+     * @param mixed $credentials
+     * @param UserProviderInterface $userProvider
+     *
+     * @throws AuthenticationException
+     *
+     * @return UserInterface|null
+     */
+
 }
