@@ -20,7 +20,7 @@ class User implements UserInterface
      */
     private $id;
     /**
-     * @ORM\Column(type="string", unique=true, nullable=true)
+     * @ORM\Column(type="string", unique=true)
      */
     private $name;
     /**
@@ -29,7 +29,7 @@ class User implements UserInterface
     private $email;
 
     /**
-     * @ORM\Column(type="json_array", nullable=true)
+     * @ORM\Column(type="json_array")
      */
     private $roles = array();
     /**
