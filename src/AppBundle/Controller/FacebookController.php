@@ -25,10 +25,17 @@ class FacebookController extends Controller
      */
     public function connectCheckAction(Request $request)
     {
-
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         return $this->render('AppBundle:Home:user.html.twig', array('user' => $user));
+    }
+
+    /**
+     * @Route("/logout", name="facebook_logout")
+     */
+    public function logoutAction()
+    {
+
     }
 
 }

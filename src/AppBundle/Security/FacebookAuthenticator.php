@@ -52,16 +52,13 @@ class FacebookAuthenticator extends SocialAuthenticator
         if ($existingUser) {
             return $existingUser;
         }
-        $user = $this->createUser($facebookUserArray);
-        return $user;
-    }
 
-    public function createUser($userArray){
         $user = new User();
-        $user->setEmail($userArray['email']);
-        $user->setFacebookId($userArray['facebookId']);
-        $user->setRoles($userArray['roles']);
-        $user->setName($userArray['name']);
+        $user->setEmail($facebookUserArray['email']);
+        $user->setFacebookId($facebookUserArray['id']);
+        $user->setRoles(array('ROLE_USER'));
+        $user->setName($facebookUserArray['name']);
+        $user->setLastLoginTime(new \DateTime("now", new \DateTimeZone('Europe/Vilnius')));
         $this->em->persist($user);
         $this->em->flush();
         return $user;
@@ -72,6 +69,7 @@ class FacebookAuthenticator extends SocialAuthenticator
         $existingUser = $this->em->getRepository('AppBundle:User')
             ->findOneBy(['facebookId' => $userArray['id']]);
         if($existingUser){
+            $existingUser->setLastLoginTime(new \DateTime("now", new \DateTimeZone('Europe/Vilnius')));
             $this->em->persist($existingUser);
             $this->em->flush();
             return $existingUser;

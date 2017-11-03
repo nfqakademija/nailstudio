@@ -22,5 +22,20 @@
 {% endblock %}
 
 {% block body %}
-    <div class="title">You are now connected with facebook. Now you are ({{ app.user ? app.user.email : 'Aquanauts' }})</div>
+
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <div class="title">You are now connected with facebook. </div>
+            <div>
+            <h1>Now you are ({{ app.user ? app.user.name : 'Aquanauts' }})</h1>
+                <a href="{{ path('facebook_logout') }}" class="btn btn-danger">Logout</a>
+            </div>
+        {% else %}
+            <a href="{{ path('app_facebook_connect') }}" class="btn btn-primary">
+            <span class="icon">
+                <i class="fa fa-facebook"></i>
+            </span>
+                <span>Login with Facebook</span>
+            </a>
+        {% endif %}
+
 {% endblock %}
