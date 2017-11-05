@@ -5,17 +5,9 @@
 {% block stylesheets %}
     {{ parent() }}
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-weight: 100;
-            font-family: 'Lato';
-        }
-        .title {
-            margin: 20px auto;
-            text-align: center;
-            font-size: 70px;
-            font-weight: 700;
+        body
+        {
+            background-image: url('{{ asset("images/header.jpg") }}');
         }
     </style>
 {% endblock %}
@@ -23,15 +15,38 @@
 {% block body %}
 
 
-    <div class="title">Here would be NAIL STUDIO website</div>
-
-    <div class="row">
-        <div class="col-lg-4 col-md-offset-4">
-            <a href="{{ path('app_facebook_connect') }} "class="btn btn-block btn-social btn-primary btn-facebook">
+    <header>
+        <div class="header-content">
+            <div class="header-content-inner">
+                {#<img src="{{ asset("images/header.jpg") }}" class="header" style="width:500px;height:600px;" alt="first page image">#}
+                <p>Nail Studio</p>
+                <br>
+                {#<a href="#galery" class="btn btn-primary btn-xl page-scroll img-rounded">Photo galery</a>#}
+                <div class="row">
+                <div class="col-lg-4 col-md-offset-4">
+                <a href="{{ path('app_facebook_connect') }} "class="btn btn-block btn-social btn-primary btn-facebook">
                 <span class="fa fa-facebook"></span> Sign in with facebook
-            </a>
+                </a>
+                </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </header>
 
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Nail Studio</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="page-scroll" href="#galery">Photo galery</a></li>
+                    <li><a class="page-scroll" href="#about">About</a></li>
+                    <li><a class="page-scroll" href="#services">Services</a></li>
+                    <li><a class="page-scroll" href="#contacts">Contacts</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
 {% endblock %}

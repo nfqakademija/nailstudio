@@ -1430,23 +1430,23 @@
         },
         {
             "name": "knpuniversity/oauth2-client-bundle",
-            "version": "1.13.0",
+            "version": "1.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/knpuniversity/oauth2-client-bundle.git",
-                "reference": "4a3a6a65038774483f144702edfa4c31c4af8853"
+                "reference": "0ca39c9278865db2178c26a1e1ec82ffed1447a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/knpuniversity/oauth2-client-bundle/zipball/4a3a6a65038774483f144702edfa4c31c4af8853",
-                "reference": "4a3a6a65038774483f144702edfa4c31c4af8853",
+                "url": "https://api.github.com/repos/knpuniversity/oauth2-client-bundle/zipball/0ca39c9278865db2178c26a1e1ec82ffed1447a1",
+                "reference": "0ca39c9278865db2178c26a1e1ec82ffed1447a1",
                 "shasum": ""
             },
             "require": {
                 "league/oauth2-client": "^1.0|^2.0",
                 "php": " >=5.5.9",
-                "symfony/dependency-injection": "^2.8|^3.0|4.0",
-                "symfony/framework-bundle": "^2.7|^3.0|4.0",
+                "symfony/dependency-injection": "^2.8|^3.0|^4.0",
+                "symfony/framework-bundle": "^2.7|^3.0|^4.0",
                 "symfony/http-foundation": "^2.7|^3.0|^4.0",
                 "symfony/routing": "^2.7|^3.0|^4.0"
             },
@@ -1480,7 +1480,7 @@
                 "oauth",
                 "oauth2"
             ],
-            "time": "2017-11-02 16:31:20"
+            "time": "2017-11-03 17:31:38"
         },
         {
             "name": "league/oauth2-client",
