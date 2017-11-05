@@ -19,6 +19,5 @@ composer.lock
 /web/js
 /web/fonts
 /node_modules
-/bin/*
 .env
 npm-debug.log
