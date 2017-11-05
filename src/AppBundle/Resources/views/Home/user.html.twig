@@ -10,6 +10,7 @@
             padding: 0;
             font-weight: 100;
             font-family: 'Lato';
+            color: #122b40;
         }
 
         .title {
@@ -25,9 +26,9 @@
 {% block body %}
 
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            <div class="title">You are now connected with facebook. </div>
+            <div class="title">Connected with facebook. </div>
             <div>
-            <h1>Now you are ({{ app.user ? app.user.name : 'Aquanauts' }})</h1>
+            <h1>You are ({{ app.user ? app.user.name : 'Aquanauts' }})</h1>
                 <a href="{{ path('facebook_logout') }}" class="btn btn-danger">Logout</a>
             </div>
         {% else %}
