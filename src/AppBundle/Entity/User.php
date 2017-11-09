@@ -20,16 +20,15 @@ class User implements UserInterface
      */
     private $id;
     /**
-     * @ORM\Column(type="string", unique=true)
+     * @ORM\Column(type="string", unique=true, nullable=true)
      */
     private $name;
     /**
      * @ORM\Column(type="string", unique=true)
      */
     private $email;
-
     /**
-     * @ORM\Column(type="json_array")
+     * @ORM\Column(type="json_array", nullable=true)
      */
     private $roles = array();
     /**
@@ -44,6 +43,21 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $facebookId;
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $facebookPicture;
+    /**
+     * @ORM\Column(type="string",)
+     */
+    private $facebookToken;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="picture_url", type="string", length=255)
+     */
+    private $pictureUrl = "";
 
     public function __construct()
     {
@@ -55,7 +69,6 @@ class User implements UserInterface
         return $this->id;
     }
 
-
     public function getEmail()
     {
         return $this->email;
@@ -66,11 +79,9 @@ class User implements UserInterface
         $this->email = $email;
     }
 
-
     /**
      * Returns the roles or permissions granted to the user for security.
      */
-
     public function getRoles()
     {
         $roles = $this->roles;
@@ -85,10 +96,10 @@ class User implements UserInterface
     {
         $this->roles = $roles;
     }
+
     /**
      * Returns the salt that was originally used to encode the password.
      */
-
     public function getSalt()
     {
         // See "Do you need to use a Salt?" at http://symfony.com/doc/current/cookbook/security/entity_provider.html
@@ -96,19 +107,19 @@ class User implements UserInterface
         // the salt value is built-in and you don't have to generate one
         return;
     }
+
     /**
      * Removes sensitive data from the user.
      */
-
     public function eraseCredentials()
     {
         // if you had a plainPassword property, you'd nullify it here
         // $this->plainPassword = null;
     }
+
     /**
      * @param string $apiToken
      */
-
     public function setApiToken($apiToken)
     {
         $this->apiToken = $apiToken;
@@ -129,16 +140,46 @@ class User implements UserInterface
         $this->facebookId = $facebookId;
     }
 
-
     public function getName()
     {
         return $this->name;
     }
 
-
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFacebookPicture()
+    {
+        return $this->facebookPicture;
+    }
+
+    /**
+     * @param mixed $facebookPicture
+     */
+    public function setFacebookPicture($facebookPicture)
+    {
+        $this->facebookPicture = $facebookPicture;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFacebookToken()
+    {
+        return $this->facebookToken;
+    }
+
+    /**
+     * @param mixed $facebookToken
+     */
+    public function setFacebookToken($facebookToken)
+    {
+        $this->facebookToken = $facebookToken;
     }
 
     /**
@@ -163,4 +204,22 @@ class User implements UserInterface
     {
         // TODO: Implement getPassword() method.
     }
+
+    /**
+     * @return string
+     */
+    public function getPictureUrl()
+    {
+        return $this->pictureUrl;
+    }
+
+    /**
+     * @param string $pictureUrl
+     */
+    public function setPictureUrl($pictureUrl)
+    {
+        $this->pictureUrl = $pictureUrl;
+    }
+
+
 }

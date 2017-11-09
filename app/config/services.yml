@@ -3,21 +3,18 @@
 parameters:
 
 services:
-#    app.form_login_authenticator:
-#        class: AppBundle\Security\FormLoginAuthenticator
-#        arguments: ["@service_container"]
 
     app.token_authenticator:
         class: AppBundle\Security\TokenAuthenticator
         arguments: ["@doctrine.orm.entity_manager"]
 
-#    app.last_login_subscriber:
-#        class: AppBundle\EventListener\LastLoginSubscriber
-#        arguments: ["@doctrine.orm.entity_manager"]
-#        tags:
-#            - { name: kernel.event_subscriber }
-
     app.facebook_authenticator:
         class: AppBundle\Security\FacebookAuthenticator
         autowire: true
 
+    AppBundle\EventListener\PostFacebookAuthenticationListener:
+        class: AppBundle\EventListener\PostFacebookAuthenticationListener
+        arguments: ['@doctrine.orm.default_entity_manager',
+             '@KnpU\OAuth2ClientBundle\Client\ClientRegistry']
+        tags:
+            - { name: kernel.event_listener, event: security.interactive_login, method: onLoginSuccess }

@@ -25,12 +25,7 @@ security:
             logout: ~
             guard:
                 authenticators:
-#                    - app.form_login_authenticator
-#                    - app.token_authenticator
                     - app.facebook_authenticator
-                                # by default, use the start() function from FormLoginAuthenticator
-#                entry_point:
-#                    app.token_authenticator
             logout:
                 path: /logout
 

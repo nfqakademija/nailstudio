@@ -8,7 +8,6 @@
 
 namespace AppBundle\Security;
 
-
 use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
@@ -23,6 +22,7 @@ class FacebookAuthenticator extends SocialAuthenticator
 {
     private $clientRegistry;
     private $em;
+
     public function __construct(ClientRegistry $clientRegistry, EntityManager $em)
     {
         $this->em = $em;
@@ -52,13 +52,13 @@ class FacebookAuthenticator extends SocialAuthenticator
         if ($existingUser) {
             return $existingUser;
         }
-
         $user = new User();
         $user->setEmail($facebookUserArray['email']);
         $user->setFacebookId($facebookUserArray['id']);
         $user->setRoles(array('ROLE_USER'));
         $user->setName($facebookUserArray['name']);
         $user->setLastLoginTime(new \DateTime("now", new \DateTimeZone('Europe/Vilnius')));
+        $user->setFacebookToken($credentials);
         $this->em->persist($user);
         $this->em->flush();
         return $user;
@@ -68,7 +68,7 @@ class FacebookAuthenticator extends SocialAuthenticator
     {
         $existingUser = $this->em->getRepository('AppBundle:User')
             ->findOneBy(['facebookId' => $userArray['id']]);
-        if($existingUser){
+        if ($existingUser) {
             $existingUser->setLastLoginTime(new \DateTime("now", new \DateTimeZone('Europe/Vilnius')));
             $this->em->persist($existingUser);
             $this->em->flush();
@@ -81,15 +81,16 @@ class FacebookAuthenticator extends SocialAuthenticator
     {
         // TODO: Implement onAuthenticationSuccess() method.
     }
+
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
         // TODO: Implement onAuthenticationFailure() method.
     }
+
     public function start(Request $request, AuthenticationException $authException = null)
     {
         // TODO: Implement start() method.
     }
-
     /**
      * Return a UserInterface object based on the credentials.
      *
@@ -105,5 +106,4 @@ class FacebookAuthenticator extends SocialAuthenticator
      *
      * @return UserInterface|null
      */
-
 }
