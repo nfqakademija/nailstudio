@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: benas
- * Date: 17.11.1
- * Time: 18.00
+ * Date: 17.11.9
+ * Time: 01.31
  */
 
 namespace AppBundle\Security;
@@ -63,7 +63,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
         // do nothing - let the request just continue!
-        return 'Authentication success';
+        return;
     }
 
     public function supportsRememberMe()

@@ -82,3 +82,18 @@ knpu_oauth2_client:
             # route parameters to pass to your route, if needed
             redirect_params: {}
             graph_api_version: v2.10
+
+#Migrations Configuration
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/DoctrineMigrations"
+    namespace: Application\Migrations
+    table_name: migration_versions
+    name: Application Migrations
+    organize_migrations: false
+
+#Migrations Configuration
+stof_doctrine_extensions:
+    default_locale: en_US
+    orm:
+        default:
+            timestampable: true
