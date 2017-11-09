@@ -18,12 +18,14 @@ class FacebookController extends Controller
             ->redirect();
     }
 
+
     /**
      * @Route("/connect/facebook/check", name="connect_facebook_check")
      */
     public function connectCheckAction(Request $request)
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
+
         return $this->render('AppBundle:Home:user.html.twig', array('user' => $user));
     }
 
@@ -32,5 +34,7 @@ class FacebookController extends Controller
      */
     public function logoutAction()
     {
+
     }
+
 }
