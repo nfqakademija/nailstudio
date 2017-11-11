@@ -26,7 +26,7 @@ class FacebookController extends Controller
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        return $this->render('AppBundle:Home:user.html.twig', array('user' => $user));
+        return $this->redirectToRoute('homepage');
     }
 
     /**
