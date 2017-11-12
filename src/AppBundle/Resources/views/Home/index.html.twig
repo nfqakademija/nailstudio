@@ -4,76 +4,32 @@
 
 {% block stylesheets %}
     {{ parent() }}
+
 {% endblock %}
 
 {% block body %}
 
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Nail Studio</a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span
-                                    class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Page 1-1</a></li>
-                            <li><a href="#">Page 1-2</a></li>
-                            <li><a href="#">Page 1-3</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Page 2</a></li>
-                    <li><a href="#">Page 3</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
 
-                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+    <div class="bg"></div>
 
-                        {#<img src="{{ app.user.facebookPicture }}">#}
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> {{ app.user.name }}</a></li>
-                        <li><a href="{{ path('facebook_logout') }}"><span class="glyphicon glyphicon-log-out"></span>
-                                Logout</a></li>
-                        {#<a href= class="btn btn-danger">Logout</a>#}
-                    {% else %}
-                        <li><a href="{{ path('app_facebook_connect') }}"><span
-                                        class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                        <li><a href="{{ path('app_facebook_connect') }}"><span class="glyphicon glyphicon-user"></span>
-                                Sign Up</a></li>
+        {#<div class="header-content">#}
+            {#<div class="header-content-inner">#}
+                {#<img src="{{ asset("images/header.jpg") }}" class="header" style="width:500px;height:600px;"#}
+                     {#alt="first page image">#}
+                {#<p>Nail Studio</p>#}
+                {#<br>#}
+                {#<a href="#galery" class="btn btn-primary btn-xl page-scroll img-rounded">Photo galery</a>#}
+                {#<div class="row">#}
+                    {#<div class="col-lg-4 col-md-offset-4">#}
+                        {#<a href="{{ path('app_facebook_connect') }} "#}
+                           {#class="btn btn-block btn-social btn-primary btn-facebook">#}
+                            {#<span class="fa fa-facebook"></span> Sign in with facebook#}
+                        {#</a>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
 
-                    {% endif %}
-
-
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-
-    {#<header>#}
-    {#<div class="header-content">#}
-    {#<div class="header-content-inner">#}
-    {#<img src="{{ asset("images/header.jpg") }}" class="header" style="width:500px;height:600px;" alt="first page image">#}
-    {#<p>Nail Studio</p>#}
-    {#<br>#}
-    {#<a href="#galery" class="btn btn-primary btn-xl page-scroll img-rounded">Photo galery</a>#}
-    {#<div class="row">#}
-    {#<div class="col-lg-4 col-md-offset-4">#}
-    {#<a href="{{ path('app_facebook_connect') }} "class="btn btn-block btn-social btn-primary btn-facebook">#}
-    {#<span class="fa fa-facebook"></span> Sign in with facebook#}
-    {#</a>#}
-    {#</div>#}
-    {#</div>#}
-    {#</div>#}
-    {#</div>#}
-    {#</header>#}
 
     {#<nav class="navbar navbar-inverse navbar-fixed-top">#}
     {#<div class="container-fluid">#}

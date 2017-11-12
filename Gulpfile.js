@@ -8,7 +8,7 @@ var uglify  = require('gulp-uglify');
 var dir = {
     assets: './src/AppBundle/Resources/',
     dist: './web/',
-    npm: './node_modules/',
+    npm: './node_modules/'
 };
 
 gulp.task('sass', function() {
