@@ -36,6 +36,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    date:
+            timezone: Europe/Vilnius
 
 # Doctrine Configuration
 doctrine:
@@ -97,3 +99,25 @@ stof_doctrine_extensions:
     orm:
         default:
             timestampable: true
+
+easy_admin:
+    formats:
+        date:     'd/m/Y'
+        time:     'H:i'
+        datetime: 'd/m/Y H:i:s'
+    list_actions: ['show']
+    list:
+        title: 'List of %%entity_label%%'
+
+    entities:
+        Clients:
+            class: AppBundle\Entity\User
+            label: Users
+            list:
+                fields: ['id', 'name', 'email', 'created', 'updated' , 'facebookId', 'roles']
+            actions:  ['edit']
+
+#        Orders: AppBundle\Entity\Order
+#        Inventory: AppBundle\Entity\Product
+
+
