@@ -18,6 +18,8 @@ class AppKernel extends Kernel
             new KnpU\OAuth2ClientBundle\KnpUOAuth2ClientBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle(),
+
 
             new AppBundle\AppBundle(),
         );

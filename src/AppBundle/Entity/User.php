@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * User
@@ -19,36 +20,56 @@ class User implements UserInterface
      * @ORM\Column(type="integer")
      */
     private $id;
+
     /**
-     * @ORM\Column(type="string", unique=true, nullable=true)
+     * @ORM\Column(type="string")
      */
     private $name;
+
     /**
      * @ORM\Column(type="string", unique=true)
      */
     private $email;
+
     /**
-     * @ORM\Column(type="json_array", nullable=true)
+     *
+     * @var \DateTime $created
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $created;
+
+    /**
+     * @var \DateTime $updated
+     *
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
+     */
+    private $updated;
+
+    /**
+     * @ORM\Column(type="json_array")
      */
     private $roles = array();
+
     /**
      * @ORM\Column(type="string", unique=true)
      */
     private $apiToken;
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $lastLoginTime;
+
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      */
+
     private $facebookId;
     /**
      * @ORM\Column(type="string", nullable=true)
      */
+
     private $facebookPicture;
     /**
-     * @ORM\Column(type="string",)
+     * @ORM\Column(type="string", unique=true)
      */
     private $facebookToken;
 
@@ -59,28 +80,41 @@ class User implements UserInterface
      */
     private $pictureUrl = "";
 
+    /**
+     * User constructor.
+     */
     public function __construct()
     {
         $this->apiToken = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
     }
 
+    /**
+     * @return integer
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @return string
+     */
     public function getEmail()
     {
         return $this->email;
     }
 
+    /**
+     * @param $email
+     */
     public function setEmail($email)
     {
         $this->email = $email;
     }
 
+
     /**
-     * Returns the roles or permissions granted to the user for security.
+     * @return array
      */
     public function getRoles()
     {
@@ -92,6 +126,9 @@ class User implements UserInterface
         return array_unique($roles);
     }
 
+    /**
+     * @param $roles
+     */
     public function setRoles($roles)
     {
         $this->roles = $roles;
@@ -125,33 +162,40 @@ class User implements UserInterface
         $this->apiToken = $apiToken;
     }
 
-    public function setLastLoginTime(\DateTime $lastLoginTime)
-    {
-        $this->lastLoginTime = $lastLoginTime;
-    }
-
+    /**
+     * @return string
+     */
     public function getFacebookId()
     {
         return $this->facebookId;
     }
 
+    /**
+     * @param $facebookId
+     */
     public function setFacebookId($facebookId)
     {
         $this->facebookId = $facebookId;
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
     }
 
+    /**
+     * @param $name
+     */
     public function setName($name)
     {
         $this->name = $name;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getFacebookPicture()
     {
@@ -159,7 +203,7 @@ class User implements UserInterface
     }
 
     /**
-     * @param mixed $facebookPicture
+     * @param string $facebookPicture
      */
     public function setFacebookPicture($facebookPicture)
     {
@@ -167,7 +211,7 @@ class User implements UserInterface
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getFacebookToken()
     {
@@ -175,7 +219,7 @@ class User implements UserInterface
     }
 
     /**
-     * @param mixed $facebookToken
+     * @param string $facebookToken
      */
     public function setFacebookToken($facebookToken)
     {
@@ -219,6 +263,46 @@ class User implements UserInterface
     public function setPictureUrl($pictureUrl)
     {
         $this->pictureUrl = $pictureUrl;
+    }
+
+    /**
+     * @return string
+     */
+    public function getApiToken()
+    {
+        return $this->apiToken;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * @param \DateTime $created
+     */
+    public function setCreated(\DateTime $created)
+    {
+        $this->created = $created;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * @param \DateTime $updated
+     */
+    public function setUpdated(\DateTime $updated)
+    {
+        $this->updated = $updated;
     }
 
 

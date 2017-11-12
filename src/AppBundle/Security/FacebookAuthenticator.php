@@ -23,12 +23,21 @@ class FacebookAuthenticator extends SocialAuthenticator
     private $clientRegistry;
     private $em;
 
+    /**
+     * FacebookAuthenticator constructor.
+     * @param ClientRegistry $clientRegistry
+     * @param EntityManager $em
+     */
     public function __construct(ClientRegistry $clientRegistry, EntityManager $em)
     {
         $this->em = $em;
         $this->clientRegistry = $clientRegistry;
     }
 
+    /**
+     * @param Request $request
+     * @return \League\OAuth2\Client\Token\AccessToken|void
+     */
     public function getCredentials(Request $request)
     {
         if ($request->getPathInfo() != '/connect/facebook/check') {
@@ -37,12 +46,20 @@ class FacebookAuthenticator extends SocialAuthenticator
         return $this->fetchAccessToken($this->getFacebookClient());
     }
 
+    /**
+     * @return \KnpU\OAuth2ClientBundle\Client\OAuth2Client
+     */
     private function getFacebookClient()
     {
         return $this->clientRegistry
             ->getClient('facebook_main');
     }
 
+    /**
+     * @param $credentials
+     * @param UserProviderInterface $userProvider
+     * @return User|null|object
+     */
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
         $facebookUser = $this->getFacebookClient()
@@ -57,25 +74,29 @@ class FacebookAuthenticator extends SocialAuthenticator
         $user->setFacebookId($facebookUserArray['id']);
         $user->setRoles(array('ROLE_USER'));
         $user->setName($facebookUserArray['name']);
-        $user->setLastLoginTime(new \DateTime("now", new \DateTimeZone('Europe/Vilnius')));
         $user->setFacebookToken($credentials);
         $this->em->persist($user);
         $this->em->flush();
         return $user;
     }
 
+    /**
+     * @param $userArray
+     * @return User|null|object
+     */
     public function updateUser($userArray)
     {
         $existingUser = $this->em->getRepository('AppBundle:User')
             ->findOneBy(['facebookId' => $userArray['id']]);
         if ($existingUser) {
-            $existingUser->setLastLoginTime(new \DateTime("now", new \DateTimeZone('Europe/Vilnius')));
+            $existingUser->setUpdated(new \DateTime);
             $this->em->persist($existingUser);
             $this->em->flush();
             return $existingUser;
         }
         return null;
     }
+
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
