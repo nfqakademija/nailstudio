@@ -3,7 +3,7 @@ source "https://rubygems.org"
 
 gem "ongr_deploy"
 
-group :development do
-  gem 'capistrano'
-  gem 'capistrano-rails'
-end
+gem 'capistrano'
+gem 'capistrano-rails'
+gem 'capistrano-rvm'
+gem 'capistrano-bundler'
