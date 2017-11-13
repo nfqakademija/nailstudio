@@ -28,17 +28,10 @@ class FacebookController extends Controller
      */
     public function connectCheckAction(Request $request)
     {
-        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $user = $this->getUser();
 
         return $this->redirectToRoute('homepage');
     }
 
-    /**
-     * @Route("/logout", name="facebook_logout")
-     */
-    public function logoutAction()
-    {
-
-    }
 
 }
