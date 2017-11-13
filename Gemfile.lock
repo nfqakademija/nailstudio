@@ -12,6 +12,12 @@ GEM
       i18n
       rake (>= 10.0.0)
       sshkit (~> 1.3)
+    capistrano-bundler (1.3.0)
+      capistrano (~> 3.1)
+      sshkit (~> 1.2)
+    capistrano-rails (1.3.0)
+      capistrano (~> 3.1)
+      capistrano-bundler (~> 1.1)
     capistrano-stats (1.1.1)
     concurrent-ruby (1.0.5)
     deep_merge (1.0.1)
@@ -34,6 +40,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  capistrano
+  capistrano-rails
   ongr_deploy
 
 BUNDLED WITH
