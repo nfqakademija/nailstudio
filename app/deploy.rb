@@ -11,11 +11,12 @@ set :exclude, ['.git', 'node_modules', 'web/app_dev.php']
 set :linked_files, fetch(:linked_files, []).push('app/config/parameters.yml')
 set :linked_dirs, fetch(:linked_dirs, []).push('var/logs')
 
-namespace :mycompany do
-  desc 'Executes a migration to the latest available version'
-  namespace :migrations do
-    task :migrate do
-      invoke 'symfony:console', 'doctrine:migrations:migrate', '--no-interaction'
-    end
-  end
-end
+# Defaults to :db role
+set :migration_role, :app
+
+# Defaults to the primary :db server
+set :migration_servers, -> { primary(fetch(:migration_role)) }
+
+# Defaults to false
+# Skip migration if files in db/migrate were not modified
+set :conditionally_migrate, true
