@@ -61,13 +61,13 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      */
-
     private $facebookId;
+
     /**
      * @ORM\Column(type="string", nullable=true)
      */
-
     private $facebookPicture;
+
     /**
      * @ORM\Column(type="string", unique=true)
      */

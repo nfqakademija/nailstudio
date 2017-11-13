@@ -12,7 +12,10 @@ var dir = {
 };
 
 gulp.task('sass', function() {
-    gulp.src(dir.assets + 'style/main.scss')
+    gulp.src([
+        dir.npm + 'bootstrap-sass/assets/stylesheets/**',
+        dir.assets + 'style/main.scss'
+    ])
         .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
         .pipe(concat('style.css'))
         .pipe(gulp.dest(dir.dist + 'css'));

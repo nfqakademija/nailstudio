@@ -7,3 +7,5 @@ easy_admin_bundle:
     type:     annotation
     prefix:   /admin
 
+facebook_logout:
+    path: /logout
