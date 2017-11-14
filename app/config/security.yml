@@ -7,6 +7,11 @@ security:
         # http://symfony.com/doc/current/book/security.html#encoding-the-user-s-password
         AppBundle\Entity\User: bcrypt
 
+    role_hierarchy:
+        ROLE_ADMIN:       [ROLE_USER, ROLE_EVENT_CREATE]
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+
     providers:
         # Simple example of loading users via Doctrine
         # To load users from somewhere else: http://symfony.com/doc/current/cookbook/security/custom_provider.html
@@ -26,11 +31,12 @@ security:
             guard:
                 authenticators:
                     - app.facebook_authenticator
+
             logout:
                 path: /logout
 
     access_control:
-#        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/user, roles: ROLE_USER }
         - { path: ^/connect/facebook/check, roles: ROLE_USER }
 

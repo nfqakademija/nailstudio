@@ -20,4 +20,12 @@ class HomeController extends Controller
     {
         return $this->render('AppBundle:Home:index.html.twig', []);
     }
+
+    /**
+     * @Route("/user", name="userpage")
+     */
+    public function userAction()
+    {
+        return $this->render('@App/Home/user.html.twig', []);
+    }
 }
