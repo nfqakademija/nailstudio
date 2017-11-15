@@ -15,18 +15,16 @@
 
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     <li><img src="{{ app.user.facebookPicture }}"></li>
-                    <li><a href="{% if is_granted("ROLE_ADMIN") %}{{ path('admin')}}{% else %}{{ path('userpage') }}{% endif %}"><span class="glyphicon glyphicon-user"></span> {{ app.user.name }}</a></li>
+                    <li>
+                        <a href="{% if is_granted("ROLE_ADMIN") %}{{ path('admin') }}{% else %}{{ path('userpage') }}{% endif %}"><span
+                                    class="glyphicon glyphicon-user"></span> {{ app.user.name }}</a></li>
                     <li><a href="{{ path('facebook_logout') }}"><span class="glyphicon glyphicon-log-out"></span>
                             Logout</a></li>
                     {#<a href= class="btn btn-danger">Logout</a>#}
                 {% else %}
-                    <li><a href="{{ path('app_facebook_connect') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                    <li><a href="{{ path('app_facebook_connect') }}"><span class="glyphicon glyphicon-user"></span>
-                            Sign Up</a></li>
-
+                    <li><a href="{{ path('app_facebook_connect') }}"><span class="fa fa-facebook "></span> Login with
+                            facebook</a></li>
                 {% endif %}
-
-
             </ul>
         </div>
     </div>
