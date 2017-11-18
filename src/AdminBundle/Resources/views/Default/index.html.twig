@@ -1,0 +1,29 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Homepage - {{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <br><br><br><br><br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4">
+                    <div class="alert alert-danger">
+                        <strong>{{ error }}</strong> Indicates a successful or positive action.
+                    </div>
+
+                <form action="{{ path('admin_login') }}" method="POST">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" class="form-control" id="username" placeholder="Username">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" class="form-control"
+                           id="password" placeholder="Password"><br>
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
