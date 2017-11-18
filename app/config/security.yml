@@ -8,37 +8,60 @@ security:
         AppBundle\Entity\User: bcrypt
 
     role_hierarchy:
-        ROLE_ADMIN:       [ROLE_USER, ROLE_EVENT_CREATE]
-        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_ADMIN:       [ROLE_USER]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN]
 
 
     providers:
         # Simple example of loading users via Doctrine
         # To load users from somewhere else: http://symfony.com/doc/current/cookbook/security/custom_provider.html
+
+
         in_memory:
-            memory: ~
+              memory:
+                  users:
+                      admin:
+                          password: admin  #here
+                          roles: 'ROLE_ADMIN'
+
         database_users:
             entity: { class: AppBundle:User, property: email }
 
     firewalls:
+
         dev:
             pattern: ^/(_(profiler|wdt|error)|css|images|js)/
             security: false
 
+        admin_area:
+             pattern: ^/admin
+             anonymous:  ~
+             provider:   in_memory
+             http_basic:
+             form_login:
+                 default_target_path: /admin
+                 check_path: admin_login
+                 login_path: admin_login
+                 remember_me: true
+             logout: ~
+             guard:
+                 authenticators:
+                     - form_authenticator
         main:
             anonymous: ~
-            logout: ~
+            logout:
+                path: /logout
+                target: /
+            provider: database_users
             guard:
                 authenticators:
                     - app.facebook_authenticator
 
-            logout:
-                path: /logout
-
     access_control:
-        - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/user, roles: ROLE_USER }
-        - { path: ^/connect/facebook/check, roles: ROLE_USER }
+       - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+       - { path: ^/admin, roles: ROLE_ADMIN }
+#        - { path: ^/user, roles: ROLE_USER }
+#        - { path: ^/connect/facebook/check, roles: ROLE_USER }
 
 
 

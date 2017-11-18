@@ -9,3 +9,8 @@ easy_admin_bundle:
 
 facebook_logout:
     path: /logout
+
+login:
+    resource: "@AdminBundle/Controller/DefaultController.php"
+    type: annotation
+    prefix: /
