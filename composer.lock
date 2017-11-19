@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d28e2952151a15685b296bf51ec98f00",
-    "content-hash": "04f9a3fa008bbcf3f864f16a79f4c732",
+    "hash": "f0aa34906aafdcde159eb83581fd696c",
+    "content-hash": "66b200cc9f6e8734b10b7162b26afecb",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -3096,16 +3096,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v3.3.12",
+            "version": "v3.3.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "1452970fc29131776505f684bd81d7a33cbaada4"
+                "reference": "9b0226340705f75fd0cebd220746a36050ead8a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/1452970fc29131776505f684bd81d7a33cbaada4",
-                "reference": "1452970fc29131776505f684bd81d7a33cbaada4",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/9b0226340705f75fd0cebd220746a36050ead8a9",
+                "reference": "9b0226340705f75fd0cebd220746a36050ead8a9",
                 "shasum": ""
             },
             "require": {
@@ -3246,7 +3246,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2017-11-13 19:37:31"
+            "time": "2017-11-16 18:15:01"
         },
         {
             "name": "twig/extensions",
@@ -3663,7 +3663,7 @@
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v3.3.12",
+            "version": "v3.3.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",

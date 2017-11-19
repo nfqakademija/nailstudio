@@ -37,7 +37,7 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     date:
-            timezone: Europe/Vilnius
+        timezone: Europe/Vilnius
 
 # Doctrine Configuration
 doctrine:
@@ -108,7 +108,6 @@ easy_admin:
     list_actions: ['show']
     list:
         title: 'List of %%entity_label%%'
-
     entities:
         Clients:
             class: AppBundle\Entity\User
