@@ -32,11 +32,5 @@ class DefaultController extends Controller
         ]);
     }
 
-    /**
-     * @Route("/logout", name="logout")
-     */
-    public function logoutAction(Request $request)
-    {
-        // Nothing needed.
-    }
+
 }

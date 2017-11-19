@@ -15,14 +15,45 @@
                         <strong>{{ error }}</strong> Indicates a successful or positive action.
                     </div>
 
-                <form action="{{ path('admin_login') }}" method="POST">
-                    <label for="username">Username</label>
-                    <input type="text" name="username" class="form-control" id="username" placeholder="Username">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" class="form-control"
-                           id="password" placeholder="Password"><br>
-                    <button type="submit">Login</button>
+                {#<form action="{{ path('admin_login') }}" method="POST">#}
+                    {#<label for="username">Username</label>#}
+                    {#<input type="text" name="username" class="form-control" id="username" placeholder="Username">#}
+                    {#<label for="password">Password</label>#}
+                    {#<input type="password" name="password" class="form-control"#}
+                           {#id="password" placeholder="Password"><br>#}
+                    {#<button type="submit">Login</button>#}
+                {#</form>#}
+
+
+                <form data-toggle="validator" role="form" action="{{ path('admin_login') }}" method="POST">
+                    <div class="form-group">
+                        <label for="username" class="control-label">Username</label>
+                        <input type="text" name="username" class="form-control" id="username" placeholder="Username" required>
+                    </div>
+                    {#<div class="form-group">#}
+                        {#<label for="inputEmail" class="control-label">Email</label>#}
+                        {#<input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="Bruh, that email address is invalid" required>#}
+                        {#<div class="help-block with-errors"></div>#}
+                    {#</div>#}
+                    <div class="form-group">
+                        <label for="password" class="control-label">Password</label>
+                        {#<div class="form-inline row">#}
+                            {#<div class="form-group col-sm-6">#}
+                                <input type="password" name="password" data-minlength="8" class="form-control" id="password" placeholder="Password" required>
+                                <div class="help-block">Minimum of 8 characters</div>
+                            {#</div>#}
+                            {#<div class="form-group col-sm-6">#}
+                                {#<input type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" required>#}
+                                {#<div class="help-block with-errors"></div>#}
+                            {#</div>#}
+                        {#</div>#}
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
                 </form>
+
             </div>
         </div>
     </div>

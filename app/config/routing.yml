@@ -14,3 +14,6 @@ login:
     resource: "@AdminBundle/Controller/DefaultController.php"
     type: annotation
     prefix: /
+
+admin_logout:
+    path: /admin/logout
