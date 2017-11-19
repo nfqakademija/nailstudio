@@ -3,6 +3,8 @@ require 'ongr_deploy'
 
 # Includes default deployment tasks
 require 'capistrano/deploy'
+require 'capistrano/symfony'
+require 'capistrano/symfony-doctrine'
 
 # Load custom tasks from `app/tasks' if you have any defined
 Dir.glob( 'app/tasks/*.rake' ).each { |r| import r }
