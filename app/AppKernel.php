@@ -19,7 +19,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle(),
-
+            new AncaRebeca\FullCalendarBundle\FullCalendarBundle(),
 
             new AppBundle\AppBundle(),
             new AdminBundle\AdminBundle(),

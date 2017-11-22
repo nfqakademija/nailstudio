@@ -9,9 +9,21 @@
 {% block body %}
 
 
-    <div class="bg"></div>
+    <div class="bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 mx-auto">
+                    <a href="#contact" class="btn btn-lg btn-outline js-scroll-trigger">
+                        <i class="fa fa-shopping-cart "></i> MAKE AN APPOINTMENT
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include '@FullCalendar/Calendar/calendar.html.twig' %}
 
-        {#<div class="header-content">#}
+
+    {#<div class="header-content">#}
             {#<div class="header-content-inner">#}
                 {#<img src="{{ asset("images/header.jpg") }}" class="header" style="width:500px;height:600px;"#}
                      {#alt="first page image">#}
