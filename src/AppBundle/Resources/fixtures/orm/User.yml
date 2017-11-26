@@ -1,0 +1,8 @@
+AppBundle\Entity\User:
+    user{1..100}:
+        name: '<username()>'
+        email: '<email()>'
+#        password: '<password()>'
+        facebook_id: '<numberBetween(0, 5)>'
+        facebook_token: '<numberBetween(0, 5)>'
+        roles: '[ROLE_USER]'

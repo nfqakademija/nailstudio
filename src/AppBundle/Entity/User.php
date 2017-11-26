@@ -54,12 +54,12 @@ class User implements UserInterface
     private $roles = array();
 
     /**
-     * @ORM\Column(type="string", unique=true)
+     * @ORM\Column(type="string", nullable=false)
      */
     private $apiToken;
 
     /**
-     * @ORM\Column(type="string", length=50, unique=true)
+     * @ORM\Column(type="string", length=50, nullable=false)
      */
     private $facebookId;
 
@@ -69,7 +69,7 @@ class User implements UserInterface
     private $facebookPicture;
 
     /**
-     * @ORM\Column(type="string", unique=true)
+     * @ORM\Column(type="string")
      */
     private $facebookToken;
 
