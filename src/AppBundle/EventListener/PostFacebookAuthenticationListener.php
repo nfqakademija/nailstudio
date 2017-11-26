@@ -49,16 +49,16 @@ class PostFacebookAuthenticationListener
      */
     public function onLoginSuccess(InteractiveLoginEvent $event)
     {
-        $token = $event->getAuthenticationToken()->getUser()->getFacebookToken();
-        $client = $this->clientRegistry->getClient('facebook_main');
-        $provider = $client->getOAuth2Provider();
-        $longToken = $provider->getLongLivedAccessToken($token);
-        $facebookUser = $client->fetchUserFromToken($longToken);
-        $user = $this->em->getRepository(User::class)
-            ->findOneBy(['facebookId' => $facebookUser->getId()]);
-        if(!$user->getFacebookPicture()){
-            $user->setFacebookPicture($facebookUser->getPictureUrl());
-            $this->em->flush();
-        }
+//        $token = $event->getAuthenticationToken()->getUser()->getFacebookToken();
+//        $client = $this->clientRegistry->getClient('facebook_main');
+//        $provider = $client->getOAuth2Provider();
+//        $longToken = $provider->getLongLivedAccessToken($token);
+//        $facebookUser = $client->fetchUserFromToken($longToken);
+//        $user = $this->em->getRepository(User::class)
+//            ->findOneBy(['facebookId' => $facebookUser->getId()]);
+//        if(!$user->getFacebookPicture()){
+//            $user->setFacebookPicture($facebookUser->getPictureUrl());
+//            $this->em->flush();
+//        }
     }
 }
