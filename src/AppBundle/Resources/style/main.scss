@@ -1,6 +1,12 @@
 //bootstrap
 @import "./node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+.container-fluid {
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0;
+}
+
 .bg {
   background: url('/images/background.jpeg') no-repeat fixed center;
   background-size: cover;
@@ -24,3 +30,40 @@ ul.nav:nth-child(2) > li:nth-child(1) > img:nth-child(1) {
   padding-top: 50px ;
   margin-top: 50px;
 }
+
+.btn-create {
+  color: white;
+  font-size: 20px;
+  border: solid 2px white;
+  background: #007bff;
+  transition: all 0.3s ease-in-out;
+  margin-top: 15px;
+  cursor:pointer;}
+
+.btn-create:hover,
+.btn-create:focus,
+.btn-create:active,
+.btn-create.active {
+  color: #007bff;
+  background: #ffffff;
+  border: solid 2px #007bff;}
+
+#form {
+  padding-top: 150px;
+  padding-bottom: 150px; }
+
+.btn-outline {
+  color: #ffffff;
+  font-size: 20px;
+  border: solid 2px #ffffff;
+  background: #007bff;
+  transition: all 0.3s ease-in-out;
+  margin-top: 15px;}
+
+.btn-outline:hover,
+.btn-outline:focus,
+.btn-outline:active,
+.btn-outline.active {
+  color: #007bff;
+  background: #ffffff;
+  border: solid 2px #007bff;}
