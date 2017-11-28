@@ -20,26 +20,43 @@
             </div>
         </div>
     </div>
-    {% include '@FullCalendar/Calendar/calendar.html.twig' %}
+    <div class="calendar">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset mx-auto">
+                    <h2>Calendar</h2>
+                </div>
+                <div class="col-lg-8 col-lg-offset-2 mx-auto">
+                    {% include '@FullCalendar/Calendar/calendar.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="instagram">
+
+            <a href="https://www.instagram.com/eglesnagustudija/" target="_blank">
+                <i class="fa fa-instagram" aria-hidden="true"></i>visit instagram</a>
+
+    </div>
 
 
     {#<div class="header-content">#}
-            {#<div class="header-content-inner">#}
-                {#<img src="{{ asset("images/header.jpg") }}" class="header" style="width:500px;height:600px;"#}
-                     {#alt="first page image">#}
-                {#<p>Nail Studio</p>#}
-                {#<br>#}
-                {#<a href="#galery" class="btn btn-primary btn-xl page-scroll img-rounded">Photo galery</a>#}
-                {#<div class="row">#}
-                    {#<div class="col-lg-4 col-md-offset-4">#}
-                        {#<a href="{{ path('app_facebook_connect') }} "#}
-                           {#class="btn btn-block btn-social btn-primary btn-facebook">#}
-                            {#<span class="fa fa-facebook"></span> Sign in with facebook#}
-                        {#</a>#}
-                    {#</div>#}
-                {#</div>#}
-            {#</div>#}
-        {#</div>#}
+    {#<div class="header-content-inner">#}
+    {#<img src="{{ asset("images/header.jpg") }}" class="header" style="width:500px;height:600px;"#}
+    {#alt="first page image">#}
+    {#<p>Nail Studio</p>#}
+    {#<br>#}
+    {#<a href="#galery" class="btn btn-primary btn-xl page-scroll img-rounded">Photo galery</a>#}
+    {#<div class="row">#}
+    {#<div class="col-lg-4 col-md-offset-4">#}
+    {#<a href="{{ path('app_facebook_connect') }} "#}
+    {#class="btn btn-block btn-social btn-primary btn-facebook">#}
+    {#<span class="fa fa-facebook"></span> Sign in with facebook#}
+    {#</a>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
 
 
     {#<nav class="navbar navbar-inverse navbar-fixed-top">#}

@@ -62,19 +62,23 @@ class FacebookAuthenticator extends SocialAuthenticator
      */
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
+        $client = $this->getFacebookClient();
+        $provider = $client->getOAuth2Provider();
+        $token = $provider->getLongLivedAccessToken($credentials);
         $facebookUser = $this->getFacebookClient()
             ->fetchUserFromToken($credentials);
-        $facebookUserArray = $facebookUser->toArray();
-        $existingUser = $this->updateUser($facebookUserArray);
+        $existingUser = $this->em->getRepository('AppBundle:User')
+            ->findOneBy(['facebookId' => $facebookUser->getId()]);
         if ($existingUser) {
             return $existingUser;
         }
         $user = new User();
-        $user->setEmail($facebookUserArray['email']);
-        $user->setFacebookId($facebookUserArray['id']);
-        $user->setRoles(array('ROLE_USER'));
-        $user->setName($facebookUserArray['name']);
-        $user->setFacebookToken($credentials);
+        $user->setEmail($facebookUser->getEmail());
+        $user->setName($facebookUser->getName());
+        $user->setFacebookId($facebookUser->getId());
+        $user->setFacebookPicture($facebookUser->getPictureUrl());
+        $user->setRoles(['ROLE_USER']);
+        $user->setFacebookToken($token);
         $this->em->persist($user);
         $this->em->flush();
         return $user;

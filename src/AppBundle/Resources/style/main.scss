@@ -5,12 +5,13 @@
   margin-right: auto;
   margin-left: auto;
   padding: 0;
+
 }
 
 .bg {
   background: url('/images/background.jpeg') no-repeat fixed center;
   background-size: cover;
-  height:100vh;
+  height: 100vh;
   position: relative;
   color: #fff !important;
   text-align: center;
@@ -27,7 +28,7 @@ ul.nav:nth-child(2) > li:nth-child(1) > img:nth-child(1) {
 }
 
 #user {
-  padding-top: 50px ;
+  padding-top: 50px;
   margin-top: 50px;
 }
 
@@ -38,7 +39,8 @@ ul.nav:nth-child(2) > li:nth-child(1) > img:nth-child(1) {
   background: #007bff;
   transition: all 0.3s ease-in-out;
   margin-top: 15px;
-  cursor:pointer;}
+  cursor: pointer;
+}
 
 .btn-create:hover,
 .btn-create:focus,
@@ -46,11 +48,13 @@ ul.nav:nth-child(2) > li:nth-child(1) > img:nth-child(1) {
 .btn-create.active {
   color: #007bff;
   background: #ffffff;
-  border: solid 2px #007bff;}
+  border: solid 2px #007bff;
+}
 
 #form {
   padding-top: 150px;
-  padding-bottom: 150px; }
+  padding-bottom: 150px;
+}
 
 .btn-outline {
   color: #ffffff;
@@ -58,7 +62,8 @@ ul.nav:nth-child(2) > li:nth-child(1) > img:nth-child(1) {
   border: solid 2px #ffffff;
   background: #007bff;
   transition: all 0.3s ease-in-out;
-  margin-top: 15px;}
+  margin-top: 15px;
+}
 
 .btn-outline:hover,
 .btn-outline:focus,
@@ -66,4 +71,14 @@ ul.nav:nth-child(2) > li:nth-child(1) > img:nth-child(1) {
 .btn-outline.active {
   color: #007bff;
   background: #ffffff;
-  border: solid 2px #007bff;}
+  border: solid 2px #007bff;
+}
+
+#instagram {
+  background: none;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}

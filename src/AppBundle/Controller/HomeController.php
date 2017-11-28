@@ -26,6 +26,6 @@ class HomeController extends Controller
      */
     public function userAction()
     {
-        return $this->render('@App/Home/user.html.twig', []);
+        return $this->render('AppBundle:User:user.html.twig', []);
     }
 }

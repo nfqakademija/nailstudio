@@ -30,7 +30,7 @@ class FacebookController extends Controller
     {
         $user = $this->getUser();
 
-        return $this->redirectToRoute('homepage');
+        return $this->redirectToRoute('userpage');
     }
 
 
