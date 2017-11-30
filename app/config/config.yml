@@ -122,14 +122,16 @@ easy_admin:
             multiple: true
             label: Workers
             list:
-                fields: ['id', 'name' , 'position', 'about', 'servicesToMatch']
+                fields: ['id', 'name' , 'position', 'about', 'services']
             actions:  ['edit']
         Services:
             class: AppBundle\Entity\Service
             multiple: true
             label: Services
             list:
-                fields: ['id', 'title' , 'duration', 'price', 'workersToMatch']
+                fields: ['id', 'title' , 'duration', 'price']
+            edit:
+                fields: ['title' , 'duration', 'price']
             actions:  ['edit']
         Schedule:
             class: AppBundle\Entity\Schedule

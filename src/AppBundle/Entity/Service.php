@@ -46,16 +46,16 @@ class Service
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="Worker", inversedBy="servicesToMatch")
+     * @ORM\ManyToMany(targetEntity="Worker", mappedBy="services")
      */
-    private $workersToMatch;
+    private $workers;
 
     /**
      * Service constructor.
      */
     public function __construct()
     {
-        $this->workersToMatch = new ArrayCollection();
+        $this->workers = new ArrayCollection();
     }
 
     public function __toString()
@@ -146,33 +146,20 @@ class Service
     }
 
     /**
-     * Add workersToMatch
-     *
-     * @param Worker $workerToMatch
-     *
-     * @return Service
+     * @return ArrayCollection
      */
-    public function addWorkersToMatch(Worker $workerToMatch): Service
+    public function getWorkers()
     {
-        $this->workersToMatch[] = $workerToMatch;
-        return $this;
-    }
-    /**
-     * Remove workersToMatch
-     *
-     * @param Worker $workerToMatch
-     */
-    public function removeWorkersToMatch(Worker $workerToMatch): void
-    {
-        $this->workersToMatch->removeElement($workerToMatch);
+        return $this->workers;
     }
 
     /**
-     * @return ArrayCollection
+     * @param ArrayCollection $workers
      */
-    public function getWorkersToMatch()
+    public function setWorkers(ArrayCollection $workers)
     {
-        return $this->workersToMatch;
+        $this->workers = $workers;
     }
+
 }
 
