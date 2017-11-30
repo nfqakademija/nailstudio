@@ -46,17 +46,33 @@ class Worker
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="Service", inversedBy="workersToMatch")
+     * @ORM\ManyToMany(targetEntity="Service", inversedBy="workers")
      * @ORM\JoinTable(name="workers_services")
      */
-    private $servicesToMatch;
+    private $services;
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getServices()
+    {
+        return $this->services;
+    }
+
+    /**
+     * @param ArrayCollection $services
+     */
+    public function setServices(ArrayCollection $services)
+    {
+        $this->services = $services;
+    }
 
     /**
      * Worker constructor.
      */
     public function __construct()
     {
-        $this->servicesToMatch = new ArrayCollection();
+        $this->services = new ArrayCollection();
     }
 
     /**
@@ -149,36 +165,6 @@ class Worker
         return $this->about;
     }
 
-    /**
-     * Add servicesToMatch
-     *
-     * @param Service $serviceToMatch
-     *
-     * @return Worker
-     */
-    public function addSevicesToMatch(Service $serviceToMatch): Worker
-    {
-        $serviceToMatch->addWorkersToMatch($this);
-        $this->servicesToMatch[] = $serviceToMatch;
-        return $this;
-    }
 
-    /**
-     * Remove servicesToMatch
-     *
-     * @param Service $serviceToMatch
-     */
-    public function removeServicesToMatch(Service $serviceToMatch): void
-    {
-        $this->servicesToMatch->removeElement($serviceToMatch);
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getServicesToMatch()
-    {
-        return $this->servicesToMatch;
-    }
 }
 
