@@ -115,8 +115,27 @@ easy_admin:
             list:
                 fields: ['id', 'name', 'email', 'created', 'updated' , 'facebookId', 'roles']
             actions:  ['edit']
+        Workers:
+            class: AppBundle\Entity\Worker
+            multiple: true
+            label: Workers
+            list:
+                fields: ['id', 'name' , 'position', 'about']
+            actions:  ['edit']
+        Services:
+            class: AppBundle\Entity\Service
+            multiple: true
+            label: Services
+            list:
+                fields: ['id', 'title' , 'duration', 'price']
+            actions:  ['edit']
+        Schedule:
+            class: AppBundle\Entity\Schedule
+            label: Schedule
+            list:
+                fields: ['id', 'title' , 'start', 'end']
+            actions:  ['edit']
 
-#        Orders: AppBundle\Entity\Order
-#        Inventory: AppBundle\Entity\Product
+#
 
 

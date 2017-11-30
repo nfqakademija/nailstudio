@@ -50,10 +50,17 @@ class Service
      */
     private $workersToMatch;
 
+    /**
+     * Service constructor.
+     */
     public function __construct()
     {
-//        $this->items = new ArrayCollection();
         $this->workersToMatch = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->title;
     }
 
     /**

@@ -51,9 +51,20 @@ class Worker
      */
     private $servicesToMatch;
 
+    /**
+     * Worker constructor.
+     */
     public function __construct()
     {
         $this->servicesToMatch = new ArrayCollection();
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->name;
     }
 
     /**
@@ -165,7 +176,7 @@ class Worker
     /**
      * @return ArrayCollection
      */
-    public function getServicesToMatch(): ArrayCollection
+    public function getServicesToMatch()
     {
         return $this->servicesToMatch;
     }
