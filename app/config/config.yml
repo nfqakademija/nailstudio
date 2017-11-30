@@ -10,7 +10,6 @@ parameters:
 
 framework:
     #esi:             ~
-    #translator:      { fallbacks: ["%locale%"] }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -101,6 +100,7 @@ stof_doctrine_extensions:
             timestampable: true
 
 easy_admin:
+    site_name: 'Nail Studio Admin'
     formats:
         date:     'd/m/Y'
         time:     'H:i'
@@ -111,23 +111,25 @@ easy_admin:
     entities:
         Clients:
             class: AppBundle\Entity\User
-            label: Users
+            label: Clients
             list:
                 fields: ['id', 'name', 'email', 'created', 'updated' , 'facebookId', 'roles']
+            edit:
+                fields: ['name', 'email', 'roles']
             actions:  ['edit']
         Workers:
             class: AppBundle\Entity\Worker
             multiple: true
             label: Workers
             list:
-                fields: ['id', 'name' , 'position', 'about']
+                fields: ['id', 'name' , 'position', 'about', 'servicesToMatch']
             actions:  ['edit']
         Services:
             class: AppBundle\Entity\Service
             multiple: true
             label: Services
             list:
-                fields: ['id', 'title' , 'duration', 'price']
+                fields: ['id', 'title' , 'duration', 'price', 'workersToMatch']
             actions:  ['edit']
         Schedule:
             class: AppBundle\Entity\Schedule
@@ -135,7 +137,13 @@ easy_admin:
             list:
                 fields: ['id', 'title' , 'start', 'end']
             actions:  ['edit']
+    design:
+        menu:
+            - { entity: 'Clients', icon: 'users' }
+            - { entity: 'Workers', icon: 'user-secret' }
+            - { entity: 'Services', icon: 'list' }
+            - { entity: 'Schedule', icon: 'calendar' }
+        brand_color: '#DB7093'
 
-#
 
 
