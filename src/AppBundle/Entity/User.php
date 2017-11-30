@@ -27,7 +27,7 @@ class User implements UserInterface
     private $name;
 
     /**
-     * @ORM\Column(type="string", unique=true)
+     * @ORM\Column(type="string")
      */
     private $email;
 
@@ -54,12 +54,12 @@ class User implements UserInterface
     private $roles = array();
 
     /**
-     * @ORM\Column(type="string", unique=true)
+     * @ORM\Column(type="string")
      */
     private $apiToken;
 
     /**
-     * @ORM\Column(type="string", length=50, unique=true)
+     * @ORM\Column(type="string", length=50)
      */
     private $facebookId;
 
@@ -69,16 +69,9 @@ class User implements UserInterface
     private $facebookPicture;
 
     /**
-     * @ORM\Column(type="string", unique=true)
+     * @ORM\Column(type="string")
      */
     private $facebookToken;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="picture_url", type="string", length=255)
-     */
-    private $pictureUrl = "";
 
     /**
      * User constructor.
@@ -247,22 +240,6 @@ class User implements UserInterface
     public function getPassword()
     {
         // TODO: Implement getPassword() method.
-    }
-
-    /**
-     * @return string
-     */
-    public function getPictureUrl()
-    {
-        return $this->pictureUrl;
-    }
-
-    /**
-     * @param string $pictureUrl
-     */
-    public function setPictureUrl($pictureUrl)
-    {
-        $this->pictureUrl = $pictureUrl;
     }
 
     /**
