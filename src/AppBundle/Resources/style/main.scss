@@ -2,10 +2,14 @@
 @import "./node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 .container-fluid {
-  margin-right: auto;
   margin-left: auto;
+  margin-right: auto;
   padding: 0;
 
+}
+
+.navbar {
+  padding: 0 15px;
 }
 
 .bg {
@@ -19,6 +23,7 @@
   align-items: center;
   justify-content: center;
   max-width: 100%;
+  padding: 15px;
 }
 
 //facebook photo
