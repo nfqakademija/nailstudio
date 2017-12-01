@@ -52,3 +52,13 @@ gulp.task('fonts', function() {
 });
 
 gulp.task('default', ['sass', 'scripts', 'fonts', 'images']);
+
+gulp.task('watch', function () {
+    var onChange = function (event) {
+        console.log('File '+event.path+' has been '+event.type);
+    };
+    gulp.watch('./src/*/Resources/public/sass/**/*.scss', ['sass'])
+        .on('change', onChange);
+    gulp.watch('./src/*/Resources/public/js/**/*.js', ['js'])
+        .on('change', onChange);
+});
