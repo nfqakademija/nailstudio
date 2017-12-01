@@ -11,6 +11,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ *
  */
 class User implements UserInterface
 {
@@ -281,6 +282,5 @@ class User implements UserInterface
     {
         $this->updated = $updated;
     }
-
-
 }
+

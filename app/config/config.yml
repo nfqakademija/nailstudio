@@ -7,6 +7,7 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    app.path.workers_images: /uploads/images/workers
 
 framework:
     #esi:             ~
@@ -59,6 +60,9 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+        filters:
+            softdeleteable:
+                class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -98,6 +102,7 @@ stof_doctrine_extensions:
     orm:
         default:
             timestampable: true
+            softdeleteable: true
 
 easy_admin:
     site_name: 'Nail Studio Admin'
@@ -113,32 +118,78 @@ easy_admin:
             class: AppBundle\Entity\User
             label: Clients
             list:
-                fields: ['id', 'name', 'email', 'created', 'updated' , 'facebookId', 'roles']
+                fields:
+                    - 'id'
+                    - 'name'
+                    - 'email'
+                    - 'created'
+                    - 'updated'
+                    - 'facebookId'
+                    - 'roles'
             edit:
-                fields: ['name', 'email', 'roles']
-            actions:  ['edit']
+                fields:
+                    - 'name'
+                    - 'email'
+                    - 'roles'
         Workers:
             class: AppBundle\Entity\Worker
             multiple: true
             label: Workers
             list:
-                fields: ['id', 'name' , 'position', 'about', 'services']
-            actions:  ['edit']
+                fields:
+                    - 'id'
+                    - 'name'
+                    - 'position'
+                    - 'about'
+                    - 'services'
+                    - 'created'
+                    - 'updated'
+                    - { property: 'image', type: 'image', base_path: '%app.path.workers_images%' }
+            show:
+                fields:
+                    - 'id'
+                    - 'name'
+                    - 'position'
+                    - 'about'
+                    - 'services'
+                    - 'created'
+                    - 'updated'
+                    - { property: 'image', type: 'image', base_path: '%app.path.workers_images%' }
+            form:
+                fields:
+                    - 'name'
+                    - 'position'
+                    - 'about'
+                    - 'services'
+                    - { property: 'imageFile', type: 'file' }
         Services:
             class: AppBundle\Entity\Service
             multiple: true
             label: Services
             list:
-                fields: ['id', 'title' , 'duration', 'price']
+                fields:
+                    - 'id'
+                    - 'title'
+                    - 'duration'
+                    - 'price'
+                    - 'created'
+                    - 'updated'
             edit:
-                fields: ['title' , 'duration', 'price']
-            actions:  ['edit']
+                fields:
+                    - 'title'
+                    - 'duration'
+                    - 'price'
         Schedule:
             class: AppBundle\Entity\Schedule
             label: Schedule
             list:
-                fields: ['id', 'title' , 'start', 'end']
-            actions:  ['edit']
+                fields:
+                    - 'id'
+                    - 'title'
+                    - 'start'
+                    - 'end'
+                    - 'created'
+                    - 'updated'
     design:
         menu:
             - { entity: 'Clients', icon: 'users' }
@@ -147,5 +198,10 @@ easy_admin:
             - { entity: 'Schedule', icon: 'calendar' }
         brand_color: '#DB7093'
 
-
-
+# Vich Uploader
+vich_uploader:
+    db_driver: orm
+    mappings:
+        workers_images:
+            uri_prefix:         '%app.path.workers_images%'
+            upload_destination: '%kernel.root_dir%/../web/uploads/images/workers'

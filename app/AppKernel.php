@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle(),
             new AncaRebeca\FullCalendarBundle\FullCalendarBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle(),
 
             new AppBundle\AppBundle(),
             new AdminBundle\AdminBundle(),
