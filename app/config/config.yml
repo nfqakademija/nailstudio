@@ -147,5 +147,10 @@ easy_admin:
             - { entity: 'Schedule', icon: 'calendar' }
         brand_color: '#DB7093'
 
-
-
+# Vich Uploader
+vich_uploader:
+    db_driver: orm
+    mappings:
+        worker_images:
+            uri_prefix:         '%app.path.worker_images%'
+            upload_destination: '%kernel.root_dir%/../web/uploads/images/workers'
