@@ -28,7 +28,9 @@ gulp.task('scripts', function() {
             dir.npm + 'bootstrap-sass/assets/javascripts/bootstrap.min.js',
 
             // Main JS file
-            dir.assets + 'scripts/main.js'
+            dir.assets + 'scripts/main.js',
+            //FullCalendar JS file
+            dir.assets + 'public/js/my_fullcalendar.js'
         ])
         .pipe(concat('script.js'))
         .pipe(uglify())

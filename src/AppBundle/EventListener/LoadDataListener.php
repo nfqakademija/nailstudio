@@ -7,21 +7,25 @@
  */
 
 namespace AppBundle\EventListener;
+
 use AncaRebeca\FullCalendarBundle\Event\CalendarEvent;
 use AncaRebeca\FullCalendarBundle\Model\Event;
 use AncaRebeca\FullCalendarBundle\Model\FullCalendarEvent;
 use AppBundle\Entity\Schedule;
 use Doctrine\ORM\EntityManager;
+
 class LoadDataListener
 {
     /**
      * @var EntityManager
      */
     private $em;
+
     public function __construct(EntityManager $em)
     {
         $this->em = $em;
     }
+
     /**
      * @param CalendarEvent $calendarEvent
      *
@@ -40,7 +44,7 @@ class LoadDataListener
         // You may want to add an Event into the Calendar view.
         /** @var Schedule $schedule */
         foreach ($schedules as $schedule) {
-            $calendarEvent->addEvent(new Event($schedule->getTitle(), $schedule->getStart()));
+            $calendarEvent->addEvent(new Event($schedule->getTitle(), $schedule->getStart(), $schedule->getEnd()));
         }
     }
 }
