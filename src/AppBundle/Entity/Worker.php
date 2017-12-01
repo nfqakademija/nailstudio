@@ -4,12 +4,18 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Worker
  *
  * @ORM\Table(name="worker")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\WorkerRepository")
+ * @Vich\Uploadable
+ * @Gedmo\SoftDeleteable(fieldName="deleted", timeAware=false)
+ *
  */
 class Worker
 {
@@ -50,6 +56,104 @@ class Worker
      * @ORM\JoinTable(name="workers_services")
      */
     private $services;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @var string
+     */
+    private $image;
+
+    /**
+     * @return string
+     */
+    public function getImage(): string
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param string $image
+     */
+    public function setImage(string $image)
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * @return File
+     */
+    public function getImageFile(): File
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param File|null $image
+     *
+     * @internal param File $imageFile
+     */
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+        if ($image) {
+            $this->updated = new \DateTime('now');
+        }
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreated(): \DateTime
+    {
+        return $this->created;
+    }
+
+    /**
+     * @param \DateTime $created
+     */
+    public function setCreated(\DateTime $created)
+    {
+        $this->created = $created;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdated(): \DateTime
+    {
+        return $this->updated;
+    }
+
+    /**
+     * @param \DateTime $updated
+     */
+    public function setUpdated(\DateTime $updated)
+    {
+        $this->updated = $updated;
+    }
+
+    /**
+     * @Vich\UploadableField(mapping="product_images", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+
+    /**
+     *
+     * @var \DateTime $created
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $created;
+
+    /**
+     * @var \DateTime $updated
+     *
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
+     */
+    private $updated;
 
     /**
      * @return ArrayCollection

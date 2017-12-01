@@ -11,6 +11,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @Gedmo\SoftDeleteable(fieldName="deleted", timeAware=false)
+ *
  */
 class User implements UserInterface
 {

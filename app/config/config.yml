@@ -7,6 +7,7 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    app.path.workers_images: /uploads/images/workers
 
 framework:
     #esi:             ~
@@ -59,6 +60,9 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+        filters:
+            softdeleteable:
+                class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -116,14 +120,14 @@ easy_admin:
                 fields: ['id', 'name', 'email', 'created', 'updated' , 'facebookId', 'roles']
             edit:
                 fields: ['name', 'email', 'roles']
-            actions:  ['edit']
         Workers:
             class: AppBundle\Entity\Worker
             multiple: true
             label: Workers
             list:
-                fields: ['id', 'name' , 'position', 'about', 'services']
-            actions:  ['edit']
+                fields: ['id', 'name' , 'position', 'about', 'services', { property: 'image', type: 'image', base_path: '%app.path.workers_images%' }]
+            form:
+                fields: ['name' , 'position', 'about', 'services', { property: 'imageFile', type: 'file' }]
         Services:
             class: AppBundle\Entity\Service
             multiple: true
@@ -132,13 +136,11 @@ easy_admin:
                 fields: ['id', 'title' , 'duration', 'price']
             edit:
                 fields: ['title' , 'duration', 'price']
-            actions:  ['edit']
         Schedule:
             class: AppBundle\Entity\Schedule
             label: Schedule
             list:
                 fields: ['id', 'title' , 'start', 'end']
-            actions:  ['edit']
     design:
         menu:
             - { entity: 'Clients', icon: 'users' }
@@ -152,5 +154,5 @@ vich_uploader:
     db_driver: orm
     mappings:
         worker_images:
-            uri_prefix:         '%app.path.worker_images%'
+            uri_prefix:         '%app.path.workers_images%'
             upload_destination: '%kernel.root_dir%/../web/uploads/images/workers'

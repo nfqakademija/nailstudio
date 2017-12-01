@@ -4,12 +4,15 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Service
  *
  * @ORM\Table(name="service")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ServiceRepository")
+ * @Gedmo\SoftDeleteable(fieldName="deleted", timeAware=false)
+ *
  */
 class Service
 {
@@ -44,6 +47,24 @@ class Service
     private $price;
 
     /**
+     *
+     * @var \DateTime $created
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $created;
+
+
+    /**
+     * @var \DateTime $updated
+     *
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
+     */
+    private $updated;
+
+    /**
      * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Worker", mappedBy="services")
@@ -58,6 +79,9 @@ class Service
         $this->workers = new ArrayCollection();
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->title;
@@ -159,6 +183,38 @@ class Service
     public function setWorkers(ArrayCollection $workers)
     {
         $this->workers = $workers;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreated(): \DateTime
+    {
+        return $this->created;
+    }
+
+    /**
+     * @param \DateTime $created
+     */
+    public function setCreated(\DateTime $created)
+    {
+        $this->created = $created;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdated(): \DateTime
+    {
+        return $this->updated;
+    }
+
+    /**
+     * @param \DateTime $updated
+     */
+    public function setUpdated(\DateTime $updated)
+    {
+        $this->updated = $updated;
     }
 
 }
