@@ -102,6 +102,7 @@ stof_doctrine_extensions:
     orm:
         default:
             timestampable: true
+            softdeleteable: true
 
 easy_admin:
     site_name: 'Nail Studio Admin'
@@ -117,30 +118,78 @@ easy_admin:
             class: AppBundle\Entity\User
             label: Clients
             list:
-                fields: ['id', 'name', 'email', 'created', 'updated' , 'facebookId', 'roles']
+                fields:
+                    - 'id'
+                    - 'name'
+                    - 'email'
+                    - 'created'
+                    - 'updated'
+                    - 'facebookId'
+                    - 'roles'
             edit:
-                fields: ['name', 'email', 'roles']
+                fields:
+                    - 'name'
+                    - 'email'
+                    - 'roles'
         Workers:
             class: AppBundle\Entity\Worker
             multiple: true
             label: Workers
             list:
-                fields: ['id', 'name' , 'position', 'about', 'services', { property: 'image', type: 'image', base_path: '%app.path.workers_images%' }]
+                fields:
+                    - 'id'
+                    - 'name'
+                    - 'position'
+                    - 'about'
+                    - 'services'
+                    - 'created'
+                    - 'updated'
+                    - { property: 'image', type: 'image', base_path: '%app.path.workers_images%' }
+            show:
+                fields:
+                    - 'id'
+                    - 'name'
+                    - 'position'
+                    - 'about'
+                    - 'services'
+                    - 'created'
+                    - 'updated'
+                    - { property: 'image', type: 'image', base_path: '%app.path.workers_images%' }
             form:
-                fields: ['name' , 'position', 'about', 'services', { property: 'imageFile', type: 'file' }]
+                fields:
+                    - 'name'
+                    - 'position'
+                    - 'about'
+                    - 'services'
+                    - { property: 'imageFile', type: 'file' }
         Services:
             class: AppBundle\Entity\Service
             multiple: true
             label: Services
             list:
-                fields: ['id', 'title' , 'duration', 'price']
+                fields:
+                    - 'id'
+                    - 'title'
+                    - 'duration'
+                    - 'price'
+                    - 'created'
+                    - 'updated'
             edit:
-                fields: ['title' , 'duration', 'price']
+                fields:
+                    - 'title'
+                    - 'duration'
+                    - 'price'
         Schedule:
             class: AppBundle\Entity\Schedule
             label: Schedule
             list:
-                fields: ['id', 'title' , 'start', 'end']
+                fields:
+                    - 'id'
+                    - 'title'
+                    - 'start'
+                    - 'end'
+                    - 'created'
+                    - 'updated'
     design:
         menu:
             - { entity: 'Clients', icon: 'users' }
@@ -153,6 +202,6 @@ easy_admin:
 vich_uploader:
     db_driver: orm
     mappings:
-        worker_images:
+        workers_images:
             uri_prefix:         '%app.path.workers_images%'
             upload_destination: '%kernel.root_dir%/../web/uploads/images/workers'

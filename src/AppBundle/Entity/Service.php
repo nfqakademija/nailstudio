@@ -11,8 +11,6 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @ORM\Table(name="service")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ServiceRepository")
- * @Gedmo\SoftDeleteable(fieldName="deleted", timeAware=false)
- *
  */
 class Service
 {

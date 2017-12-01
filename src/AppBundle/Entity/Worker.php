@@ -14,7 +14,6 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="worker")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\WorkerRepository")
  * @Vich\Uploadable
- * @Gedmo\SoftDeleteable(fieldName="deleted", timeAware=false)
  *
  */
 class Worker
@@ -64,76 +63,7 @@ class Worker
     private $image;
 
     /**
-     * @return string
-     */
-    public function getImage(): string
-    {
-        return $this->image;
-    }
-
-    /**
-     * @param string $image
-     */
-    public function setImage(string $image)
-    {
-        $this->image = $image;
-    }
-
-    /**
-     * @return File
-     */
-    public function getImageFile(): File
-    {
-        return $this->imageFile;
-    }
-
-    /**
-     * @param File|null $image
-     *
-     * @internal param File $imageFile
-     */
-    public function setImageFile(File $image = null)
-    {
-        $this->imageFile = $image;
-        if ($image) {
-            $this->updated = new \DateTime('now');
-        }
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getCreated(): \DateTime
-    {
-        return $this->created;
-    }
-
-    /**
-     * @param \DateTime $created
-     */
-    public function setCreated(\DateTime $created)
-    {
-        $this->created = $created;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getUpdated(): \DateTime
-    {
-        return $this->updated;
-    }
-
-    /**
-     * @param \DateTime $updated
-     */
-    public function setUpdated(\DateTime $updated)
-    {
-        $this->updated = $updated;
-    }
-
-    /**
-     * @Vich\UploadableField(mapping="product_images", fileNameProperty="image")
+     * @Vich\UploadableField(mapping="workers_images", fileNameProperty="image")
      * @var File
      */
     private $imageFile;
@@ -269,6 +199,72 @@ class Worker
         return $this->about;
     }
 
+    /**
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param string $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * @return File
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param File $image
+     */
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+        if ($image) {
+            $this->updated = new \DateTime('now');
+        }
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * @param \DateTime $created
+     */
+    public function setCreated(\DateTime $created)
+    {
+        $this->created = $created;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * @param \DateTime $updated
+     */
+    public function setUpdated(\DateTime $updated)
+    {
+        $this->updated = $updated;
+    }
 
 }
 
