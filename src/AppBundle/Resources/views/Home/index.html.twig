@@ -39,6 +39,30 @@
             <i class="fa fa-instagram"></i> visit instagram
         </a>
     </div>
+<div class="container">
+    <div class="row workers">
+        <div class="col-md-12">
+            <h2>Meet our Team</h2>
+            <p>As a team of specialist therapists, throughout the year, we are constantly upgrading our skills so that we can bring you the latest knowledge and leading-edge treatments that our industry has to offer. Our team of therapists who will go beyond the call of duty to provide you with an atmosphere of relaxation and a first class service.</p>		</div>
+        {% for worker in workers %}
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 workers">
+            <div class="team">
+                <div class="team-pic">
+                    <img src="{{ '/uploads/images/workers/' ~ worker.image }}" alt="{{ worker }}">
+                </div>
+                <div class="team-text">
+                    <h3>{{ worker.name }}</h3>
+                    <h4>{{ worker.position }}</h4>
+                    {#<p>I started The Beauty Room in 2006. Since then I have watched the business grow and grow and grow! So much so, I opened a new salon in Mansfield in 2014. I like to keep up to date with the latest treatments and strive to provide the best for our clients.</p>#}
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+    </div>
 
 
     {#<div class="header-content">#}

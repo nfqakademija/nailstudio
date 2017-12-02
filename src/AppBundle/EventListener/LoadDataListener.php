@@ -46,5 +46,6 @@ class LoadDataListener
         foreach ($schedules as $schedule) {
             $calendarEvent->addEvent(new Event($schedule->getTitle(), $schedule->getStart()));
         }
+
     }
 }

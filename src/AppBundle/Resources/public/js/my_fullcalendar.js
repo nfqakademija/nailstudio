@@ -1,14 +1,22 @@
 $(function () {
     $('#calendar-holder').fullCalendar({
+        header: {
+            left: 'prev, next',
+            center: 'title',
+            right: 'month, agendaWeek, agendaDay'
+        },
+        displayEventTime: true,
+        navLinks: true,
         minTime: '09:00',
         maxTime: '20:00',
-        timezone: ('Europe/Vilnius'),
+       // timezone: ('Europe/Vilnius'),
         businessHours: {
             start: '09:30',
             end: '18:30',
             dow: [1, 2, 3, 4, 5]
         },
         firstDay: 1,
+        resourceEditable: true,
         allDaySlot: false,
         defaultView: 'agendaWeek',
         timeFormat: 'H(:mm)',
@@ -18,21 +26,17 @@ $(function () {
         eventDurationEditable: true,
         lazyFetching: true,
         eventResourceEditable: true, // except for between resources
-        weekends: false, // will hide Saturdays and Sundays
+        // weekends: false, // will hide Saturdays and Sundays
         weekNumbers: true,
         eventLimit: true,
-        header: {
-            left: 'prev, next',
-            center: 'title',
-            right: 'month, agendaWeek, agendaDay'
-        },
-        select: function(start, end, allDay) {
+
+        select: function(start, end) {
             var title = prompt('Event Title:');
             if (title) {
                 start = $.fullCalendar.formatDate(start, "yyyy-MM-dd HH:mm:ss");
                 end = $.fullCalendar.formatDate(end, "yyyy-MM-dd HH:mm:ss");
                 $.ajax({
-                    url: 'http://localhost/fullcalendar/add_events.php',
+                     url: '/full-calendar/load',
                     data: 'title='+ title+'&start='+ start +'&end='+ end ,
                     type: "POST",
                     success: function(json) {
@@ -44,12 +48,12 @@ $(function () {
                         title: title,
                         start: start,
                         end: end,
-                        allDay: allDay
+                        //allDay: allDay
                     },
                     true // make the event "stick"
                 );
             }
-            calendar.fullCalendar('unselect');
+            //calendar.fullCalendar('unselect');
         },
         eventClick: function(event) {
             var adate = new moment(); //current time
@@ -81,4 +85,3 @@ $(function () {
         ]
     });
 });
-$(document).on('loadData', initialize_calendar);

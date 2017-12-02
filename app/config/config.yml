@@ -174,7 +174,7 @@ easy_admin:
                     - 'price'
                     - 'created'
                     - 'updated'
-            edit:
+            form:
                 fields:
                     - 'title'
                     - 'duration'
@@ -190,6 +190,11 @@ easy_admin:
                     - 'end'
                     - 'created'
                     - 'updated'
+            form:
+                fields:
+                    - 'title'
+                    - 'start'
+                    - 'end'
     design:
         menu:
             - { entity: 'Clients', icon: 'users' }

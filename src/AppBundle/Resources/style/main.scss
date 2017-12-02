@@ -89,3 +89,43 @@ ul.nav:nth-child(2) > li:nth-child(1) > img:nth-child(1) {
   letter-spacing: 2px;
   text-transform: uppercase;
 }
+
+.workers img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.team {
+  min-height: 250px;
+  background: rgba(200, 132, 255, 0.83);
+  padding:20px;
+}
+
+.team-pic {
+  margin: 0 auto;
+}
+
+.team-text {
+  float: left;
+  padding: 0 5px;
+  margin: 0 0 10px 0 ;
+  text-align: center;
+  min-height: 250px;
+}
+
+.team-text h3 {
+  color: #61407e;
+  font-size: 20px;
+  margin: 10px 0 0 0;
+}
+
+.team-text h4 {
+  font-size: 14px;
+  margin: 0;
+}
+
+.team-text p {
+  font-size: 13px;
+
+}

@@ -18,7 +18,11 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('AppBundle:Home:index.html.twig', []);
+        $repository = $this->getDoctrine()
+            ->getRepository('AppBundle:Worker');
+        $worker = $repository->findAll();
+        return $this->render('AppBundle:Home:index.html.twig',
+            array('workers' => $worker));
     }
 
     /**
