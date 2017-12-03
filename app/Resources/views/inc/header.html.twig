@@ -20,7 +20,6 @@
                                     class="glyphicon glyphicon-user"></span> {{ app.user.name }}</a></li>
                     <li><a href="{{ path('facebook_logout') }}"><span class="glyphicon glyphicon-log-out"></span>
                             Logout</a></li>
-                    {#<a href= class="btn btn-danger">Logout</a>#}
                 {% else %}
                     <li><a href="{{ path('app_facebook_connect') }}"><span class="fa fa-facebook "></span> Login with
                             facebook</a></li>
