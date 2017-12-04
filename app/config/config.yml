@@ -170,6 +170,7 @@ easy_admin:
                 fields:
                     - 'id'
                     - 'title'
+                    - 'about'
                     - 'duration'
                     - 'price'
                     - 'created'
@@ -177,6 +178,7 @@ easy_admin:
             form:
                 fields:
                     - 'title'
+                    - 'about'
                     - 'duration'
                     - 'price'
         Schedule:

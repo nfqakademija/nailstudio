@@ -70,6 +70,12 @@ class Service
     private $workers;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    private $about;
+
+
+    /**
      * Service constructor.
      */
     public function __construct()
@@ -128,6 +134,7 @@ class Service
      */
     public function setDuration($duration)
     {
+
         $this->duration = $duration;
 
         return $this;
@@ -213,6 +220,22 @@ class Service
     public function setUpdated(\DateTime $updated)
     {
         $this->updated = $updated;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAbout()
+    {
+        return $this->about;
+    }
+
+    /**
+     * @param string $about
+     */
+    public function setAbout($about)
+    {
+        $this->about = $about;
     }
 
 }
