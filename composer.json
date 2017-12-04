@@ -46,8 +46,7 @@
         "symfony/web-server-bundle": "^3.3",
         "hautelook/alice-bundle": "^2.0@rc",
         "theofidry/alice-data-fixtures": "^1.0@rc",
-        "doctrine/data-fixtures": "^1.2",
-        "phpunit/phpunit": "^6.4"
+        "doctrine/data-fixtures": "^1.2"
     },
     "scripts": {
         "post-install-cmd": [
