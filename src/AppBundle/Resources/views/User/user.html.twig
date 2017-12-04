@@ -10,21 +10,25 @@
     <section id="user">
         <div class="container-fluid">
             <div class="row">
-                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <div class="title">Connected with facebook.</div>
-                    <div>
-                        <h1>You are ({{ app.user ? app.user.name : 'Aquanauts' }})</h1>
-                        <img src="{{ app.user.facebookPicture }}">
-                        <a href="{{ path('facebook_logout') }}" class="btn btn-danger">Logout</a>
-                    </div>
-                {% else %}
-                    <a href="{{ path('app_facebook_connect') }}" class="btn btn-primary">
+                <div class="col-lg-6">
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <div class="title">Connected with facebook.</div>
+                        <div>
+                            <h1>You are ({{ app.user ? app.user.name : 'Aquanauts' }})</h1>
+                            <img src="{{ app.user.facebookPicture }}">
+                            <a href="{{ path('facebook_logout') }}" class="btn btn-danger">Logout</a>
+                        </div>
+                    {% else %}
+                        <a href="{{ path('app_facebook_connect') }}" class="btn btn-primary">
             <span class="icon">
                 <i class="fa fa-facebook"></i>
-            </span>
-                        <span>Login with Facebook</span>
-                    </a>
-                {% endif %}
+            </span><span>Login with Facebook</span>
+                        </a>
+                    {% endif %}
+                </div>
+                <div class="col-lg-6">
+                    {% include '@FullCalendar/Calendar/calendar.html.twig' %}
+                </div>
             </div>
         </div>
     </section>
