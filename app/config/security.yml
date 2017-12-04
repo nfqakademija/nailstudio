@@ -50,7 +50,6 @@ security:
             anonymous: ~
             logout:
                 path: /logout
-                target: /user
             provider: database_users
             guard:
                 authenticators:
