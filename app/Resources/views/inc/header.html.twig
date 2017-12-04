@@ -1,13 +1,13 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Nail Studio</a>
+            <a class="navbar-brand" href="/">Eglės Nagų Studija</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-left">
                 <li><a class="page-scroll" href="#galery">Photo galery</a></li>
-                <li><a class="page-scroll" href="#about">About</a></li>
                 <li><a class="page-scroll" href="#services">Services</a></li>
+                <li><a class="page-scroll" href="#team">Our team</a></li>
                 <li><a class="page-scroll" href="#contacts">Contacts</a></li>
             </ul>
 
@@ -20,7 +20,6 @@
                                     class="glyphicon glyphicon-user"></span> {{ app.user.name }}</a></li>
                     <li><a href="{{ path('facebook_logout') }}"><span class="glyphicon glyphicon-log-out"></span>
                             Logout</a></li>
-                    {#<a href= class="btn btn-danger">Logout</a>#}
                 {% else %}
                     <li><a href="{{ path('app_facebook_connect') }}"><span class="fa fa-facebook "></span> Login with
                             facebook</a></li>

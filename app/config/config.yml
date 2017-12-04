@@ -170,13 +170,15 @@ easy_admin:
                 fields:
                     - 'id'
                     - 'title'
+                    - 'about'
                     - 'duration'
                     - 'price'
                     - 'created'
                     - 'updated'
-            edit:
+            form:
                 fields:
                     - 'title'
+                    - 'about'
                     - 'duration'
                     - 'price'
         Schedule:
@@ -190,6 +192,11 @@ easy_admin:
                     - 'end'
                     - 'created'
                     - 'updated'
+            form:
+                fields:
+                    - 'title'
+                    - 'start'
+                    - 'end'
     design:
         menu:
             - { entity: 'Clients', icon: 'users' }

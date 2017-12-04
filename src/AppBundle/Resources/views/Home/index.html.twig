@@ -12,68 +12,230 @@
     <div class="bg">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 mx-auto">
-                    <a href="#" class="btn btn-lg btn-outline js-scroll-trigger">
+                <div class="col-lg-12 mx-auto">
+                    <h1>Eglės Nagų Studija</h1>
+                    <a href="#" class="btn btn-lg btn-outline js-scroll-trigger btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#login-modal">
                         <i class="fa fa-shopping-cart "></i> MAKE AN APPOINTMENT
+                    </a>
+                    <!-- BEGIN # MODAL LOGIN -->
+                    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header" align="center">
+
+                                    {#<img class="img-circle" id="img_logo" src="http://bootsnipp.com/img/logo.jpg">#}
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </button>
+                                    <h2>Eglės Nagų Studija</h2>
+                                </div>
+
+                                <!-- Begin # DIV Form -->
+                                <div id="div-forms">
+
+
+
+
+
+                                    <!-- Begin | Register Form -->
+                                    <form id="register-form" style="display:none;">
+                                        <div class="modal-body">
+                                            <div id="div-register-msg">
+                                                <div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                                <span id="text-register-msg">Register an account.</span>
+                                            </div>
+                                            <input id="register_username" class="form-control" type="text" placeholder="Username (type ERROR for error effect)" required>
+                                            <input id="register_email" class="form-control" type="text" placeholder="E-Mail" required>
+                                            <input id="register_password" class="form-control" type="password" placeholder="Password" required>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <div>
+                                                <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+                                            </div>
+                                            <div>
+                                                <button id="register_login_btn" type="button" class="btn btn-link">Log In</button>
+                                                <button id="register_lost_btn" type="button" class="btn btn-link">Lost Password?</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <!-- End | Register Form -->
+
+                                </div>
+                                <!-- End # DIV Form -->
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END # MODAL LOGIN -->
+                </div>
+            </div>
+        </div>
+    </div>
+    {#<section id="calendar">#}
+    {#<div class="container">#}
+    {#<div class="row">#}
+    {#<div class="col-lg-4 col-lg-offset mx-auto">#}
+    {#<h2>Calendar</h2>#}
+    {#</div>#}
+    {#<div class="col-lg-8 col-lg-offset-2 mx-auto">#}
+    {#{% include '@FullCalendar/Calendar/calendar.html.twig' %}#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#</section>#}
+    <!-- Galery -->
+    <section id="galery">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-uppercase">Follow on instagram! </h2>
+                    {#<hr class="primary">#}
+                </div>
+            </div>
+            <div class="row photos">
+                <div class="col-lg-3 text-center">
+                    <a href="https://www.instagram.com/p/Bb3gwqXl0o3/?taken-by=eglesnagustudija" target="_blank">
+                        <img src="/images/3.jpg" alt="">
+                    </a>
+
+                </div>
+                <div class="col-lg-3 text-center">
+                    <a href="https://www.instagram.com/p/Bb79n6OFzJj/?taken-by=eglesnagustudija" target="_blank">
+                        <img src="/images/4.jpg" alt="">
+                    </a>
+                </div>
+                <div class="col-lg-3 text-center">
+                    <a href="https://www.instagram.com/p/Bb3hBVBlAe7/?taken-by=eglesnagustudija" target="_blank">
+                        <img src="/images/2.jpg" alt="">
+                    </a>
+                </div>
+                <div class="col-lg-3 text-center">
+                    <a href="https://www.instagram.com/p/Baqejy9FPb3/?taken-by=eglesnagustudija" target="_blank">
+                        <img src="/images/1.jpg" alt="">
+                    </a>
+                </div>
+            </div>
+            <a href="">
+                <i class="" aria-hidden="true"></i></a>
+            <a href="https://www.instagram.com/eglesnagustudija/" class="btn btn-lg btn-outline js-scroll-trigger"
+               target="_blank">
+                <i class="fa fa-instagram"></i> visit instagram
+            </a>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-uppercase">Services</h2>
+                    {#<h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>#}
+                </div>
+            </div>
+            <div class="services row text-center">
+                {% for service in services %}
+                    <div class="service col-lg-4">
+                        {#<span class="fa-stack fa-4x">#}
+                        {#<i class="fa fa-circle fa-stack-2x text-primary"></i>#}
+                        {#<i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>#}
+                        {#</span>#}
+                        <h4 class="service-heading">{{ service.title }}</h4>
+                        <p class="text-muted">{{ service.about }}</p>
+                        <i class="fa fa-clock-o text-muted" aria-hidden="true"> Time duration {{ service.duration|date('H:i') }} val.</i><br>
+                        <i class="fa fa-money text-muted" aria-hidden="true"> {{ service.price }} Eur </i>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="bg-light" id="team">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-uppercase">Our Team</h2>
+                    {#<h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>#}
+                </div>
+            </div>
+            <div class="team row">
+                {% for worker in workers %}
+                    <div class="col-sm-4">
+                        <div class="team-member">
+                            <img class="mx-auto" src="{{ '/uploads/images/workers/' ~ worker.image }}"
+                                 alt="">
+                            <h4>{{ worker.name }}</h4>
+                            <p class="text-muted">{{ worker.position }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands -->
+    <section id="brands">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-uppercase">We use these products</h2>
+                    {#<h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>#}
+                </div>
+            </div>
+            <div class="brands row">
+                <div class="col-md-2 col-md-offset-1">
+                    <a href="https://www.alveca.de/" target="_blank">
+                        <img src="/images/alveca.JPG" alt="">
+                    </a>
+                </div>
+                <div class="col-md-2">
+                    <a href="http://www.firstgel.de/" target="_blank">
+                        <img src="/images/firstgel-logo.png " alt="">
+                    </a>
+                </div>
+                <div class="col-md-2">
+                    <a href="https://kineticsbeauty.com/" target="_blank">
+                        <img src="/images/kinetics.png" alt="">
+                    </a>
+                </div>
+                <div class="col-md-2">
+                    <a href="http://senses.lt/" target="_blank">
+                        <img src="/images/senses.png" alt="">
+                    </a>
+                </div>
+                <div class="col-md-2">
+                    <a href="https://trendnails-international.com/" target="_blank">
+                        <img src="/images/trendnails-international-logo.jpg" alt="">
                     </a>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="calendar">
+    </section>
+
+    <section id="contacts">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-lg-offset mx-auto">
-                    <h2>Calendar</h2>
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-uppercase">We are waiting for you!</h2>
+                    <hr class="primary">
                 </div>
-                <div class="col-lg-8 col-lg-offset-2 mx-auto">
-                    {% include '@FullCalendar/Calendar/calendar.html.twig' %}
+            </div>
+            <div class="row">
+                <div class="col-lg-6 text-center">
+                    <i class="fa fa-phone fa-4x sr-contact"></i>
+                    <p>8-654-43797</p><br><br>
+                    <i class="fa fa-address-book fa-4x" aria-hidden="true"></i>
+                    <p>Vilniaus g. 134 (2 aukštas) Šiauliai</p><br><br>
+                    <i class="fa fa-envelope-o fa-4x sr-contact"></i>
+                    <p><!--<a href="mailto:your-email@your-domain.com">-->musteikyte.egle@gmail.com<!--</a>--></p>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <i class="fa fa-map-marker fa-4x"></i>
+                    <p>We are here:</p>
+                    <div id="map" style="width:100%;height:250px;color: black"></div>
                 </div>
             </div>
         </div>
-    </div>
-    <div id="instagram">
-            <a href="" >
-                <i class="" aria-hidden="true"></i></a>
-        <a href="https://www.instagram.com/eglesnagustudija/" class="btn btn-lg btn-outline js-scroll-trigger" target="_blank">
-            <i class="fa fa-instagram"></i> visit instagram
-        </a>
-    </div>
-
-
-    {#<div class="header-content">#}
-    {#<div class="header-content-inner">#}
-    {#<img src="{{ asset("images/header.jpg") }}" class="header" style="width:500px;height:600px;"#}
-    {#alt="first page image">#}
-    {#<p>Nail Studio</p>#}
-    {#<br>#}
-    {#<a href="#galery" class="btn btn-primary btn-xl page-scroll img-rounded">Photo galery</a>#}
-    {#<div class="row">#}
-    {#<div class="col-lg-4 col-md-offset-4">#}
-    {#<a href="{{ path('app_facebook_connect') }} "#}
-    {#class="btn btn-block btn-social btn-primary btn-facebook">#}
-    {#<span class="fa fa-facebook"></span> Sign in with facebook#}
-    {#</a>#}
-    {#</div>#}
-    {#</div>#}
-    {#</div>#}
-    {#</div>#}
-
-
-    {#<nav class="navbar navbar-inverse navbar-fixed-top">#}
-    {#<div class="container-fluid">#}
-    {#<div class="navbar-header">#}
-    {#<a class="navbar-brand" href="#">Nail Studio</a>#}
-    {#</div>#}
-    {#<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">#}
-    {#<ul class="nav navbar-nav navbar-right">#}
-    {#<li><a class="page-scroll" href="#galery">Photo galery</a></li>#}
-    {#<li><a class="page-scroll" href="#about">About</a></li>#}
-    {#<li><a class="page-scroll" href="#services">Services</a></li>#}
-    {#<li><a class="page-scroll" href="#contacts">Contacts</a></li>#}
-    {#</ul>#}
-    {#</div>#}
-    {#</div>#}
-    {#</nav>#}
-
+    </section>
 {% endblock %}
