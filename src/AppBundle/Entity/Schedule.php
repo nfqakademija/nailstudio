@@ -45,6 +45,11 @@ class Schedule
     private $end;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reservation", mappedBy="schedule")
+     **/
+    private $reservation;
+
+    /**
      *
      * @var \DateTime $created
      *
@@ -176,5 +181,40 @@ class Schedule
     {
         $this->updated = $updated;
     }
-}
 
+    /**
+     *
+     * @param Reservation $reservation
+     * @return Schedule
+     */
+    public function addReservation(Reservation $reservation)
+    {
+        $this->reservation[] = $reservation;
+        return $this;
+    }
+
+    /**
+     *
+     * @param Reservation $reservation
+     */
+    public function removeReservation(Reservation $reservation)
+    {
+        $this->reservation->removeElement($reservation);
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReservation()
+    {
+        return $this->reservation;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->reservation = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}

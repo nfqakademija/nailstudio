@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -30,10 +31,16 @@ class HomeController extends Controller
     }
 
     /**
-     * @Route("/user", name="userpage")
+     * @Route("/user/{$id}", name="userpage")
      */
-    public function userAction()
+    public function userAction($id)
     {
-        return $this->render('AppBundle:User:user.html.twig', []);
+        $user = $this->getDoctrine()
+            ->getRepository(User::class)
+            ->findOneBy($id);
+        $service = $this->getDoctrine()
+            ->getRepository('AppBundle:Service')
+            ->findAll();
+        return $this->render('AppBundle:User:user.html.twig', array('services' => $service));
     }
 }

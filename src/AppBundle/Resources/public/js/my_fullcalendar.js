@@ -5,7 +5,6 @@ $(function () {
             center: 'title',
             right: 'month, agendaWeek, agendaDay, listWeek'
         },
-        displayEventTime: true,
         minTime: '09:00',
         maxTime: '20:00',
         timezone: 'Europe/Vilnius',
@@ -16,14 +15,19 @@ $(function () {
         },
         firstDay: 1,
         defaultView: 'agendaWeek',
+        constraint: 'businessHours',
         navLinks: true,
         allDaySlot: false,
         selectable: true,
+        selectHelper: true,
         editable: true,
         lazyFetching: true,
+        displayEventTime: true,
         weekends: false, // will hide Saturdays and Sundays
         weekNumbers: true,
         eventLimit: true,
+        resizable: true,
+        droppable: true,
         select: function(start, end) {
             var title = prompt('Event Title:');
             var eventData;
@@ -31,17 +35,24 @@ $(function () {
                 eventData = {
                     title: title,
                     start: start,
-                    end: end
+                    end: end,
+                    businessHours: true
                 };
-                $('#calendar').fullCalendar('renderEvent', eventData, true);  stick = true
+                // $.ajax({
+                //     type: "POST",
+                //     data: { title: title, start: start, end: end }
+                // })
+                $('#calendar-holder').fullCalendar('renderEvent', eventData, true); // stick? = true
             }
-            $('#calendar').fullCalendar('unselect');
+            $('#calendar-holder').fullCalendar('unselect');
         },
+
         eventSources: [
             {
+                constraint: 'businessHours',
                 url: '/full-calendar/load',
                 type: 'POST',
-                data: {title: title, start: start, end: end},
+
                 error: function () {
                 }
             }

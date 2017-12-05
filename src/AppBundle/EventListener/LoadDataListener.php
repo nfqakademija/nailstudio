@@ -44,8 +44,11 @@ class LoadDataListener
         $schedules = $repository->findAll();
         // You may want to add an Event into the Calendar view.
         /** @var Schedule $schedule */
+
         foreach ($schedules as $schedule) {
-            $calendarEvent->addEvent(new Event($schedule->getTitle(), $schedule->getStart(\DateTime::ISO8601), $schedule->getEnd()));
+            $calendarEvent->addEvent(new Event($schedule->getTitle(), $schedule->getStart(), $schedule->getEnd()));
         }
     }
+
 }
+

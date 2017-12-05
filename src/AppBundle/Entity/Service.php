@@ -40,9 +40,14 @@ class Service
     /**
      * @var int
      *
-     * @ORM\Column(name="price", type="integer")
+     * @ORM\Column(name="price", type="float")
      */
     private $price;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reservation", mappedBy="service")
+     **/
+    private $reservation;
 
     /**
      *
@@ -238,5 +243,55 @@ class Service
         $this->about = $about;
     }
 
-}
+    /**
+     * @param Reservation $reservation
+     * @return Service
+     */
+    public function addReservation(Reservation $reservation)
+    {
+        $this->reservation[] = $reservation;
+        return $this;
+    }
 
+    /**
+     *
+     * @param Reservation $reservation
+     */
+    public function removeReservation(Reservation $reservation)
+    {
+        $this->reservation->removeElement($reservation);
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReservation()
+    {
+        return $this->reservation;
+    }
+
+
+    /**
+     * Add worker
+     *
+     * @param \AppBundle\Entity\Worker $worker
+     *
+     * @return Service
+     */
+    public function addWorker(\AppBundle\Entity\Worker $worker)
+    {
+        $this->workers[] = $worker;
+
+        return $this;
+    }
+
+    /**
+     * Remove worker
+     *
+     * @param \AppBundle\Entity\Worker $worker
+     */
+    public function removeWorker(\AppBundle\Entity\Worker $worker)
+    {
+        $this->workers->removeElement($worker);
+    }
+}

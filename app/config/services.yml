@@ -26,3 +26,10 @@ services:
         arguments: [ "@doctrine.orm.entity_manager" ]
         tags:
             - { name: 'kernel.event_listener', event: 'fullcalendar.set_data', method: loadData }
+#            - { name: 'kernel.event_listener', event: 'fullcalendar.set_data', method: addData }
+
+#    app_bundle.service.listener2:
+#        class: AppBundle\EventListener\AddDataListener
+#        arguments: [ "@doctrine.orm.entity_manager" ]
+#        tags:
+#            - { name: 'kernel.event_listener', event: 'fullcalendar.set_data', method: addData }
