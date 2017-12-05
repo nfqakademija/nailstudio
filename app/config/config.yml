@@ -193,12 +193,33 @@ easy_admin:
                     - 'title'
                     - 'start'
                     - 'end'
+        Reservation:
+            class: AppBundle\Entity\Reservation
+            label: Reservation
+            list:
+                fields:
+                    - 'id'
+                    - 'user'
+                    - 'worker'
+                    - 'schedule'
+                    - 'service'
+                    - 'created'
+                    - 'updated'
+            form:
+                fields:
+                    - 'id'
+                    - 'user'
+                    - 'worker'
+                    - 'schedule'
+                    - 'service'
     design:
         menu:
             - { entity: 'Clients', icon: 'users' }
             - { entity: 'Workers', icon: 'user-secret' }
             - { entity: 'Services', icon: 'list' }
             - { entity: 'Schedule', icon: 'calendar' }
+            - { entity: 'Reservation', icon: 'calendar' }
+
         brand_color: '#DB7093'
 
 # Vich Uploader
