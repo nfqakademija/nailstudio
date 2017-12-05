@@ -106,10 +106,6 @@ stof_doctrine_extensions:
 
 easy_admin:
     site_name: 'Nail Studio Admin'
-    formats:
-        date:     'd/m/Y'
-        time:     'H:i'
-        datetime: 'd/m/Y H:i:s'
     list_actions: ['show']
     list:
         title: 'List of %%entity_label%%'
@@ -180,7 +176,7 @@ easy_admin:
                     - 'title'
                     - 'about'
                     - 'duration'
-                    - 'price'
+                    - { property: 'price', type: 'money', type_options: { currency: 'EUR' } }
         Schedule:
             class: AppBundle\Entity\Schedule
             label: Schedule
