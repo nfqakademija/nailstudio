@@ -85,7 +85,7 @@ class Reservation
     }
 
     /**
-     * @param Worker $user
+     * @param User $user
      */
     public function setUser($user)
     {

@@ -6,7 +6,8 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: lt
+    app.locales: lt|en
     app.path.workers_images: /uploads/images/workers
 
 framework:
@@ -31,7 +32,7 @@ framework:
     fragments:       ~
     http_method_override: true
     assets: ~
-    translator: { fallbacks: [ "en" ] }
+    translator: { fallbacks: [ "%locale%" ] }
 # Twig Configuration
 twig:
     debug:            "%kernel.debug%"

@@ -40,7 +40,7 @@ class Service
     /**
      * @var int
      *
-     * @ORM\Column(name="price", type="float")
+     * @ORM\Column(name="price", type="decimal")
      */
     private $price;
 

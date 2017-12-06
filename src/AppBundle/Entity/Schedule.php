@@ -46,7 +46,9 @@ class Schedule
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reservation", mappedBy="schedule")
-     **/
+     *
+     * @ORM\Column(type="string")
+     */
     private $reservation;
 
     /**

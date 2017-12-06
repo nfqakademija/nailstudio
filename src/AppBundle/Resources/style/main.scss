@@ -12,7 +12,7 @@ body {
 }
 
 .bg {
-  background: url('/images/background.jpeg') no-repeat fixed center;
+  background: black url('/images/background.jpeg') no-repeat fixed center;
   background-size: cover;
   height: 100vh;
   position: relative;
@@ -143,6 +143,8 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
   border: solid 2px #007bff;
 }
 
+
+
 #galery {
   //background: #bc1c9f;
   width: 100%;
@@ -150,17 +152,46 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
   text-decoration: none;
   letter-spacing: 2px;
   text-transform: uppercase;
-  //color: white;
-}
-
-#galery {
-  background-color: #f8f9fa !important;
+  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjOWU5ZTllIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=");
+  overflow: hidden;
+  position: relative;
+  color: white;
 }
 
 #galery img {
-  width: 200px;
+  background-color: black;
+  display: block;
+  width: 250px;
   height: 300px;
+  border-radius: 50%;
+  object-fit: cover;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+  //transition: all 0.3s;
 }
+
+#galery img:hover {
+  opacity: 0.5;
+  //display: block;
+  //width: 250px;
+  //height: 300px;
+  //border-radius: 50%;
+  //-webkit-transform: scale(1.3);
+  transform: scale(1);
+}
+///* Zoom In #1 */
+//.hover01 figure img {
+//  -webkit-transform: scale(1);
+//  transform: scale(1);
+//  -webkit-transition: .3s ease-in-out;
+//  transition: .3s ease-in-out;
+//}
+//.hover01 figure:hover img {
+//  -webkit-transform: scale(1.3);
+//  transform: scale(1.3);
+//}
 
 .photos {
   margin: 40px 0;
@@ -228,7 +259,31 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 
 #contacts {
   background-color: #f8f9fa !important;
+  padding-bottom: 0;
 }
+
+#contacts p {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+#contacts i {
+  margin-top: 10px;
+}
+
+#form{
+  min-height: 560px;
+  margin: auto;
+}
+
+.form{
+  margin-top: 100px;
+}
+
+.form-control {
+  border-radius: 0px;
+}
+
 
 footer {
   padding: 25px 0;
@@ -387,6 +442,10 @@ footer a:hover {
   top: 0px;
 }
 
-.form-control {
-  border-radius: 0px;
+
+
+#map {
+  width:100%;
+  height:350px;
+  color: black
 }
