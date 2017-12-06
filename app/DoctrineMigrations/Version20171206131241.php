@@ -8,7 +8,7 @@ use Doctrine\DBAL\Schema\Schema;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20171204000315 extends AbstractMigration
+class Version20171206131241 extends AbstractMigration
 {
     /**
      * @param Schema $schema
@@ -18,7 +18,7 @@ class Version20171204000315 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE service ADD about VARCHAR(255) NOT NULL');
+        $this->addSql('ALTER TABLE service CHANGE price price NUMERIC(10, 0) NOT NULL');
     }
 
     /**
@@ -29,6 +29,6 @@ class Version20171204000315 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE service DROP about');
+        $this->addSql('ALTER TABLE service CHANGE price price DOUBLE PRECISION NOT NULL');
     }
 }

@@ -34,6 +34,9 @@ class HomeController extends Controller
      */
     public function userAction()
     {
-        return $this->render('AppBundle:User:user.html.twig', []);
+        $service = $this->getDoctrine()
+            ->getRepository('AppBundle:Service')
+            ->findAll();
+        return $this->render('AppBundle:User:user.html.twig', array('services' => $service));
     }
 }

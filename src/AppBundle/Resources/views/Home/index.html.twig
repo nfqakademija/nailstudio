@@ -13,12 +13,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 mx-auto">
-                    <h1>Eglės Nagų Studija</h1>
-                    <a href="#" class="btn btn-lg btn-outline js-scroll-trigger btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#login-modal">
+                    <h1>Profesionalios gelinių nagų paslaugos</h1>
+                    <a href="#" class="btn btn-lg btn-outline js-scroll-trigger btn btn-primary btn-lg" role="button"
+                       data-toggle="modal" data-target="#login-modal">
                         <i class="fa fa-shopping-cart "></i> MAKE AN APPOINTMENT
                     </a>
                     <!-- BEGIN # MODAL LOGIN -->
-                    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                         aria-hidden="true" style="display: none;">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header" align="center">
@@ -34,27 +36,34 @@
                                 <div id="div-forms">
 
 
-
-
-
                                     <!-- Begin | Register Form -->
                                     <form id="register-form" style="display:none;">
                                         <div class="modal-body">
                                             <div id="div-register-msg">
-                                                <div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                                <div id="icon-register-msg"
+                                                     class="glyphicon glyphicon-chevron-right"></div>
                                                 <span id="text-register-msg">Register an account.</span>
                                             </div>
-                                            <input id="register_username" class="form-control" type="text" placeholder="Username (type ERROR for error effect)" required>
-                                            <input id="register_email" class="form-control" type="text" placeholder="E-Mail" required>
-                                            <input id="register_password" class="form-control" type="password" placeholder="Password" required>
+                                            <input id="register_username" class="form-control" type="text"
+                                                   placeholder="Username (type ERROR for error effect)" required>
+                                            <input id="register_email" class="form-control" type="text"
+                                                   placeholder="E-Mail" required>
+                                            <input id="register_password" class="form-control" type="password"
+                                                   placeholder="Password" required>
                                         </div>
                                         <div class="modal-footer">
                                             <div>
-                                                <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+                                                <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                                    Register
+                                                </button>
                                             </div>
                                             <div>
-                                                <button id="register_login_btn" type="button" class="btn btn-link">Log In</button>
-                                                <button id="register_lost_btn" type="button" class="btn btn-link">Lost Password?</button>
+                                                <button id="register_login_btn" type="button" class="btn btn-link">Log
+                                                    In
+                                                </button>
+                                                <button id="register_lost_btn" type="button" class="btn btn-link">Lost
+                                                    Password?
+                                                </button>
                                             </div>
                                         </div>
                                     </form>
@@ -71,18 +80,7 @@
             </div>
         </div>
     </div>
-    {#<section id="calendar">#}
-    {#<div class="container">#}
-    {#<div class="row">#}
-    {#<div class="col-lg-4 col-lg-offset mx-auto">#}
-    {#<h2>Calendar</h2>#}
-    {#</div>#}
-    {#<div class="col-lg-8 col-lg-offset-2 mx-auto">#}
-    {#{% include '@FullCalendar/Calendar/calendar.html.twig' %}#}
-    {#</div>#}
-    {#</div>#}
-    {#</div>#}
-    {#</section>#}
+
     <!-- Galery -->
     <section id="galery">
         <div class="container">
@@ -142,7 +140,8 @@
                         {#</span>#}
                         <h4 class="service-heading">{{ service.title }}</h4>
                         <p class="text-muted">{{ service.about }}</p>
-                        <i class="fa fa-clock-o text-muted" aria-hidden="true"> Time duration {{ service.duration|date('H:i') }} val.</i><br>
+                        <i class="fa fa-clock-o text-muted" aria-hidden="true"> Time
+                            duration {{ service.duration|date('H:i') }} val.</i><br>
                         <i class="fa fa-money text-muted" aria-hidden="true"> {{ service.price }} Eur </i>
                     </div>
                 {% endfor %}
@@ -161,6 +160,7 @@
             </div>
             <div class="team row">
                 {% for worker in workers %}
+
                     <div class="col-sm-4">
                         <div class="team-member">
                             <img class="mx-auto" src="{{ '/uploads/images/workers/' ~ worker.image }}"
@@ -217,25 +217,34 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading text-uppercase">We are waiting for you!</h2>
+                    <h2 class="section-heading text-uppercase">Contacts</h2>
                     <hr class="primary">
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-6 text-center">
+                <div class="col-lg-4 text-center">
                     <i class="fa fa-phone fa-4x sr-contact"></i>
-                    <p>8-654-43797</p><br><br>
-                    <i class="fa fa-address-book fa-4x" aria-hidden="true"></i>
-                    <p>Vilniaus g. 134 (2 aukštas) Šiauliai</p><br><br>
+                    <p>+370 - 654 - 43797</p>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <i class="fa fa-address-book fa-4x sr-contact " aria-hidden="true"></i>
+                    <p>Vilniaus g. 134 (2 aukštas) Šiauliai</p>
+                </div>
+                <div class="col-lg-4 text-center">
                     <i class="fa fa-envelope-o fa-4x sr-contact"></i>
                     <p><!--<a href="mailto:your-email@your-domain.com">-->musteikyte.egle@gmail.com<!--</a>--></p>
                 </div>
-                <div class="col-lg-6 text-center">
+                <div class="col-lg-12 text-center">
                     <i class="fa fa-map-marker fa-4x"></i>
                     <p>We are here:</p>
-                    <div id="map" style="width:100%;height:250px;color: black"></div>
                 </div>
+                {#<div class="col-lg-6 text-center">#}
+                {#<i class="fa fa-map-marker fa-4x"></i>#}
+                {#<p>We are here:</p>#}
+                {#</div>#}
             </div>
         </div>
+        <div id="map"></div>
+
     </section>
 {% endblock %}

@@ -260,6 +260,11 @@ class User implements UserInterface
     }
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reservation", mappedBy="user")
+     **/
+    private $reservation;
+
+    /**
      * @param \DateTime $created
      */
     public function setCreated(\DateTime $created)
@@ -282,5 +287,32 @@ class User implements UserInterface
     {
         $this->updated = $updated;
     }
-}
 
+    /**
+     *
+     * @param Reservation $reservation
+     * @return User
+     */
+    public function addReservation(Reservation $reservation)
+    {
+        $this->reservation[] = $reservation;
+        return $this;
+    }
+
+    /**
+     *
+     * @param Reservation $reservation
+     */
+    public function removeReservation(Reservation $reservation)
+    {
+        $this->reservation->removeElement($reservation);
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReservation()
+    {
+        return $this->reservation;
+    }
+}

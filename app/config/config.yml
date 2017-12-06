@@ -6,7 +6,8 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: lt
+    app.locales: lt|en
     app.path.workers_images: /uploads/images/workers
 
 framework:
@@ -31,7 +32,7 @@ framework:
     fragments:       ~
     http_method_override: true
     assets: ~
-    translator: { fallbacks: [ "en" ] }
+    translator: { fallbacks: [ "%locale%" ] }
 # Twig Configuration
 twig:
     debug:            "%kernel.debug%"
@@ -118,6 +119,7 @@ easy_admin:
                     - 'id'
                     - 'name'
                     - 'email'
+                    - 'reservation'
                     - 'created'
                     - 'updated'
                     - 'facebookId'
@@ -127,6 +129,7 @@ easy_admin:
                     - 'name'
                     - 'email'
                     - 'roles'
+                    - 'reservation'
         Workers:
             class: AppBundle\Entity\Worker
             multiple: true
@@ -138,6 +141,7 @@ easy_admin:
                     - 'position'
                     - 'about'
                     - 'services'
+                    - 'reservation'
                     - 'created'
                     - 'updated'
                     - { property: 'image', type: 'image', base_path: '%app.path.workers_images%' }
@@ -148,6 +152,7 @@ easy_admin:
                     - 'position'
                     - 'about'
                     - 'services'
+                    - 'reservation'
                     - 'created'
                     - 'updated'
                     - { property: 'image', type: 'image', base_path: '%app.path.workers_images%' }
@@ -157,6 +162,7 @@ easy_admin:
                     - 'position'
                     - 'about'
                     - 'services'
+                    - 'reservation'
                     - { property: 'imageFile', type: 'file' }
         Services:
             class: AppBundle\Entity\Service
@@ -169,6 +175,7 @@ easy_admin:
                     - 'about'
                     - 'duration'
                     - 'price'
+                    - 'reservation'
                     - 'created'
                     - 'updated'
             form:
@@ -176,6 +183,7 @@ easy_admin:
                     - 'title'
                     - 'about'
                     - 'duration'
+                    - 'reservation'
                     - { property: 'price', type: 'money', type_options: { currency: 'EUR' } }
         Schedule:
             class: AppBundle\Entity\Schedule
@@ -186,6 +194,7 @@ easy_admin:
                     - 'title'
                     - 'start'
                     - 'end'
+                    - 'reservation'
                     - 'created'
                     - 'updated'
             form:
@@ -193,12 +202,34 @@ easy_admin:
                     - 'title'
                     - 'start'
                     - 'end'
+                    - 'reservation'
+        Reservation:
+            class: AppBundle\Entity\Reservation
+            label: Reservation
+            list:
+                fields:
+                    - 'id'
+                    - 'user'
+                    - 'worker'
+                    - 'schedule'
+                    - 'service'
+                    - 'created'
+                    - 'updated'
+            form:
+                fields:
+                    - 'id'
+                    - 'user'
+                    - 'worker'
+                    - 'schedule'
+                    - 'service'
     design:
         menu:
             - { entity: 'Clients', icon: 'users' }
             - { entity: 'Workers', icon: 'user-secret' }
             - { entity: 'Services', icon: 'list' }
             - { entity: 'Schedule', icon: 'calendar' }
+            - { entity: 'Reservation', icon: 'calendar' }
+
         brand_color: '#DB7093'
 
 # Vich Uploader

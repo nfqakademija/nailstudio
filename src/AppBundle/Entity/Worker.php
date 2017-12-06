@@ -69,6 +69,11 @@ class Worker
     private $imageFile;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reservation", mappedBy="worker")
+     **/
+    private $reservation;
+
+    /**
      *
      * @var \DateTime $created
      *
@@ -266,5 +271,56 @@ class Worker
         $this->updated = $updated;
     }
 
-}
+    /**
+     *
+     * @param Reservation $reservation
+     * @return Worker
+     */
+    public function addReservation(Reservation $reservation)
+    {
+        $this->reservation[] = $reservation;
+        return $this;
+    }
 
+    /**
+     *
+     * @param Reservation $reservation
+     */
+    public function removeReservation(Reservation $reservation)
+    {
+        $this->reservation->removeElement($reservation);
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReservation()
+    {
+        return $this->reservation;
+    }
+
+
+    /**
+     * Add service
+     *
+     * @param \AppBundle\Entity\Service $service
+     *
+     * @return Worker
+     */
+    public function addService(\AppBundle\Entity\Service $service)
+    {
+        $this->services[] = $service;
+
+        return $this;
+    }
+
+    /**
+     * Remove service
+     *
+     * @param \AppBundle\Entity\Service $service
+     */
+    public function removeService(\AppBundle\Entity\Service $service)
+    {
+        $this->services->removeElement($service);
+    }
+}

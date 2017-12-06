@@ -27,6 +27,9 @@
                     {% endif %}
                 </div>
                 <div class="col-lg-6">
+                    {% for servise in services %}
+                        {{ servise.title }}
+                    {% endfor %}
                     {% include '@FullCalendar/Calendar/calendar.html.twig' %}
                 </div>
             </div>
