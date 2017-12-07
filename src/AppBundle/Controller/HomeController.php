@@ -14,7 +14,7 @@ class HomeController extends Controller
 {
 
     /**
-     * @Route("/", name="homepage")
+     * @Route("/", name="homepage", defaults={"_locale": "lt"}, requirements={"_locale" = "%app.locales%"})
      */
     public function indexAction()
     {

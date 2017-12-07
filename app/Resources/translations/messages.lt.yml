@@ -1,0 +1,26 @@
+menu.logo: 'Eglės Nagų Studija'
+menu.galery: 'Darbų galerija'
+menu.services: 'Paslaugos'
+menu.ourteam: 'Mūsų komanda'
+menu.contacts: 'Kontaktai'
+menu.facebook: 'Prisijungti su Facebook'
+menu.logout: 'Atsijungti'
+
+homepage.title: 'Profesionalios gelinių nagų paslaugos'
+homepage.button: 'REZERVUOTI LAIKĄ'
+
+galery.header: 'SEKITE MUS INSTAGRAM!'
+galery.button: 'APLANKYKITE INSTAGRAM'
+
+services.header: 'PASLAUGOS'
+
+ourteam.header: 'MŪSŲ KOMANDA'
+
+brands.header: 'MŪSŲ NAUDOJAMI PRODUKTAI'
+
+contacts.header: 'KONTAKTAI'
+contacts.phone: '+370 - 654 - 43797'
+contacts.address: 'Vilniaus g. 134 (2 aukštas) Šiauliai'
+contacts.email: 'musteikyte.egle@gmail.com'
+contacts.place: 'Mes esame čia:'
+
