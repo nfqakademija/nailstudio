@@ -5,7 +5,7 @@ function myMap() {
     var mapOptions = {
         center: myCenter,
         zoom: 16,
-        // scrollwheel: false,
+        scrollwheel: false,
         // navigationControl: false,
         // mapTypeControl: false,
         // scaleControl: false,
