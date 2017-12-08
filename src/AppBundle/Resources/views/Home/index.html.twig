@@ -7,8 +7,7 @@
 {% endblock %}
 
 {% block body %}
-
-
+    <!-- FirstPage -->
     <section class="bg" id="home">
         <div class="container">
             <div class="row">
@@ -24,18 +23,13 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header" align="center">
-
-                                    {#<img class="img-circle" id="img_logo" src="http://bootsnipp.com/img/logo.jpg">#}
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                     </button>
                                     <h2>Eglės Nagų Studija</h2>
                                 </div>
-
                                 <!-- Begin # DIV Form -->
                                 <div id="div-forms">
-
-
                                     <!-- Begin | Register Form -->
                                     <form id="register-form" style="display:none;">
                                         <div class="modal-body">
@@ -68,10 +62,8 @@
                                         </div>
                                     </form>
                                     <!-- End | Register Form -->
-
                                 </div>
                                 <!-- End # DIV Form -->
-
                             </div>
                         </div>
                     </div>
@@ -92,7 +84,6 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading text-uppercase">{{ 'galery.header' |trans }} </h2>
-                    {#<hr class="primary">#}
                 </div>
             </div>
             <div class="row photos">
@@ -100,7 +91,6 @@
                     <a href="https://www.instagram.com/p/Bb3gwqXl0o3/?taken-by=eglesnagustudija" target="_blank">
                         <img class="img-rounded" src="/images/3.jpg" alt="">
                     </a>
-
                 </div>
                 <div class="col-md-3 text-center">
                     <a href="https://www.instagram.com/p/Bb79n6OFzJj/?taken-by=eglesnagustudija" target="_blank">
@@ -133,31 +123,11 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading text-uppercase">{{ 'services.header'|trans }}</h2>
-                    {#<h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>#}
                 </div>
             </div>
             <div class="services row text-center">
                 {% for service in services %}
-                    <div class="service col-lg-4">
-                        {#<span class="fa-stack fa-4x">#}
-                        {#<i class="fa fa-circle fa-stack-2x text-primary"></i>#}
-                        {#<i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>#}
-                        {#</span>#}
-                        <h4 class="service-heading">{{ service.title }}</h4>
-                        <div class="content">
-                            <p class="text-muted">{{ service.about }}</p>
-                            <i class="fa fa-clock-o text-muted" aria-hidden="true"> Time
-                                duration {{ service.duration|date('H:i') }} val.</i><br>
-                            <i class="fa fa-money text-muted" aria-hidden="true"> {{ service.price }} Eur </i>
-                        </div>
-                    </div>
-                {% endfor %}
-                {% for service in services %}
-                    <div class="service col-lg-4">
-                        {#<span class="fa-stack fa-4x">#}
-                        {#<i class="fa fa-circle fa-stack-2x text-primary"></i>#}
-                        {#<i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>#}
-                        {#</span>#}
+                    <div class="service col-lg-6">
                         <h4 class="service-heading">{{ service.title }}</h4>
                         <div class="content">
                             <p class="text-muted">{{ service.about }}</p>
@@ -189,7 +159,7 @@
                                             <img class="mx-auto" src="{{ '/uploads/images/workers/' ~ worker.image }}"
                                                  alt="">
                                             <h4>{{ worker.name }}</h4>
-                                            <p class="text-muted">{{ worker.position }}</p>
+                                            <p>{{ worker.position }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -213,8 +183,8 @@
                     <h2 class="section-heading text-uppercase">{{ 'brands.header'|trans }}</h2>
                 </div>
             </div>
-            <div class="brands row">
-                <div class="col-md-2 col-md-offset-1">
+            <div class="brands row text-center">
+                <div class="col-md-2">
                     <a href="https://www.alveca.de/" target="_blank">
                         <img src="/images/alveca.JPG" alt="">
                     </a>
@@ -242,7 +212,7 @@
             </div>
         </div>
     </section>
-
+    <!-- Contacts -->
     <section id="contacts">
         <div class="container">
             <div class="row">
