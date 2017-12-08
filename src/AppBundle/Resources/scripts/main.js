@@ -1,272 +1,108 @@
+
 // Map
-function myMap() {
-    var mapCanvas = document.getElementById("map");
-    var myCenter = new google.maps.LatLng(55.9306458, 23.3162949);
-    var mapOptions = {
-        center: myCenter,
-        zoom: 16,
-        scrollwheel: false,
-        // navigationControl: false,
-        // mapTypeControl: false,
-        // scaleControl: false,
-        // How you would like to style the map.
-        // This is where you would paste any style found on Snazzy Maps.
-    //     styles: [{
-    //         "featureType": "administrative",
-    //         "elementType": "all",
-    //         "stylers": [{
-    //             "visibility": "on"
-    //         }, {
-    //             "lightness": 33
-    //         }]
-    //     }, {
-    //         "featureType": "administrative",
-    //         "elementType": "labels",
-    //         "stylers": [{
-    //             "saturation": "-100"
-    //         }]
-    //     }, {
-    //         "featureType": "administrative",
-    //         "elementType": "labels.text",
-    //         "stylers": [{
-    //             "gamma": "0.75"
-    //         }]
-    //     }, {
-    //         "featureType": "administrative.neighborhood",
-    //         "elementType": "labels.text.fill",
-    //         "stylers": [{
-    //             "lightness": "-37"
-    //         }]
-    //     }, {
-    //         "featureType": "landscape",
-    //         "elementType": "geometry",
-    //         "stylers": [{
-    //             "color": "#f9f9f9"
-    //         }]
-    //     }, {
-    //         "featureType": "landscape.man_made",
-    //         "elementType": "geometry",
-    //         "stylers": [{
-    //             "saturation": "-100"
-    //         }, {
-    //             "lightness": "40"
-    //         }, {
-    //             "visibility": "off"
-    //         }]
-    //     }, {
-    //         "featureType": "landscape.natural",
-    //         "elementType": "labels.text.fill",
-    //         "stylers": [{
-    //             "saturation": "-100"
-    //         }, {
-    //             "lightness": "-37"
-    //         }]
-    //     }, {
-    //         "featureType": "landscape.natural",
-    //         "elementType": "labels.text.stroke",
-    //         "stylers": [{
-    //             "saturation": "-100"
-    //         }, {
-    //             "lightness": "100"
-    //         }, {
-    //             "weight": "2"
-    //         }]
-    //     }, {
-    //         "featureType": "landscape.natural",
-    //         "elementType": "labels.icon",
-    //         "stylers": [{
-    //             "saturation": "-100"
-    //         }]
-    //     }, {
-    //         "featureType": "poi",
-    //         "elementType": "geometry",
-    //         "stylers": [{
-    //             "saturation": "-100"
-    //         }, {
-    //             "lightness": "80"
-    //         }]
-    //     }, {
-    //         "featureType": "poi",
-    //         "elementType": "labels",
-    //         "stylers": [{
-    //             "saturation": "-100"
-    //         }, {
-    //             "lightness": "0"
-    //         }]
-    //     }, {
-    //         "featureType": "poi.attraction",
-    //         "elementType": "geometry",
-    //         "stylers": [{
-    //             "lightness": "-4"
-    //         }, {
-    //             "saturation": "-100"
-    //         }]
-    //     }, {
-    //         "featureType": "poi.park",
-    //         "elementType": "geometry",
-    //         "stylers": [{
-    //             "color": "#c5dac6"
-    //         }, {
-    //             "visibility": "on"
-    //         }, {
-    //             "saturation": "-95"
-    //         }, {
-    //             "lightness": "62"
-    //         }]
-    //     }, {
-    //         "featureType": "poi.park",
-    //         "elementType": "labels",
-    //         "stylers": [{
-    //             "visibility": "on"
-    //         }, {
-    //             "lightness": 20
-    //         }]
-    //     }, {
-    //         "featureType": "road",
-    //         "elementType": "all",
-    //         "stylers": [{
-    //             "lightness": 20
-    //         }]
-    //     }, {
-    //         "featureType": "road",
-    //         "elementType": "labels",
-    //         "stylers": [{
-    //             "saturation": "-100"
-    //         }, {
-    //             "gamma": "1.00"
-    //         }]
-    //     }, {
-    //         "featureType": "road",
-    //         "elementType": "labels.text",
-    //         "stylers": [{
-    //             "gamma": "0.50"
-    //         }]
-    //     }, {
-    //         "featureType": "road",
-    //         "elementType": "labels.icon",
-    //         "stylers": [{
-    //             "saturation": "-100"
-    //         }, {
-    //             "gamma": "0.50"
-    //         }]
-    //     }, {
-    //         "featureType": "road.highway",
-    //         "elementType": "geometry",
-    //         "stylers": [{
-    //             "color": "#c5c6c6"
-    //         }, {
-    //             "saturation": "-100"
-    //         }]
-    //     }, {
-    //         "featureType": "road.highway",
-    //         "elementType": "geometry.stroke",
-    //         "stylers": [{
-    //             "lightness": "-13"
-    //         }]
-    //     }, {
-    //         "featureType": "road.highway",
-    //         "elementType": "labels.icon",
-    //         "stylers": [{
-    //             "lightness": "0"
-    //         }, {
-    //             "gamma": "1.09"
-    //         }]
-    //     }, {
-    //         "featureType": "road.arterial",
-    //         "elementType": "geometry",
-    //         "stylers": [{
-    //             "color": "#e4d7c6"
-    //         }, {
-    //             "saturation": "-100"
-    //         }, {
-    //             "lightness": "47"
-    //         }]
-    //     }, {
-    //         "featureType": "road.arterial",
-    //         "elementType": "geometry.stroke",
-    //         "stylers": [{
-    //             "lightness": "-12"
-    //         }]
-    //     }, {
-    //         "featureType": "road.arterial",
-    //         "elementType": "labels.icon",
-    //         "stylers": [{
-    //             "saturation": "-100"
-    //         }]
-    //     }, {
-    //         "featureType": "road.local",
-    //         "elementType": "geometry",
-    //         "stylers": [{
-    //             "color": "#fbfaf7"
-    //         }, {
-    //             "lightness": "77"
-    //         }]
-    //     }, {
-    //         "featureType": "road.local",
-    //         "elementType": "geometry.fill",
-    //         "stylers": [{
-    //             "lightness": "-5"
-    //         }, {
-    //             "saturation": "-100"
-    //         }]
-    //     }, {
-    //         "featureType": "road.local",
-    //         "elementType": "geometry.stroke",
-    //         "stylers": [{
-    //             "saturation": "-100"
-    //         }, {
-    //             "lightness": "-15"
-    //         }]
-    //     }, {
-    //         "featureType": "transit.station.airport",
-    //         "elementType": "geometry",
-    //         "stylers": [{
-    //             "lightness": "47"
-    //         }, {
-    //             "saturation": "-100"
-    //         }]
-    //     }, {
-    //         "featureType": "water",
-    //         "elementType": "all",
-    //         "stylers": [{
-    //             "visibility": "on"
-    //         }, {
-    //             "color": "#acbcc9"
-    //         }]
-    //     }, {
-    //         "featureType": "water",
-    //         "elementType": "geometry",
-    //         "stylers": [{
-    //             "saturation": "53"
-    //         }]
-    //     }, {
-    //         "featureType": "water",
-    //         "elementType": "labels.text.fill",
-    //         "stylers": [{
-    //             "lightness": "-42"
-    //         }, {
-    //             "saturation": "17"
-    //         }]
-    //     }, {
-    //         "featureType": "water",
-    //         "elementType": "labels.text.stroke",
-    //         "stylers": [{
-    //             "lightness": "61"
-    //         }]
-    //     }]
-    };
+    function myMap() {
+        var mapCanvas = document.getElementById("map");
+        var myCenter = new google.maps.LatLng(55.9306458, 23.3162949);
+        var mapOptions = {
+            center: myCenter,
+            zoom: 16,
+            scrollwheel: false,
+        };
 
 
-    var map = new google.maps.Map(mapCanvas,mapOptions);
-    var marker = new google.maps.Marker({
-        position: myCenter,
-        //animation: google.maps.Animation.BOUNCE
-    });
-    var infowindow = new google.maps.InfoWindow({
-        content: "Eglės Nagų Studija. Vilniaus g. 134 (2 aukštas) Šiauliai"
+        var map = new google.maps.Map(mapCanvas, mapOptions);
+        var marker = new google.maps.Marker({
+            position: myCenter,
+            //animation: google.maps.Animation.BOUNCE
+        });
+        var infowindow = new google.maps.InfoWindow({
+            content: "Eglės Nagų Studija. Vilniaus g. 134 (2 aukštas) Šiauliai"
+        });
+
+        infowindow.open(map, marker);
+        marker.setMap(map);
+    }
+
+
+// ---------------------------------------------- //
+// Preventing URL update on navigation link click
+// ---------------------------------------------- //
+$('.navbar-nav a, #scroll-down, .btn').bind('click', function (e) {
+    var anchor = $(this);
+    $('html, body').stop().animate({
+        scrollTop: $(anchor.attr('href')).offset().top - 50
+    }, 1250, 'easeInOutExpo');
+    e.preventDefault();
+});
+
+
+// ---------------------------------------------- //
+// Navbar Shrinking Behavior
+// ---------------------------------------------- //
+    $(window).scroll(function () {
+        if ($(window).scrollTop() > 50) {
+            $('nav.navbar').addClass('shrink');
+        } else {
+            $('nav.navbar').removeClass('shrink');
+        }
     });
 
-    infowindow.open(map,marker);
-    marker.setMap(map);
-}
+// ---------------------------------------------- //
+// Scroll to top button
+// ---------------------------------------------- //
+    $('#scrollTop').click(function () {
+        $('html, body').animate({scrollTop: 0}, 1000);
+    });
+
+    $(window).scroll(function () {
+        if ($(window).scrollTop() >= 560) {
+            $('#scrollTop').fadeIn();
+        } else {
+            $('#scrollTop').fadeOut();
+        }
+    });
+
+// ---------------------------------------------- //
+// Time picker initialization
+// ---------------------------------------------- //
+
+$('body').scrollspy({
+    target: '.navbar',
+    offset: 80
+});
+
+
+$('#theCarousel').find('.item').first().addClass('active');
+// Instantiate the Bootstrap carousel
+$('.multi-item-carousel').carousel({
+    interval: false
+});
+
+// for every slide in carousel, copy the next slide's item in the slide.
+// Do the same for the next, next item.
+$('.multi-item-carousel .item').each(function(){
+    var next = $(this).next();
+    if (!next.length) {
+        next = $(this).siblings(':first');
+    }
+    next.children(':first-child').clone().appendTo($(this));
+
+    if (next.next().length>0) {
+        next.next().children(':first-child').clone().appendTo($(this));
+    } else {
+        $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
+    }
+});
+
+// <!-- auto-generate carousel indicator html -->
+// var myCarousel = $("#theCarousel");
+// myCarousel.append("<ol class='carousel-indicators li'></ol>");
+// var indicators = $(".carousel-indicators");
+// myCarousel.find(".carousel-inner").children(".item").each(function(index) {
+//     (index === 0) ?
+//         indicators.append("<li data-target='#theCarousel' data-slide-to='"+index+"' class='active'></li>") :
+//         indicators.append("<li data-target='#theCarousel' data-slide-to='"+index+"'></li>");
+// });
+//
+
 
