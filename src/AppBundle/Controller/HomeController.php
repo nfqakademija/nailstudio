@@ -24,7 +24,8 @@ class HomeController extends Controller
         $service = $this->getDoctrine()
             ->getRepository('AppBundle:Service')
             ->findAll();
-        return $this->render('AppBundle:Home:index.html.twig',
+        return $this->render(
+            'AppBundle:Home:index.html.twig',
             array('workers' => $worker, 'services' => $service)
         );
     }

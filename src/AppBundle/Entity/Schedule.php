@@ -187,6 +187,7 @@ class Schedule
     /**
      *
      * @param Reservation $reservation
+     *
      * @return Schedule
      */
     public function addReservation(Reservation $reservation)
@@ -211,6 +212,7 @@ class Schedule
     {
         return $this->reservation;
     }
+
     /**
      * Constructor
      */
@@ -218,5 +220,4 @@ class Schedule
     {
         $this->reservation = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
 }

@@ -28,9 +28,7 @@ class DefaultController extends Controller
             ->getLastAuthenticationError();
 
         return $this->render('@Admin/Default/index.html.twig', [
-            'error' => $exception ? $exception->getMessage() : NULL,
+            'error' => $exception ? $exception->getMessage() : null,
         ]);
     }
-
-
 }
