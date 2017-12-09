@@ -94,13 +94,3 @@ $('.multi-item-carousel .item').each(function(){
     }
 });
 
-$(document).ready(function() {
-    $('.btn-group').on('click', 'label.btn', function(e) {
-        if ($(this).hasClass('active')) {
-            setTimeout(function() {
-                $(this).removeClass('active').find('input').prop('checked', false);
-            }.bind(this), 10);
-        }
-    });
-});
-
