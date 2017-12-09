@@ -1,6 +1,8 @@
 //bootstrap
 @import "./node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+.lt { display:none; } /* hide all elements with a language class */
+.lt:lang(lt) { display:block; } /* show those elements that match their language class */
 //General
 body {
   font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -44,6 +46,10 @@ h2 {
 
 section {
   padding: 50px 0;
+}
+
+.btn {
+  border: none;
 }
 
 .btn-create {
@@ -108,7 +114,7 @@ section {
 
 //Header
 .navbar {
-  padding: 15px;
+  padding: 0 15px;
 }
 
 .navbar-header {
@@ -142,6 +148,10 @@ ul.nav:nth-child(2) > li:nth-child(1) > img:nth-child(1) {
 #user {
   margin: 65px 0;
   padding: 0 15px;
+}
+
+#user img {
+  border-radius: 50%;
 }
 
 //Photo galery
