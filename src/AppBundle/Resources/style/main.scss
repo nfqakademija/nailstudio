@@ -426,3 +426,49 @@ footer a {
 footer a:hover {
   color: #fec503;
 }
+
+
+/* Large desktop */
+@media (min-width: 1200px) {
+  body    {
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 0;
+    margin-left: 0;
+
+    //color: green;
+  }
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 1199px) {
+  body    {
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 0;
+    margin-left: 0;
+    //color: purple;
+  }
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+  body    {
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 0;
+    margin-left: 0;
+    color: blue;
+  }
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+  body    {
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 0;
+    margin-left: 0;
+    color: red;
+  }
+}
