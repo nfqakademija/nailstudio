@@ -94,15 +94,13 @@ $('.multi-item-carousel .item').each(function(){
     }
 });
 
-// <!-- auto-generate carousel indicator html -->
-// var myCarousel = $("#theCarousel");
-// myCarousel.append("<ol class='carousel-indicators li'></ol>");
-// var indicators = $(".carousel-indicators");
-// myCarousel.find(".carousel-inner").children(".item").each(function(index) {
-//     (index === 0) ?
-//         indicators.append("<li data-target='#theCarousel' data-slide-to='"+index+"' class='active'></li>") :
-//         indicators.append("<li data-target='#theCarousel' data-slide-to='"+index+"'></li>");
-// });
-//
-
+$(document).ready(function() {
+    $('.btn-group').on('click', 'label.btn', function(e) {
+        if ($(this).hasClass('active')) {
+            setTimeout(function() {
+                $(this).removeClass('active').find('input').prop('checked', false);
+            }.bind(this), 10);
+        }
+    });
+});
 
