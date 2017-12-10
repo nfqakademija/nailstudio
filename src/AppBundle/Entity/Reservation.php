@@ -23,6 +23,11 @@ class Reservation
     private $id;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    private $title;
+
+    /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="reservation")
      * @ORM\JoinColumn(nullable=true)
      */
@@ -56,7 +61,6 @@ class Reservation
      */
     private $created;
 
-
     /**
      * @var \DateTime $updated
      *
@@ -65,6 +69,30 @@ class Reservation
      */
     private $updated;
 
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
 
     /**
      * Get id

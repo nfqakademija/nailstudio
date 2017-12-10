@@ -209,6 +209,7 @@ easy_admin:
             list:
                 fields:
                     - 'id'
+                    - 'title'
                     - 'user'
                     - 'worker'
                     - 'schedule'
@@ -217,6 +218,7 @@ easy_admin:
                     - 'updated'
             form:
                 fields:
+                    - 'title'
                     - 'user'
                     - 'worker'
                     - 'schedule'

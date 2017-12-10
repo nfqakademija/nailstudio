@@ -305,14 +305,14 @@ class User implements UserInterface
     {
         return $this->reservation;
     }
-
-    /**
-     * @param ArrayCollection $reservation
-     */
-    public function setReservation(ArrayCollection $reservation)
-    {
-        $this->reservation = $reservation;
-    }
+//
+//    /**
+//     * @param ArrayCollection $reservation
+//     */
+//    public function setReservation(ArrayCollection $reservation)
+//    {
+//        $this->reservation = $reservation;
+//    }
 
 
 }
