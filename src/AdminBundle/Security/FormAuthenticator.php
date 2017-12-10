@@ -39,7 +39,8 @@ class FormAuthenticator extends AbstractGuardAuthenticator
     /**
      * Creates a new instance of FormAuthenticator
      */
-    public function __construct(RouterInterface $router) {
+    public function __construct(RouterInterface $router)
+    {
         $this->router = $router;
     }
 
@@ -69,8 +70,7 @@ class FormAuthenticator extends AbstractGuardAuthenticator
 
         try {
             return $userProvider->loadUserByUsername($credentials['username']);
-        }
-        catch (UsernameNotFoundException $e) {
+        } catch (UsernameNotFoundException $e) {
             throw new CustomUserMessageAuthenticationException($this->failMessage);
         }
     }
