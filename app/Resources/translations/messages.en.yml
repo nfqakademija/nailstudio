@@ -1,0 +1,30 @@
+menu.logo: 'Eglės Nagų Studija'
+menu.home: 'Home'
+menu.galery: 'Photo galery'
+menu.services: 'Services'
+menu.ourteam: 'Our Team'
+menu.brands: 'Using products'
+menu.contacts: 'Contacts'
+menu.reservation: 'MAKE AN APPOINTMENT'
+menu.facebook: 'Login with Facebook'
+menu.logout: 'Logout'
+
+homepage.header: 'Professional Gel Nail Services'
+homepage.button: 'Photo galery'
+
+galery.header: 'FOLLOW ON INSTAGRAM!'
+galery.button: 'VISIT INSTAGRAM'
+
+services.header: 'SERVICES'
+
+ourteam.header: 'OUR TEAM'
+
+brands.header: 'WE USE THESE PRODUCTS'
+
+contacts.header: 'CONTACTS'
+contacts.phone: '+370 - 654 - 43797'
+contacts.address: 'Vilnius street 134 (2nd floor) Siauliai'
+contacts.email: 'musteikyte.egle@gmail.com'
+contacts.place: 'We are here:'
+
+footer:copyright: '© Eglės Nagų Studija 2017'

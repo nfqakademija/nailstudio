@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <title>{% block title %}{{ "Nail Studio" }}{% endblock %}</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    {#<meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />#}
+    {#<meta name="viewport" content="width=device-width,initial-scale=1.0">#}
     <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico')}}">
     {% block stylesheets %}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -27,12 +28,15 @@
 {% endblock %}
 {% block javascripts %}
     <script src="{{ asset('js/script.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
     <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/moment.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.default-settings.js') }}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDH9zogikJajwfr0lmpBt7PQ1NVktxr6jg&callback=myMap"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 {% endblock %}
 </body>
 </html>
