@@ -19,7 +19,6 @@ class FacebookController extends Controller
             ->redirect();
     }
 
-
     /**
      * @Route("/connect/facebook/check", name="connect_facebook_check")
      * @param Request $request
@@ -28,10 +27,6 @@ class FacebookController extends Controller
      */
     public function connectCheckAction(Request $request)
     {
-        $user = $this->getUser();
-
         return $this->redirectToRoute('user_page');
     }
-
-
 }

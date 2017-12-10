@@ -20,7 +20,7 @@ class DefaultController extends Controller
     {
         $user = $this->getUser();
         if ($user instanceof UserInterface) {
-            return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('home_page');
         }
 
         /** @var AuthenticationException $exception */

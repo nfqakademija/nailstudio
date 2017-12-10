@@ -2,8 +2,11 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\User;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class HomeController.
@@ -27,7 +30,8 @@ class HomeController extends Controller
             ->findAll();
 
         return $this->render('AppBundle:Home:index.html.twig',
-            array('workers' => $worker, 'services' => $service)
+            array('workers' => $worker,
+                'services' => $service)
         );
     }
 
@@ -39,6 +43,10 @@ class HomeController extends Controller
         $service = $this->getDoctrine()
             ->getRepository('AppBundle:Service')
             ->findAll();
-        return $this->render('AppBundle:User:user.html.twig', array('services' => $service));
+
+        return $this->render(
+            'AppBundle:User:user.html.twig',
+            array('services' => $service)
+        );
     }
 }

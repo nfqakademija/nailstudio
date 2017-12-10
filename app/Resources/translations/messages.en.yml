@@ -16,6 +16,8 @@ galery.header: 'FOLLOW ON INSTAGRAM!'
 galery.button: 'VISIT INSTAGRAM'
 
 services.header: 'SERVICES'
+services.time: 'time duration'
+services.duration: ' minutes'
 
 ourteam.header: 'OUR TEAM'
 

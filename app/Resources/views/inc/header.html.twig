@@ -31,8 +31,9 @@
                     <li><a data-toggle="tab" href="#services">{{ 'menu.services'|trans }}</a></li>
                     <li><a data-toggle="tab" href="#team">{{ 'menu.ourteam'|trans }}</a></li>
                     <li><a data-toggle="tab" href="#contacts">{{ 'menu.contacts'|trans }}</a></li>
-                    <li><a href="#" style="color: white" class="btn btn-lg btn-danger" role="button" data-toggle="modal"
-                           data-target="#login-modal">
+                    <li><a href="#services" style="color: white" class="btn btn-lg btn-danger" role="button" >
+                            {#data-toggle="modal"#}
+                            {#data-target="#login-modal"#}
                             <i class="fa fa-clock-o"></i> {{ 'menu.reservation'|trans }}
                         </a>
                     </li>
@@ -44,12 +45,12 @@
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     <li><img src="{{ app.user.facebookPicture }}"></li>
                     <li>
-                        <a href="{% if is_granted("ROLE_ADMIN") %}{{ path('admin') }}{% else %}{{ path('user_page') }}{% endif %}"><span
+                        <a href="{% if is_granted("ROLE_ADMIN") %}{{ path('admin') }}{% else %}{{ path('user_page')}}{% endif %}"><span
                                     class="glyphicon glyphicon-user"></span> {{ app.user.name }}</a></li>
                     <li><a href="{{ path('facebook_logout') }}"><span class="glyphicon glyphicon-log-out"></span>
                             {{ 'menu.logout'| trans }}</a></li>
                 {% else %}
-                    <li><a href="{{ path('app_facebook_connect') }}"><span
+                    <li><a href="{{ path('app_facebook_connect')}}"><span
                                     class="fa fa-facebook "></span> {{ 'menu.facebook'| trans }}</a></li>
                 {% endif %}
             </ul>
