@@ -1,6 +1,49 @@
 //bootstrap
 @import "./node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+/* Large desktop */
+@media (min-width: 1200px) {
+  body    {
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 0;
+    margin-left: 0;
+
+    //color: green;
+  }
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 1199px) {
+  body    {
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 0;
+    margin-left: 0;
+    //color: purple;
+  }
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+  body    {
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 0;
+    margin-left: 0;
+  }
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+  body    {
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 0;
+    margin-left: 0;
+  }
+}
+
 .lt { display:none; } /* hide all elements with a language class */
 .lt:lang(lt) { display:block; } /* show those elements that match their language class */
 //General
@@ -405,6 +448,10 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
   color: black
 }
 
+#form{
+  padding-top: 200px;
+  min-height: 560px;
+}
 //Footer
 footer {
   padding: 25px 0;
@@ -437,46 +484,3 @@ footer a:hover {
   color: #fec503;
 }
 
-
-/* Large desktop */
-@media (min-width: 1200px) {
-  body    {
-    padding-left: 0;
-    padding-right: 0;
-    margin-top: 0;
-    margin-left: 0;
-
-    //color: green;
-  }
-}
-
-/* Portrait tablet to landscape and desktop */
-@media (min-width: 768px) and (max-width: 1199px) {
-  body    {
-    padding-left: 0;
-    padding-right: 0;
-    margin-top: 0;
-    margin-left: 0;
-    //color: purple;
-  }
-}
-
-/* Landscape phone to portrait tablet */
-@media (max-width: 767px) {
-  body    {
-    padding-left: 0;
-    padding-right: 0;
-    margin-top: 0;
-    margin-left: 0;
-  }
-}
-
-/* Landscape phones and down */
-@media (max-width: 480px) {
-  body    {
-    padding-left: 0;
-    padding-right: 0;
-    margin-top: 0;
-    margin-left: 0;
-  }
-}

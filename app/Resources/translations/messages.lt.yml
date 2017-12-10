@@ -32,6 +32,7 @@ contacts.place: 'Mes esame čia:'
 
 footer.copyright: '© Eglės Nagų Studija 2017'
 
+#EasyAdminBundle
 Clients: 'Klientai'
 Workers: 'Darbuotojai'
 List of %entity_label%: 'Sąrašas'
@@ -48,6 +49,14 @@ Roles: 'Rolės'
 Title: 'Pavadinimas'
 Start: 'Pradžios laikas'
 End: 'Pabaigos laikas'
+Duration in minutes: 'Trukmė minutėmis'
+Price: 'Kaina'
+About: 'Apie'
+User: 'Vartotojas'
+Service: 'Paslauga'
+Position: 'Pareigos'
+Image: 'Nuotrauka'
+Worker: 'Darbuotojas'
 
 
 
