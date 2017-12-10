@@ -79,7 +79,8 @@ class Schedule
     /**
      * @return string
      */
-    public function __toString() {
+    public function __toString()
+    {
         return $this->title;
     }
 
@@ -213,4 +214,3 @@ class Schedule
 //        $this->reservation = $reservation;
 //    }
 }
-

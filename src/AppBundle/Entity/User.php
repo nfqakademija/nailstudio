@@ -93,7 +93,8 @@ class User implements UserInterface
     /**
      * @return string
      */
-    public function __toString() {
+    public function __toString()
+    {
         return $this->name;
     }
 
@@ -313,6 +314,4 @@ class User implements UserInterface
 //    {
 //        $this->reservation = $reservation;
 //    }
-
-
 }
