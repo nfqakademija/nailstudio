@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use AdminBundle\AdminBundle;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -75,11 +77,24 @@ class User implements UserInterface
     private $facebookToken;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reservation", mappedBy="user")
+     */
+    private $reservation;
+
+    /**
      * User constructor.
      */
     public function __construct()
     {
         $this->apiToken = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+        $this->reservation = new ArrayCollection();
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString() {
+        return $this->name;
     }
 
     /**
@@ -260,11 +275,6 @@ class User implements UserInterface
     }
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reservation", mappedBy="user")
-     **/
-    private $reservation;
-
-    /**
      * @param \DateTime $created
      */
     public function setCreated(\DateTime $created)
@@ -289,30 +299,20 @@ class User implements UserInterface
     }
 
     /**
-     *
-     * @param Reservation $reservation
-     * @return User
-     */
-    public function addReservation(Reservation $reservation)
-    {
-        $this->reservation[] = $reservation;
-        return $this;
-    }
-
-    /**
-     *
-     * @param Reservation $reservation
-     */
-    public function removeReservation(Reservation $reservation)
-    {
-        $this->reservation->removeElement($reservation);
-    }
-
-    /**
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection
      */
     public function getReservation()
     {
         return $this->reservation;
     }
+
+    /**
+     * @param ArrayCollection $reservation
+     */
+    public function setReservation(ArrayCollection $reservation)
+    {
+        $this->reservation = $reservation;
+    }
+
+
 }

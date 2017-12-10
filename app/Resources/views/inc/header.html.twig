@@ -16,7 +16,7 @@
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     <li><img src="{{ app.user.facebookPicture }}"></li>
                     <li>
-                        <a href="{% if is_granted("ROLE_ADMIN") %}{{ path('admin') }}{% else %}{{ path('userpage') }}{% endif %}"><span
+                        <a href="{% if is_granted("ROLE_ADMIN") %}{{ path('admin') }}{% else %}{{ path('user_page') }}{% endif %}"><span
                                     class="glyphicon glyphicon-user"></span> {{ app.user.name }}</a></li>
                     <li><a href="{{ path('facebook_logout') }}"><span class="glyphicon glyphicon-log-out"></span>
                             Logout</a></li>

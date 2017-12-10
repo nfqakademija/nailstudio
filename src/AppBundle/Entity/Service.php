@@ -46,7 +46,7 @@ class Service
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reservation", mappedBy="service")
-     **/
+     */
     private $reservation;
 
     /**
@@ -86,6 +86,7 @@ class Service
     public function __construct()
     {
         $this->workers = new ArrayCollection();
+        $this->reservation = new ArrayCollection();
     }
 
     /**
@@ -244,34 +245,6 @@ class Service
     }
 
     /**
-     * @param Reservation $reservation
-     * @return Service
-     */
-    public function addReservation(Reservation $reservation)
-    {
-        $this->reservation[] = $reservation;
-        return $this;
-    }
-
-    /**
-     *
-     * @param Reservation $reservation
-     */
-    public function removeReservation(Reservation $reservation)
-    {
-        $this->reservation->removeElement($reservation);
-    }
-
-    /**
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getReservation()
-    {
-        return $this->reservation;
-    }
-
-
-    /**
      * Add worker
      *
      * @param \AppBundle\Entity\Worker $worker
@@ -293,5 +266,21 @@ class Service
     public function removeWorker(\AppBundle\Entity\Worker $worker)
     {
         $this->workers->removeElement($worker);
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getReservation()
+    {
+        return $this->reservation;
+    }
+
+    /**
+     * @param ArrayCollection $reservation
+     */
+    public function setReservation(ArrayCollection $reservation)
+    {
+        $this->reservation = $reservation;
     }
 }

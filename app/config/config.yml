@@ -217,7 +217,6 @@ easy_admin:
                     - 'updated'
             form:
                 fields:
-                    - 'id'
                     - 'user'
                     - 'worker'
                     - 'schedule'

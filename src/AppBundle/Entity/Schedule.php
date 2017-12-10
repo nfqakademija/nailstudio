@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -46,8 +47,6 @@ class Schedule
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reservation", mappedBy="schedule")
-     *
-     * @ORM\Column(type="string")
      */
     private $reservation;
 
@@ -69,6 +68,20 @@ class Schedule
      */
     private $updated;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->reservation = new ArrayCollection();
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString() {
+        return $this->title;
+    }
 
     /**
      * Get id
@@ -185,38 +198,19 @@ class Schedule
     }
 
     /**
-     *
-     * @param Reservation $reservation
-     * @return Schedule
-     */
-    public function addReservation(Reservation $reservation)
-    {
-        $this->reservation[] = $reservation;
-        return $this;
-    }
-
-    /**
-     *
-     * @param Reservation $reservation
-     */
-    public function removeReservation(Reservation $reservation)
-    {
-        $this->reservation->removeElement($reservation);
-    }
-
-    /**
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection
      */
     public function getReservation()
     {
         return $this->reservation;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->reservation = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
+    /**
+     * @param ArrayCollection $reservation
+     */
+    public function setReservation(ArrayCollection $reservation)
+    {
+        $this->reservation = $reservation;
+    }
 }
+

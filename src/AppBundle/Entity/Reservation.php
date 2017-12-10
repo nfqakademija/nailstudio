@@ -23,28 +23,28 @@ class Reservation
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="reservationUser")
-     * @ORM\JoinColumn(name="user", referencedColumnName="id", nullable=true)
-     **/
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="reservation")
+     * @ORM\JoinColumn(nullable=true)
+     */
     private $user;
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="Worker", inversedBy="reservationWorker")
-     * @ORM\JoinColumn(name="worker", referencedColumnName="id", nullable=true)
-     **/
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Worker", inversedBy="reservation")
+     * @ORM\JoinColumn(nullable=true)
+     */
     private $worker;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Schedule", inversedBy="reservationSchedule")
-     * @ORM\JoinColumn(name="schedule", referencedColumnName="id", nullable=true)
-     **/
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Schedule", inversedBy="reservation")
+     * @ORM\JoinColumn(nullable=true)
+     */
     private $schedule;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Service", inversedBy="reservationService")
-     * @ORM\JoinColumn(name="service", referencedColumnName="id", nullable=true)
-     **/
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Service", inversedBy="reservation")
+     * @ORM\JoinColumn(nullable=true)
+     */
     private $service;
 
     /**
