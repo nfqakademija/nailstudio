@@ -55,8 +55,6 @@ class LoadDataListener
                     $schedule->getStart(),
                     $schedule->getEnd())
             );
-
-
         }
     }
 }

@@ -8,69 +8,83 @@
 
 namespace AppBundle\Controller;
 
-
-use AncaRebeca\FullCalendarBundle\Event\CalendarEvent;
+use AppBundle\Entity\Schedule;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
-class CalendarController extends CalendarEvent
+
+class CalendarController extends Controller
 {
-    public function addData(CalendarEvent $calendarEvent)
+
+    /**
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function calendarAction(Request $request)
     {
-        // You can retrieve information from the event dispatcher (eg, You may want which day was selected in the calendar):
-        $startDate = $calendarEvent->getStart();
-        $endDate = $calendarEvent->getEnd();
-        $title = $this->addData()->getTitle();
-        $filters = $calendarEvent->getFilters();
-        // You may want do a custom query to populate the events
-        // $currentEvents = $repository->findByStartDate($startDate);
-        $repository = $this->em
-            ->getRepository(
-                'AppBundle:Schedule'
-            );
+        $em = $this->getDoctrine()->getManager();
 
-//        $schedules = $repository->findAll();
-//        // You may want to add an Event into the Calendar view.
-//        /** @var Schedule $schedule */
-//
-//        foreach ($schedules as $schedule) {
-//            $calendarEvent->addEvent(
-//                new Event($schedule->getTitle(),
-//                    $schedule->getStart(),
-//                    $schedule->getEnd())
-//            );
-//        }
+        $status = 'error';
+        $title = $request->request->get('title');
+        $start = $request->request->get('start');
+        $end = $request->request->get('end');
 
-//        $service = $this->em->getRepository(Service::class);
-//        $serviceDuration = $this->$service->getService()->getDurationInMinutes();
-//        dump($serviceDuration);
         $schedule = new Schedule();
-        $schedule->setStart($startDate);
-        $schedule->setEnd($endDate);
-//        $schedule->setTitle()
+        $schedule->setTitle($title);
+        $schedule->setStart(new \DateTime($start));
+        $schedule->setEnd(new \DateTime($end));
+        $em->persist($schedule);
+        $em->flush();
 
-        $this->em->persist($schedule);
-        $this->em->flush();
-        return $schedule;
+        return new JsonResponse([
+            'status' => $status,
+            'title' => $title,
+            'start' => $start,
+            'end' => $end
+        ]);
     }
 
-//    function changeAction(Request $request) {
-////        $id = $request->get('id');
-//
-//        $newStartData = $request->get('newStartData');
-//        $newEndData = $request->get('newEndData');
-//        $this->get('app_bundle.service.calendar')->addData($newStartData,$newEndData);
-//        return ( 201);
+//    public function makeReservationAction(Request $request, $serviceId)
+//    {
+//        return $this->render('', [
+//            'hjgjhgjh' => $kljkl
+//        ]);
 //    }
-//    /*
-//     * Change end date event
-//     *
+
+//    /**
+//     * @return EntityManager|object
 //     */
-//    function resizeAction(Request $request) {
-//        $id = $request->get('id');
-//        $newDate = $request->get('newDate');
-//        $this->get('anca_rebeca_full_calendar.service.calendar')->resizeEvent($newDate,$id);
-//        return new Response($id, 201);
+//    private function getEntitymanager()
+//    {
+//        return $this->get("doctrine.orm.default_entity_manager");
 //    }
+
+    public function updateAction($id, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $schedule = $em->getRepository(Schedule::class)->find($id);
+
+        $title = $request->request->get('title');
+        $start = $request->request->get('start');
+        $end = $request->request->get('end');
+        if (!$schedule) {
+            throw $this->createNotFoundException(
+                'No product found for id '.$id
+            );
+        }
+
+        $schedule->setTitle($title);
+        $schedule->setStart($start);
+        $schedule->setEnd($end);
+
+        $em->flush();
+
+        return $this->redirectToRoute('update_calendar', [
+            'id' => $schedule->getId()
+        ]);
+    }
+
 }
+

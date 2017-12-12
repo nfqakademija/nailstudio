@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8"/>
     <title>{% block title %}{{ "Nail Studio" }}{% endblock %}</title>
-    {#<meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />#}
-    {#<meta name="viewport" content="width=device-width,initial-scale=1.0">#}
+    /*{#<meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1" />#}*/
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
     {% block stylesheets %}
-        <link rel="stylesheet"
-              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="{{ asset('bundles/fullcalendar/css/fullcalendar/fullcalendar.min.css') }}"/>
         <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('bundles/fullcalendar/css/fullcalendar/fullcalendar.min.css') }}"/>
         <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Montserrat" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/start/jquery-ui.css">
+
     {% endblock %}
     {% block canonical_meta %}{% endblock %}
 </head>
@@ -28,24 +30,30 @@
     {% include "::inc/footer.html.twig" %}
 {% endblock %}
 {% block javascripts %}
-    <script src="{{ asset('js/script.js') }}"></script>
+
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+
+    {#<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>#}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    {#<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/locale/lt.js"></script>#}
+    <script src="{{ asset('js/script.js') }}"></script>
+
+    <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/moment.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.min.js') }}"></script>
     <script src='{{ asset('bundles/fullcalendar/js/fullcalendar/lib/moment.min.js') }}'></script>
     <script src='{{ asset('bundles/fullcalendar/js/fullcalendar/lib/jquery-ui.custom.min.js')}}'></script>
-    <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/jquery.min.js') }}"></script>
-    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/moment.min.js') }}"></script>
-    <script type="text/javascript"
-            src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.min.js') }}"></script>
-    <script type="text/javascript"
-            src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.default-settings.js') }}"></script>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDH9zogikJajwfr0lmpBt7PQ1NVktxr6jg&callback=myMap"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/locale/lt.js"></script>
-
+    {#<script async defer#}
+            {#src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDH9zogikJajwfr0lmpBt7PQ1NVktxr6jg&callback=initMap">#}
+    {#</script>#}
+    <script src="https://maps.google.com/maps/api/js?key=AIzaSyDH9zogikJajwfr0lmpBt7PQ1NVktxr6jg&callback" type="text/javascript"></script>
+    {#<script type="text/javascript"#}
+            {#src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.default-settings.js') }}"></script>#}
 
 {% endblock %}
 </body>

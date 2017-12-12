@@ -14,13 +14,17 @@ $(document).ready(function () {
             end: '18:30',
             dow: [1, 2, 3, 4, 5]
         },
+        showNonCurrentDays: false,
+        theme: true,
+        themeSystem: 'jquery-ui',
+        themeName: 'Start',
         firstDay: 1,
         defaultView: 'agendaWeek',
         constraint: 'businessHours',
         defaultDate: new Date(),
         // rendering: 'background',
         navLinks: true,
-        allDay: true,
+        allDay: false,
         allDaySlot: false,
         startEditable: true,
         selectable: true,
@@ -43,7 +47,8 @@ $(document).ready(function () {
         //         return false;
         //     });
         // },
-        select: function (start, end) {
+        select: function (start, end, jsEvent, view) {
+            // console.log(moment(start).format(), );return false;
             var title = prompt('Event Title:');
             // var start = event.start.format('YYYY-MM-DD');
             // var end = (event.end == null) ? start : event.end.format('YYYY-MM-DD');
@@ -53,56 +58,37 @@ $(document).ready(function () {
                     title: title,
                     start: start,
                     end: end,
-                    businessHours: true,
-                    allDay: false
+                    // businessHours: true,
+                    // allDay: false
                 },
-                // {
-                //     url: '/full-calendar/create',
-                //     data: { title: title, start: start, end: end },
-                //     type: 'POST',
-                //     dataType: 'json',
-                //     // success: console.log('ok')
-                // },
-                //     // error: function(e){
-                //     //     revertFunc();
-                //     //     alert('Error processing your request: '+e.responseText);
-                //     // }
-                // });
-                // $.ajax({
-                //     url: '/full-calendar/change',
-                //     data: 'title='+ title+'&start='+ start +'&end='+ end ,
-                //     type: "POST",
-                //     success: function(json) {
-                //         alert('OK');
-                //     }
-                // });
-            //     calendar.fullCalendar('renderEvent',
-            //         {
-            //             title: title,
-            //             start: start,
-            //             end: end,
-            //             // allDay: allDay
-            //         },
-            //         true // make the event "stick"
-            //     );
-            // }
-                // $.ajax({
-                //     type: "POST",
-                //     data: { title: title, start: start, end: end },
-                //     url: '/full-calendar/load'
-                // })
-                $('#calendar-holder').fullCalendar('renderEvent', eventData, true); // stick? = true
+                    $.ajax({
+                        url: '/calendar/reserve-time',
+                        data: {
+                            "title": title,
+                            "start": moment(start).format(),
+                            "end": moment(end).format(),
+                        },
+                        type: "POST",
+                        success: function (json) {
+                            console.log(json);
+                            // alert('OK');
+                        }
+                    });
+                $('#calendar-holder').fullCalendar('renderEvent',
+                    start = moment(start).format('YYYY/MM/DD hh:mm'),
+                    end = moment(end).format('YYYY/MM/DD hh:mm'),
+                    eventData, true); // stick? = true
             }
             $('#calendar-holder').fullCalendar('unselect');
         },
         // this allows things to be dropped onto the calendar
-        drop: function () {
-            // is the "remove after drop" checkbox checked?
-            // if ($('#drop-remove').is(':checked')) {
-                // if so, remove the element from the "Draggable Events" list
-                $(this).remove();
-            // }
-        },
+        // drop: function () {
+        //     // is the "remove after drop" checkbox checked?
+        //     // if ($('#drop-remove').is(':checked')) {
+        //     // if so, remove the element from the "Draggable Events" list
+        //     $(this).remove();
+        //     // }
+        // },
         eventSources: [
             {
                 url: '/full-calendar/load',
@@ -123,22 +109,38 @@ $(document).ready(function () {
         //             alert('Error receving events');
         //         }
         //     },
-        // eventDrop: function(event,delta,revertFunc) {
-        //     var newData = event.start.format('YYYY-MM-DD');
+        // eventDrop: function (event, delta, revertFunc) {
+        //     // console.log(moment(start).format(), );return false;
+        //
+        //     // var start = event.start.format('YYYY-MM-DD');
+        //     var start = event.start.format('YYYY/MM/DD hh:mm');
+        //     var end = event.end.format('YYYY/MM/DD hh:mm');
+        //     var title = event.title;
+        //
         //     //var end = (event.end == null) ? start : event.end.format('YYYY-MM-DD');
         //     $.ajax({
-        //         url: '/full-calendar/create',
-        //         data: { id: event.id, newDate: newData },
+        //         url: '/calendar/update-time',
+        //         data: {
+        //             id: event.id,
+        //             title: event.title,
+        //             start: event.start,
+        //             end: event.end
+        //         },
         //         type: 'POST',
         //         dataType: 'json',
-        //         success: function(response){
+        //         success: function (response) {
         //             console.log('ok');
         //         },
-        //         error: function(e){
-        //             revertFunc();
-        //             alert('Error processing your request: '+e.responseText);
-        //         }
+        //         // error: function (e) {
+        //         //     revertFunc();
+        //         //     alert('Error processing your request: ' + e.responseText);
+        //         // }
         //     });
+        //     $('#calendar-holder').fullCalendar('renderEvent',
+        //         start = moment(start).format('YYYY/MM/DD hh:mm'),
+        //         end = moment(end).format('YYYY/MM/DD hh:mm'),
+        //         eventData, true) // stick? = true
+        //
         // },
         // eventResize: function(event, delta, revertFunc) {
         //
@@ -178,6 +180,5 @@ $(document).ready(function () {
             revert: true,      // will cause the event to go back to its
             revertDuration: 0  //  original position after the drag
         });
-
     });
 });

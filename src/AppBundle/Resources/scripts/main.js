@@ -1,25 +1,21 @@
 // Map
-    function myMap() {
-        var mapCanvas = document.getElementById("map");
-        var myCenter = new google.maps.LatLng(55.9306458, 23.3162949);
-        var mapOptions = {
-            center: myCenter,
-            zoom: 16,
-            scrollwheel: false,
-        };
-
-        var map = new google.maps.Map(mapCanvas, mapOptions);
-        var marker = new google.maps.Marker({
-            position: myCenter,
-            //animation: google.maps.Animation.BOUNCE
-        });
-        var infowindow = new google.maps.InfoWindow({
-            content: "Eglės Nagų Studija. Vilniaus g. 134 (2 aukštas) Šiauliai"
-        });
-
-        infowindow.open(map, marker);
-        marker.setMap(map);
-    }
+function initMap() {
+    var uluru = {lat: 55.9306458, lng: 23.3162949};
+    var map = new google.maps.Map($('#map'), {
+        zoom: 16,
+        center: uluru,
+        scrollwheel: false,
+    });
+    var marker = new google.maps.Marker({
+        position: uluru,
+        map: map
+    });
+    var infoWindow = new google.maps.InfoWindow({
+        content: "Eglės Nagų Studija. Vilniaus g. 134 (2 aukštas) Šiauliai"
+    });
+    infoWindow.open(map, marker);
+    marker.setMap(map);
+}
 
 if (window.location.hash && window.location.hash == '#_=_') {
     if (window.history && history.pushState) {
@@ -116,3 +112,5 @@ $(document).on('click','.navbar-collapse.in',function(e) {
 function showDiv() {
     $('#welcomeDiv').style.display = "block";
 }
+
+// $( "#accordion" ).accordion();

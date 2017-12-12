@@ -30,3 +30,18 @@ ancarebeca_fullcalendar:
 #    path:     /full-calendar/resize
 #    defaults:
 #        _controller: "AppBundle:Calendar:resize"
+
+add_calendar:
+    path: /calendar/reserve-time
+    methods: [POST]
+    defaults: { _controller: AppBundle:Calendar:calendar}
+
+update_calendar:
+    path: /calendar/update-time
+    methods: [POST]
+    defaults: { _controller: AppBundle:Calendar:update}
+
+make_reservation:
+    path: /calendar/reserve-time/{serviceId}
+    methods: [GET]
+    defaults: { _controller: AppBundle:Calendar:makeReservation}
