@@ -30,10 +30,60 @@
             {#</div>#}
             <div class="row">
                 <div class="col-lg-6 text-center">
-                    {% for servise in services %}
-                        {{ servise.title }}
-                    {% endfor %}
-                    {% include '@FullCalendar/Calendar/calendar.html.twig' %}
+                    <form>
+                        <div class="form-group">
+                            <label for="sel1">Pasirinkite paslaugą:</label>
+                            <select class="form-control" id="sel1">
+                                {% for servise in services %}
+                                <option>{{ servise.title }}
+                                    {{ 'services.time'|trans }}
+                                    {{ servise.durationInMinutes }}
+                                    {{ 'services.duration'|trans }}
+                                    nuo
+                                    {{ servise.price }}
+                                    {{ 'services.money'|trans }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </form>
+                    <form>
+                        <div class="form-group">
+                            <label for="sel1">Pasirinkite darbuotoją:</label>
+                            <select class="form-control" id="sel1">
+                                {% for worker in workers %}
+                                    <option>{{ worker.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </form>
+                    <div id='external-events'>
+                        <h4>Perkelkite laiką</h4>
+                        <div class="fc-event ui-draggable ui-draggable">Nagai Lina</div>
+                        {#<div class='fc-event'>My Event 1</div>#}
+                        {#<div class='fc-event'>My Event 2</div>#}
+                        {#<div class='fc-event'>My Event 3</div>#}
+                        {#<div class='fc-event'>My Event 4</div>#}
+                        {#<div class='fc-event'>My Event 5</div>#}
+                        {#<p>#}
+                        {#<input type='checkbox' id='drop-remove' />#}
+                        {#<label for='drop-remove'>remove after drop</label>#}
+                        {#</p>#}
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+
+                    <div id='wrap'>
+
+
+
+                        {% include '@FullCalendar/Calendar/calendar.html.twig' %}
+
+                        <div style='clear:both'></div>
+
+                    </div>
+
+
                 </div>
             </div>
         </div>

@@ -26,10 +26,12 @@ services:
         arguments: [ "@doctrine.orm.entity_manager" ]
         tags:
             - { name: 'kernel.event_listener', event: 'fullcalendar.set_data', method: loadData }
-#            - { name: 'kernel.event_listener', event: 'fullcalendar.set_data', method: addData }
 
-#    app_bundle.service.listener2:
-#        class: AppBundle\EventListener\AddDataListener
-#        arguments: [ "@doctrine.orm.entity_manager" ]
-#        tags:
-#            - { name: 'kernel.event_listener', event: 'fullcalendar.set_data', method: addData }
+#    app_bundle.service.calendar:
+#            class: AppBundle\Service\Calendar
+#            arguments:
+#                - "@anca_rebeca_full_calendar.service.serializer"
+#                - "@event_dispatcher"
+#            tags:
+#            - { name: 'kernel.event_listener', event: 'fullcalendar.add_data', method: addData }
+#

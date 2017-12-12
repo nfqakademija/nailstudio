@@ -44,9 +44,14 @@ class HomeController extends Controller
             ->getRepository('AppBundle:Service')
             ->findAll();
 
+        $worker = $this->getDoctrine()
+            ->getRepository('AppBundle:Worker')
+            ->findAll();
+
         return $this->render(
             'AppBundle:User:user.html.twig',
-            array('services' => $service)
+            array('services' => $service,
+                'workers' => $worker)
         );
     }
 }

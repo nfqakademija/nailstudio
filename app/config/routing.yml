@@ -20,3 +20,13 @@ admin_logout:
 
 ancarebeca_fullcalendar:
     resource: "@FullCalendarBundle/Resources/config/routing.yml"
+
+#ancarebeca_full_calendar_change:
+#    path:     /full-calendar/change
+#    defaults:
+#        _controller: "AppBundle:Calendar:change"
+#
+#ancarebeca_full_calendar_resize:
+#    path:     /full-calendar/resize
+#    defaults:
+#        _controller: "AppBundle:Calendar:resize"

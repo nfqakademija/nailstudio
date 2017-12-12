@@ -19,6 +19,7 @@ galery.button: 'APLANKYKITE INSTAGRAM'
 services.header: 'PASLAUGOS'
 services.time: 'trukmė'
 services.duration: ' minučių'
+services.money: '€'
 
 ourteam.header: 'MŪSŲ KOMANDA'
 

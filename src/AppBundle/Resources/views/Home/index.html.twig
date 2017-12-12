@@ -125,21 +125,92 @@
                     <h2 class="section-heading text-uppercase">{{ 'services.header'|trans }}</h2>
                 </div>
             </div>
+            {#<div class="[ form-group ]">#}
+            {#<input type="checkbox" name="fancy-checkbox-success-custom-icons" id="fancy-checkbox-success-custom-icons" autocomplete="off" />#}
+            {#<div class="[ btn-group ]">#}
+            {#<label for="fancy-checkbox-success-custom-icons" class="[ btn btn-success ]">#}
+            {#<span class="[ glyphicon glyphicon-ok ]"></span>#}
+            {#<span class="[ glyphicon glyphicon-minus ]"></span>#}
+            {#</label>#}
+            {#<label for="fancy-checkbox-success-custom-icons" class="[ btn btn-default active ]">#}
+            {#Success Checkbox#}
+            {#</label>#}
+            {#</div>#}
+            {#</div>#}
+
             <div class="services row text-center">
+                {#<h2>List Group With Custom Content</h2>#}
+
+
+            </div>
+
+
+            <form action="">
                 {% for service in services %}
-                    <div class="service col-lg-6">
-                        <h4 class="service-heading">{{ service.title }}</h4>
-                        <div class="content">
-                            <p class="text-muted">{{ service.about }}</p>
-                            <i class="fa fa-clock-o text-muted" aria-hidden="true">
-                                {{ 'services.time'|trans }}
-                                {{ service.durationInMinutes }}
-                                {{ 'services.duration'|trans }} </i><br>
-                            <i class="fa fa-money text-muted" aria-hidden="true"> {{ service.price }} Eur </i>
+                    <div class="service col-lg-8">
+                        <div class="from-group row">
+                            {#<div class="list-group-item">#}
+                            <h4 class="form-group-item-heading">{{ service.title }}</h4>
+                            <div class="content">
+                                <div class="panel-group" id="accordion">
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <p class="panel-title text-muted">
+                                                {#<h4 class="panel-title">#}
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Apie
+                                                    paslaugą</a>
+                                                {#</h4>#}</p>
+                                        </div>
+                                        <div id="collapse2" class="panel-collapse collapse">
+                                            <div class="panel-body">{{ service.about }}</div>
+                                        </div>
+                                        <div class="form-check ">
+                                            {#<input class="text-left" type="checkbox" name="checkbox" id="checkbox_id" value="value">#}
+                                            {#<label for="checkbox_id">{{ 'services.time'|trans }}#}
+                                            {#{{ service.durationInMinutes }}#}
+                                            {#{{ 'services.duration'|trans }}#}
+                                            {#nuo#}
+                                            {#{{ service.price }}#}
+                                            {#{{ "services.money"|trans }}</label>#}
+                                            <label class="form-check-label checkbox-inline">
+                                                <input class="form-check-input " type="checkbox" value="">
+                                                <p>{{ 'services.time'|trans }}
+                                                    {{ service.durationInMinutes }}
+                                                    {{ 'services.duration'|trans }}
+                                                    nuo
+                                                    {{ service.price }}
+                                                    {{ "services.money"|trans }}</p>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                {#<p class="panel-title text-muted">{{ service.about }}</p>#}
+                            </div>
+                            {#</div>#}
                         </div>
                     </div>
+
+                    {#<h4 class="service-heading">{{ service.title }}</h4>#}
+                    {#<div class="content">#}
+                    {#<p class="text-muted">{{ service.about }}</p>#}
+                    {#<i class="fa fa-clock-o text-muted" aria-hidden="true">#}
+                    {#{{ 'services.time'|trans }}#}
+                    {#{{ service.durationInMinutes }}#}
+                    {#{{ 'services.duration'|trans }} </i><br>#}
+                    {#<i class="fa fa-money text-muted" aria-hidden="true"> {{ service.price }} Eur </i>#}
+                    {#</div>#}
+                    {#</div>#}
                 {% endfor %}
-            </div>
+                <div id="welcomeDiv"  style="display:none;" class="answer_list" > WELCOME</div>
+                <input type="button" name="answer" value="Show Div" onclick="showDiv()" />
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">Sign in</button>
+                    </div>
+                </div>
+            </form>
+        {#</div>#}
         </div>
     </section>
     <!-- Team -->

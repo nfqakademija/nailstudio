@@ -8,7 +8,6 @@
             scrollwheel: false,
         };
 
-
         var map = new google.maps.Map(mapCanvas, mapOptions);
         var marker = new google.maps.Marker({
             position: myCenter,
@@ -48,7 +47,6 @@ $('.navbar-nav a, #scroll-down, .btn').bind('click', function (e) {
     }, 1250, 'easeInOutExpo');
     e.preventDefault();
 });
-
 
 // ---------------------------------------------- //
 // Navbar Shrinking Behavior
@@ -108,8 +106,13 @@ $('.multi-item-carousel .item').each(function(){
     }
 });
 
-// $(document).on('click','.navbar-collapse.in',function(e) {
-//     if( $(e.target).is('a') && $(e.target).attr('class') != 'dropdown-toggle' ) {
-//         $(this).collapse('hide');
-//     }
-// });
+$(document).on('click','.navbar-collapse.in',function(e) {
+    if( $(e.target).is('a') && $(e.target).attr('class') != 'dropdown-toggle' ) {
+        $(this).collapse('hide');
+    }
+});
+
+
+function showDiv() {
+    $('#welcomeDiv').style.display = "block";
+}
