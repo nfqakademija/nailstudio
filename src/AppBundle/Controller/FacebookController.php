@@ -27,6 +27,6 @@ class FacebookController extends Controller
      */
     public function connectCheckAction(Request $request)
     {
-        return $this->redirectToRoute('user_page');
+        return $this->redirectToRoute('home_page');
     }
 }

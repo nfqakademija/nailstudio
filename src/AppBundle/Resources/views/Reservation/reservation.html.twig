@@ -1,4 +1,6 @@
-<form action="{{ path('app.order.new') }}" method="post" id="order-form">
+<form action="
+{#{{ path('app.order.new') }}#}
+" method="post" id="order-form">
     <div class="row">
         <div class="col-lg-6">
             <div id="loadbar" style="display: none;">
@@ -12,23 +14,21 @@
                 <div class="blockG" id="rotateG_08"></div>
             </div>
         </div>
+        <div class="text-center">
+        <h2>Pasirinkite paslaugą ir rezervuokite laiką vizitui</h2>
+        </div>
         <div class="row">
+
             <div class="col-lg-6">
-                <h4>Pasirinkite paslaugą</h4>
+
                 {% for service in services %}
                     <div class=" quiz " id="quiz" data-toggle="buttons">
                         <label class="element-animation1 btn btn-lg btn-primary btn-block">
                                         <span class="btn-label">
                                             <i class="glyphicon glyphicon-chevron-right"></i>
                                         </span>
-                            <input type="radio" name="q_answer" value="1">
+                            <input id="service" type="radio" name="q_answer" value="{{ service.id }}">
                             <h4> {{ service.title }}</h4>
-                            {#<span class="panel-title text-muted left">#}
-                            {#<h4 class="panel-title">#}
-                            {#<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Apie#}
-                            {#paslaugą</a>#}
-                            {#</h4>#}
-                            {#</span>#}
                             <span class="panel-title text-muted right">
                                             {{ 'services.time'|trans }}
                                 {{ service.durationInMinutes }}
@@ -43,20 +43,54 @@
                     </div>
                 {% endfor %}
             </div>
-            <div class="col-lg-6 prisijungti">
-                <div class="text-center order-contact" style="display: none"
-                     id="order-contact">
+            <div class="col-lg-6 changing" style="margin-top: 50px">
+                <div class="text-center order-contact" style="display: none" id="order-contact">
+
                     <div class="row" style="width: 500px; height: 300px">
-                        <div class="col-sm-12 text-center" style="padding: 20px;">
-                            <a id="btn-facebook-login" href="{{ path('app_facebook_connect') }}"
-                               class="btn btn-lg  btn-primary">
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        {#{% for user in users %}#}
+                        {#{{  }}#}
+                        {#{% endif %}#}
+
+                        <div class="col-sm-6 changing"  style="padding-top: 20px;">
+                                {#<span class="fa fa-user "></span>#}
+
+                            <p>Vartotojas: </p>
+                            <p >Darbuotojas: </p>
+                            <p> Paslauga:</p>
+                            <p> Kaina:</p>
+                            <p> Laikas: </p>
+                            </a>
+                        </div>
+                        <div class="col-sm-6"  style="padding-top: 80px;">
+                            <a href="#" class="btn btn-lg btn-warning js-scroll-trigger change"
+                               target="_blank">
+                                <i class="fa fa-user-secret"></i> Keisti darbuotoją
+                            </a>
+
+                            <a href="#" class="btn btn-lg btn-warning js-scroll-trigger change"
+                               target="_blank">
+                                <i class="fa fa-clock-o"></i> Keisti laiką
+                            </a>
+                        </div>
+
+                            <a href="https://www.instagram.com/eglesnagustudija/" class="btn btn-lg btn-outline js-scroll-trigger"
+                               target="_blank">
+                                <i class="fa fa-send"></i> Pabaigti rezervaciją
+                            </a>
+
+                        {% else %}
+
+                        <div class="col-sm-12 text-center" style="padding-top: 20px;">
+                            <a id="btn-facebook-login" href="{{ path('app_facebook_connect')  ~ '?content=services'}}"
+                               class="btn btn-lg  btn-primary prisijungti">
                                 <span class="fa fa-facebook "></span>
                                 <span id="login-text">Prisijungti su Facebook</span>
                             </a>
                         </div>
                         <div class="col-sm-12 text-center" style="padding: 20px;">
                             <a id="btn-google-login" href="#services"
-                               class="btn btn-lg btn-danger" >
+                               class="btn btn-lg btn-danger prisijungti">
                                 <span class="fa fa-google "></span>
                                 <span id="login-text">Prisijungti su Gmail</span>
                             </a>
@@ -71,6 +105,7 @@
                             </a>
                         </div>
                     </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
