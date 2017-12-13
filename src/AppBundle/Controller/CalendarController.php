@@ -61,30 +61,39 @@ class CalendarController extends Controller
 //        return $this->get("doctrine.orm.default_entity_manager");
 //    }
 
-    public function updateAction($id, Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $schedule = $em->getRepository(Schedule::class)->find($id);
-
-        $title = $request->request->get('title');
-        $start = $request->request->get('start');
-        $end = $request->request->get('end');
-        if (!$schedule) {
-            throw $this->createNotFoundException(
-                'No product found for id '.$id
-            );
-        }
-
-        $schedule->setTitle($title);
-        $schedule->setStart($start);
-        $schedule->setEnd($end);
-
-        $em->flush();
-
-        return $this->redirectToRoute('update_calendar', [
-            'id' => $schedule->getId()
-        ]);
-    }
+    /**
+     * @param $start
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+//    public function updateAction($id, Request $request)
+//    {
+//        $em = $this->getDoctrine()->getManager();
+//
+//        $id = $request->request->get('id');
+//        $title = $request->request->get('title');
+//        $start = $request->request->get('start');
+//        $end = $request->request->get('end');
+//
+//        $schedule = $em->getRepository(Schedule::class)->find($id);
+//var_dump($schedule);die();
+//        if (!$schedule) {
+//            throw $this->createNotFoundException(
+//                'No product found for id '.$start
+//            );
+//        }
+//
+//        $schedule->setTitle($title);
+//        $schedule->setStart($start);
+//        $schedule->setEnd($end);
+//
+//        $em->flush();
+//
+//        return $this->redirectToRoute('update_calendar', [
+//            'start' => $schedule->getStart()
+//        ]);
+//    }
 
 }
 

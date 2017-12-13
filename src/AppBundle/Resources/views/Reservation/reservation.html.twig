@@ -1,0 +1,78 @@
+<form action="{{ path('app.order.new') }}" method="post" id="order-form">
+    <div class="row">
+        <div class="col-lg-6">
+            <div id="loadbar" style="display: none;">
+                <div class="blockG" id="rotateG_01"></div>
+                <div class="blockG" id="rotateG_02"></div>
+                <div class="blockG" id="rotateG_03"></div>
+                <div class="blockG" id="rotateG_04"></div>
+                <div class="blockG" id="rotateG_05"></div>
+                <div class="blockG" id="rotateG_06"></div>
+                <div class="blockG" id="rotateG_07"></div>
+                <div class="blockG" id="rotateG_08"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <h4>Pasirinkite paslaugą</h4>
+                {% for service in services %}
+                    <div class=" quiz " id="quiz" data-toggle="buttons">
+                        <label class="element-animation1 btn btn-lg btn-primary btn-block">
+                                        <span class="btn-label">
+                                            <i class="glyphicon glyphicon-chevron-right"></i>
+                                        </span>
+                            <input type="radio" name="q_answer" value="1">
+                            <h4> {{ service.title }}</h4>
+                            {#<span class="panel-title text-muted left">#}
+                            {#<h4 class="panel-title">#}
+                            {#<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Apie#}
+                            {#paslaugą</a>#}
+                            {#</h4>#}
+                            {#</span>#}
+                            <span class="panel-title text-muted right">
+                                            {{ 'services.time'|trans }}
+                                {{ service.durationInMinutes }}
+                                {{ 'services.duration'|trans }},
+                                        </span>
+                            <span class="panel-title text-muted right">
+                                             nuo
+                                {{ service.price }}
+                                {{ "services.money"|trans }}
+                                        </span>
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-lg-6 prisijungti">
+                <div class="text-center order-contact" style="display: none"
+                     id="order-contact">
+                    <div class="row" style="width: 500px; height: 300px">
+                        <div class="col-sm-12 text-center" style="padding: 20px;">
+                            <a id="btn-facebook-login" href="{{ path('app_facebook_connect') }}"
+                               class="btn btn-lg  btn-primary">
+                                <span class="fa fa-facebook "></span>
+                                <span id="login-text">Prisijungti su Facebook</span>
+                            </a>
+                        </div>
+                        <div class="col-sm-12 text-center" style="padding: 20px;">
+                            <a id="btn-google-login" href="#services"
+                               class="btn btn-lg btn-danger" >
+                                <span class="fa fa-google "></span>
+                                <span id="login-text">Prisijungti su Gmail</span>
+                            </a>
+                        </div>
+                        <div class="col-sm-12 text-center" style="padding: 20px;">
+                            <span id="login-text">ARBA</span>
+                            </a>
+                        </div>
+                        <div class="col-sm-12 text-center" style="padding: 20px;">
+                            <span class="fa fa-phone" style="font-size: 30px"></span>
+                            <span style="font-size: 30px">{{ 'contacts.phone'|trans }}</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

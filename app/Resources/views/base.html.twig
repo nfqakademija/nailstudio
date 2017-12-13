@@ -31,23 +31,17 @@
 {% endblock %}
 {% block javascripts %}
     <script src="{{ asset('js/script.js') }}"></script>
-
-
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-
-
     <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/moment.min.js') }}"></script>
+    <script type="text/javascript"src='{{ asset('bundles/fullcalendar/js/fullcalendar/lib/jquery-ui.custom.min.js')}}'></script>
     <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.min.js') }}"></script>
-    <script src='{{ asset('bundles/fullcalendar/js/fullcalendar/lib/moment.min.js') }}'></script>
-    <script src='{{ asset('bundles/fullcalendar/js/fullcalendar/lib/jquery-ui.custom.min.js')}}'></script>
-    <script src="https://maps.google.com/maps/api/js?key=AIzaSyDH9zogikJajwfr0lmpBt7PQ1NVktxr6jg&callback" type="text/javascript"></script>
-
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDH9zogikJajwfr0lmpBt7PQ1NVktxr6jg&callback=initMap">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 {% endblock %}
 </body>
 </html>

@@ -82,13 +82,13 @@ $(document).ready(function () {
             $('#calendar-holder').fullCalendar('unselect');
         },
         // this allows things to be dropped onto the calendar
-        // drop: function () {
-        //     // is the "remove after drop" checkbox checked?
-        //     // if ($('#drop-remove').is(':checked')) {
-        //     // if so, remove the element from the "Draggable Events" list
-        //     $(this).remove();
-        //     // }
-        // },
+        drop: function () {
+            // is the "remove after drop" checkbox checked?
+            // if ($('#drop-remove').is(':checked')) {
+            // if so, remove the element from the "Draggable Events" list
+            $(this).remove();
+            // }
+        },
         eventSources: [
             {
                 url: '/full-calendar/load',
@@ -109,6 +109,48 @@ $(document).ready(function () {
         //             alert('Error receving events');
         //         }
         //     },
+        eventDrop: function(calEvent,event,delta,revertFunc) {
+            var start = calEvent.start;
+            // var end = event.end.format('YYYY/MM/DD hh:mm');
+            var title = calEvent.title;
+            // var id = event.id;
+            var end = (calEvent.end == null) ? start : calEvent.end;
+            $.ajax({
+                url: '/calendar/update-time/{start}',
+                data: {
+                    "title": event.title,
+                    "start": moment(event.start).format(),
+                    "end": moment(event.end).format(),
+                },
+                type: 'GET',
+                dataType: 'json',
+                success: function(response){
+                    console.log('ok');
+                },
+                error: function(e){
+                    revertFunc();
+                    alert('Error processing your request: '+e.responseText);
+                }
+            });
+
+        },
+        // eventResize: function(event, delta, revertFunc) {
+        //     var newData = event.end.format('YYYY-MM-DD');
+        //     $.ajax({
+        //         url: Routing.generate('/calendar/update-time'),
+        //         data: { id: event.id, newDate: newData },
+        //         type: 'POST',
+        //         dataType: 'json',
+        //         success: function(response){
+        //             console.log('ok');
+        //         },
+        //         error: function(e){
+        //             revertFunc();
+        //             alert('Error processing your request: '+e.responseText);
+        //         }
+        //     });
+        //
+        // },
         // eventDrop: function (event, delta, revertFunc) {
         //     // console.log(moment(start).format(), );return false;
         //
@@ -136,10 +178,10 @@ $(document).ready(function () {
         //         //     alert('Error processing your request: ' + e.responseText);
         //         // }
         //     });
-        //     $('#calendar-holder').fullCalendar('renderEvent',
-        //         start = moment(start).format('YYYY/MM/DD hh:mm'),
-        //         end = moment(end).format('YYYY/MM/DD hh:mm'),
-        //         eventData, true) // stick? = true
+        //     // $('#calendar-holder').fullCalendar('renderEvent',
+        //     //     start = moment(start).format('YYYY/MM/DD hh:mm'),
+        //     //     end = moment(end).format('YYYY/MM/DD hh:mm'),
+        //     //     eventData, true) // stick? = true
         //
         // },
         // eventResize: function(event, delta, revertFunc) {
@@ -161,6 +203,7 @@ $(document).ready(function () {
 
         // },
         eventClick: function (calEvent, jsEvent, view) {
+            console.log('Event: ' + calEvent.id);
             console.log('Event: ' + calEvent.title);
             console.log('Event: ' + calEvent.start);
             console.log('Event: ' + calEvent.end);

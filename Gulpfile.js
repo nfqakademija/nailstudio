@@ -15,6 +15,7 @@ gulp.task('sass', function() {
     gulp.src([
         dir.npm + 'bootstrap-sass/assets/stylesheets/**',
         dir.assets + 'style/main.scss',
+        dir.assets + 'style/services_choice.scss',
 
     ])
         .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
@@ -29,8 +30,11 @@ gulp.task('scripts', function() {
             dir.npm + 'bootstrap-sass/assets/javascripts/bootstrap.min.js',
 
             // Main JS file
-            dir.assets + 'scripts/main.js',
             dir.assets + 'scripts/googlemap.js',
+            dir.assets + 'scripts/main.js',
+            dir.assets + 'services_choice.js',
+        // /home/benas/PhpstormProjects/nailstudio/src/AppBundle/Resources/scripts/googlemap.js
+
             //FullCalendar JS file
             dir.assets + 'public/js/my_fullcalendar.js',
 
@@ -56,12 +60,22 @@ gulp.task('fonts', function() {
 
 gulp.task('default', ['sass', 'scripts', 'fonts', 'images']);
 
+// gulp.task('watch', function () {
+//     var onChange = function (event) {
+//         console.log('File '+event.path+' has been '+event.type);
+//     };
+//     gulp.watch('./src/*/Resources/public/sass/**/*.scss', ['sass'])
+//         .on('change', onChange);
+//     gulp.watch('./src/*/Resources/public/js/**/*.js', ['js'])
+//         .on('change', onChange);
+// });
+
+// watcher
 gulp.task('watch', function () {
-    var onChange = function (event) {
-        console.log('File '+event.path+' has been '+event.type);
-    };
-    gulp.watch('./src/*/Resources/public/sass/**/*.scss', ['sass'])
-        .on('change', onChange);
-    gulp.watch('./src/*/Resources/public/js/**/*.js', ['js'])
-        .on('change', onChange);
+    gulp.watch(dir.assets + 'style/*.scss', ['sass']);
+    gulp.watch(dir.assets + 'scripts/*', ['scripts']);
+    gulp.watch(dir.assets + 'images/*', ['images']);
 });
+
+
+gulp.task('default', ['sass', 'scripts', 'fonts', 'images']);

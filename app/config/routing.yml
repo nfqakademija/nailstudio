@@ -37,8 +37,8 @@ add_calendar:
     defaults: { _controller: AppBundle:Calendar:calendar}
 
 update_calendar:
-    path: /calendar/update-time
-    methods: [POST]
+    path: /calendar/update-time/{id}
+    methods: [GET]
     defaults: { _controller: AppBundle:Calendar:update}
 
 make_reservation:

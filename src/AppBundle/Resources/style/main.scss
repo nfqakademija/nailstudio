@@ -3,19 +3,19 @@
 
 /* Large desktop */
 @media (min-width: 1200px) {
-  body    {
+  body {
     padding-left: 0;
     padding-right: 0;
     margin-top: 0;
     margin-left: 0;
 
-    //color: green;
+    //color: green;dsdssd
   }
 }
 
 /* Portrait tablet to landscape and desktop */
 @media (min-width: 768px) and (max-width: 1199px) {
-  body    {
+  body {
     padding-left: 0;
     padding-right: 0;
     margin-top: 0;
@@ -26,7 +26,7 @@
 
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) {
-  body    {
+  body {
     padding-left: 0;
     padding-right: 0;
     margin-top: 0;
@@ -36,7 +36,7 @@
 
 /* Landscape phones and down */
 @media (max-width: 480px) {
-  body    {
+  body {
     padding-left: 0;
     padding-right: 0;
     margin-top: 0;
@@ -44,8 +44,16 @@
   }
 }
 
-.lt { display:none; } /* hide all elements with a language class */
-.lt:lang(lt) { display:block; } /* show those elements that match their language class */
+.lt {
+  display: none;
+}
+
+/* hide all elements with a language class */
+.lt:lang(lt) {
+  display: block;
+}
+
+/* show those elements that match their language class */
 //General
 body {
   font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -243,6 +251,22 @@ ul.nav:nth-child(2) > li:nth-child(1) > img:nth-child(1) {
   background-color: #f8f9fa !important;
 }
 
+#services .col-lg-6 {
+  //min-width: inherit;
+  //float: none;
+  width: auto;
+  min-height: 0;
+  margin: 5px;
+}
+
+#services .prisijungti{
+  padding-top: 50px;
+}
+
+#services .prisijungti .btn {
+  width: 300px;
+}
+
 #services h2 {
   margin-bottom: 50px;
 }
@@ -253,9 +277,9 @@ ul.nav:nth-child(2) > li:nth-child(1) > img:nth-child(1) {
 
 #services h4 {
   //height: 70px;
-  background: #444;
+  //background: #444;
   color: #fff;
-  font-size: 22px;
+  font-size: 14px;
   //padding: 10px 0;
   -webkit-border-top-right-radius: 4px;
   -webkit-border-bottom-right-radius: 0;
@@ -448,10 +472,11 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
   color: black
 }
 
-#form{
+#form {
   padding-top: 200px;
   min-height: 560px;
 }
+
 //Footer
 footer {
   padding: 25px 0;
@@ -515,11 +540,11 @@ footer a:hover {
   margin: 0;
   vertical-align: middle;
 }
+
 #calendar-holder {
   float: right;
   //width: 900px;
 }
-
 
 .form-group input[type="checkbox"] {
   display: none;
@@ -532,6 +557,7 @@ footer a:hover {
 .form-group input[type="checkbox"] + .btn-group > label span:first-child {
   display: none;
 }
+
 .form-group input[type="checkbox"] + .btn-group > label span:last-child {
   display: inline-block;
 }
@@ -539,9 +565,11 @@ footer a:hover {
 .form-group input[type="checkbox"]:checked + .btn-group > label span:first-child {
   display: inline-block;
 }
+
 .form-group input[type="checkbox"]:checked + .btn-group > label span:last-child {
   display: none;
 }
+
 //#welcomeDiv {
 //  position: fixed;
 //  bottom: 0;
@@ -554,3 +582,4 @@ footer a:hover {
 //  justify-content: center;
 //  width: 100%;
 //}
+
