@@ -103,6 +103,7 @@ function showDiv() {
 }
 
     $(".btn-block").click(function(){
-                $(".reservation-contact").fadeIn("1250", 'easeInOutExpo');
+                $(".reservation-contact").fadeIn("3000");
     });
+
 

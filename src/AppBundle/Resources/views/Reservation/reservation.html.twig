@@ -1,4 +1,4 @@
-<form action="{{ path('make_reservation', {"serviceId": 1}) }}" method="post" id="reservation-form">
+<form action="{{ path('make_reservation', {serviceId: 1}) }}" method="post" id="reservation-form">
     <div class="row">
         <div class="col-lg-6">
             <div id="loadbar" style="display: none;">
@@ -12,13 +12,8 @@
                 <div class="blockG" id="rotateG_08"></div>
             </div>
         </div>
-        <div class="text-center">
-        <h2>Pasirinkite paslaugą ir rezervuokite laiką vizitui</h2>
-        </div>
         <div class="row">
-
             <div class="col-lg-6">
-
                 {% for service in services %}
                     <div class=" quiz " id="quiz" data-toggle="buttons">
                         <label class="element-animation1 btn btn-lg btn-primary btn-block">
@@ -43,44 +38,37 @@
             </div>
             <div class="col-lg-6 changing" style="margin-top: 50px">
                 <div class="text-center reservation-contact" style="display: none" id="reservation-contact">
-
                     <div class="row" style="width: 500px; height: 300px">
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                        {#{% for user in users %}#}
-                        {#{{  }}#}
-                        {#{% endif %}#}
-
-                        <div class="col-sm-6 changing"  style="padding-top: 20px;">
-                                {#<span class="fa fa-user "></span>#}
-
+                        <div class="col-sm-6 changing" style="padding-top: 20px;">
+                            {#<span class="fa fa-user "></span>#}
+                            {#{% for user in existingUser %}#}
                             <p>Vartotojas: </p>
-                            <p >Darbuotojas: </p>
+                            {#{% endfor %}#}
+                            <p>Darbuotojas: </p>
                             <p> Paslauga:</p>
                             <p> Kaina:</p>
                             <p> Laikas: </p>
                             </a>
                         </div>
-                        <div class="col-sm-6"  style="padding-top: 80px;">
+                        <div class="col-sm-6" style="padding-top: 80px;">
                             <a href="#" class="btn btn-lg btn-warning js-scroll-trigger change"
                                target="_blank">
                                 <i class="fa fa-user-secret"></i> Keisti darbuotoją
                             </a>
-
                             <a href="#" class="btn btn-lg btn-warning js-scroll-trigger change"
                                target="_blank">
                                 <i class="fa fa-clock-o"></i> Keisti laiką
                             </a>
                         </div>
-
-                            <a href="https://www.instagram.com/eglesnagustudija/" class="btn btn-lg btn-outline js-scroll-trigger"
-                               target="_blank">
-                                <i class="fa fa-send"></i> Pabaigti rezervaciją
-                            </a>
-
+                        <a href="https://www.instagram.com/eglesnagustudija/"
+                           class="btn btn-lg btn-outline js-scroll-trigger"
+                           target="_blank">
+                            <i class="fa fa-send"></i> Pabaigti rezervaciją
+                        </a>
                         {% else %}
-
                         <div class="col-sm-12 text-center" style="padding-top: 20px;">
-                            <a id="btn-facebook-login" href="{{ path('app_facebook_connect')  ~ '?content=services'}}"
+                            <a id="btn-facebook-login" href="{{ path('app_facebook_connect')  ~ '?content=services' }}"
                                class="btn btn-lg  btn-primary prisijungti">
                                 <span class="fa fa-facebook "></span>
                                 <span id="login-text">Prisijungti su Facebook</span>

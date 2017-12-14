@@ -147,7 +147,7 @@ class Service
     /**
      * Set price
      *
-     * @param decim $price
+     * @param decimal $price
      *
      * @return Service
      */
@@ -161,7 +161,7 @@ class Service
     /**
      * Get price
      *
-     * @return double
+     * @return decimal
      */
     public function getPrice()
     {
