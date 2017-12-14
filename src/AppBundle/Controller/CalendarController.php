@@ -9,6 +9,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Schedule;
+use AppBundle\Entity\Service;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,12 +47,27 @@ class CalendarController extends Controller
         ]);
     }
 
-//    public function makeReservationAction(Request $request, $serviceId)
-//    {
-//        return $this->render('', [
-//            'hjgjhgjh' => $kljkl
-//        ]);
-//    }
+    /**
+     * @param Request $request
+     * @param $id
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function makeReservationAction(Request $request, $serviceId)
+    {
+        $service = $this->getDoctrine()
+            ->getRepository('AppBundle:Service')
+            ->findAll();
+////        $serviceId = $request->
+        $em = $this->getDoctrine()->getManager();
+        $serviceId = $em->getRepository(Service::class)->findAll();
+
+        return $this->render('AppBundle:Reservation:reservation.html.twig', array(
+            'services'=> $service,
+            'serviceId' => $serviceId
+        ));
+    }
+
 
 //    /**
 //     * @return EntityManager|object

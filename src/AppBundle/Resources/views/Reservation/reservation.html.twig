@@ -1,6 +1,4 @@
-<form action="
-{#{{ path('app.order.new') }}#}
-" method="post" id="order-form">
+<form action="{{ path('make_reservation', {"serviceId": 1}) }}" method="post" id="reservation-form">
     <div class="row">
         <div class="col-lg-6">
             <div id="loadbar" style="display: none;">
@@ -44,7 +42,7 @@
                 {% endfor %}
             </div>
             <div class="col-lg-6 changing" style="margin-top: 50px">
-                <div class="text-center order-contact" style="display: none" id="order-contact">
+                <div class="text-center reservation-contact" style="display: none" id="reservation-contact">
 
                     <div class="row" style="width: 500px; height: 300px">
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}

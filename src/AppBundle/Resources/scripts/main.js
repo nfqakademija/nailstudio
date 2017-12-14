@@ -18,16 +18,23 @@ if (window.location.hash && window.location.hash == '#_=_') {
 // ---------------------------------------------- //
 // Preventing URL update on navigation link click
 // ---------------------------------------------- //
-
-$('a[href^="#"]').click(function(){
-
-    var the_id = $(this).attr("href");
-
-    $('html, body').animate({
-        scrollTop:$(the_id).offset().top
+$('.navbar-nav a, #scroll-down a, .btn a').bind('click', function (e) {
+    var anchor = $(this);
+    $('html, body').stop().animate({
+        scrollTop: $(anchor.attr('href')).offset().top - 50
     }, 1250, 'easeInOutExpo');
-
-    return false;});
+    e.preventDefault();
+});
+// $('a[href^="#"]').click(function(){
+// $('a[href^="#"]').click(function(){
+//
+//     var the_id = $(this).attr("href");
+//
+//     $('html, body').animate({
+//         scrollTop:$(the_id).offset().top
+//     }, 1250, 'easeInOutExpo');
+//
+//     return false;});
 // ---------------------------------------------- //
 // Navbar Shrinking Behavior
 // ---------------------------------------------- //
@@ -63,7 +70,6 @@ $('body').scrollspy({
     offset: 80
 });
 
-
 $('#theCarousel').find('.item').first().addClass('active');
 // Instantiate the Bootstrap carousel
 $('.multi-item-carousel').carousel({
@@ -92,12 +98,11 @@ $(document).on('click','.navbar-collapse.in',function(e) {
     }
 });
 
-
 function showDiv() {
     $('#welcomeDiv').style.display = "block";
 }
 
     $(".btn-block").click(function(){
-                $(".order-contact").fadeIn(1250, "easeInOutExpo");
+                $(".reservation-contact").fadeIn("1250", 'easeInOutExpo');
     });
 

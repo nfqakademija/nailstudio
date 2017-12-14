@@ -8,6 +8,7 @@
 
 namespace AdminBundle\Security;
 
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
@@ -26,6 +27,7 @@ class FormAuthenticator extends AbstractGuardAuthenticator
 
     /**
      * @var \Symfony\Component\Routing\RouterInterface
+     * @ORM\Column(type="string")
      */
     private $router;
 
@@ -38,6 +40,8 @@ class FormAuthenticator extends AbstractGuardAuthenticator
 
     /**
      * Creates a new instance of FormAuthenticator
+     *
+     * @param RouterInterface $router
      */
     public function __construct(RouterInterface $router) {
         $this->router = $router;
