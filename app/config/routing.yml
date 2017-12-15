@@ -30,8 +30,13 @@ add_calendar:
 #    path: /calendar/update-time/{id}
 #    methods: [GET]
 #    defaults: { _controller: AppBundle:Calendar:update}
+#
+#make_reservation:
+#    path: /calendar/reserve-time/{serviceId}
+#    methods: [GET]
+#    defaults: { _controller: AppBundle:Calendar:makeReservation}
 
-make_reservation:
-    path: /calendar/reserve-time/{serviceId}
+show_service:
+    path: "reservation/service/{serviceId}"
     methods: [GET]
-    defaults: { _controller: AppBundle:Calendar:makeReservation}
+    defaults: { _controller: AppBundle:Calendar:show}

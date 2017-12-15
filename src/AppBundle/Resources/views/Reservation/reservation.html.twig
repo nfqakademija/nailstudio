@@ -1,4 +1,9 @@
-<form action="{{ path('make_reservation', {serviceId: 1}) }}" method="post" id="reservation-form">
+{#<form action="#}
+{#{{ path('make_reservation', {serviceId: 1}) }}#}
+{#" method="post" id="reservation-form">#}
+{#{% for service in serviceId %}#}
+{#{{ service }}#}
+{#{% endfor %}#}
     <div class="row">
         <div class="col-lg-6">
             <div id="loadbar" style="display: none;">
@@ -13,15 +18,18 @@
             </div>
         </div>
         <div class="row">
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             <div class="col-lg-6">
                 {% for service in services %}
                     <div class=" quiz " id="quiz" data-toggle="buttons">
-                        <label class="element-animation1 btn btn-lg btn-primary btn-block">
+                        <a style="" href="{{ path('show_service', {'serviceId': service.id }) }}">
+                    <label class="element-animation1 btn btn-lg btn-primary btn-block">
+                                {#{% endfor %}#}
                                         <span class="btn-label">
                                             <i class="glyphicon glyphicon-chevron-right"></i>
                                         </span>
-                            <input id="service" type="radio" name="q_answer" value="{{ service.id }}">
-                            <h4> {{ service.title }}</h4>
+                            <input  id="service" type="radio" name="q_answer" value="{{ service.id }}">
+                            <span> {{ service.title }}</span>
                             <span class="panel-title text-muted right">
                                             {{ 'services.time'|trans }}
                                 {{ service.durationInMinutes }}
@@ -32,10 +40,39 @@
                                 {{ service.price }}
                                 {{ "services.money"|trans }}
                                         </span>
-                        </label>
+                        </label></a>
                     </div>
                 {% endfor %}
             </div>
+                {% else %}
+                    <div class="col-lg-6">
+                        {% for service in services %}
+                                {#{% for  in u  %}#}
+                                <div class=" quiz " id="quiz" data-toggle="buttons">
+                                    <a style="" href="">
+                                        <label class="element-animation1 btn btn-lg btn-primary btn-block">
+                                            {#{% endfor %}#}
+                                            <span class="btn-label">
+                                            <i class="glyphicon glyphicon-chevron-right"></i>
+                                        </span>
+                                            <input  id="service" type="radio" name="q_answer" value="{{ service.id }}">
+                                            <span> {{ service.title }}</span>
+                                            <span class="panel-title text-muted right">
+                                            {{ 'services.time'|trans }}
+                                                {{ service.durationInMinutes }}
+                                                {{ 'services.duration'|trans }},
+                                        </span>
+                                            <span class="panel-title text-muted right">
+                                             nuo
+                                                {{ service.price }}
+                                                {{ "services.money"|trans }}
+                                        </span>
+                                        </label></a>
+                                </div>
+                        {% endfor %}
+
+                    </div>
+            {% endif %}
             <div class="col-lg-6 changing" style="margin-top: 50px">
                 <div class="text-center reservation-contact" style="display: none" id="reservation-contact">
                     <div class="row" style="width: 500px; height: 300px">
@@ -56,16 +93,16 @@
                                target="_blank">
                                 <i class="fa fa-user-secret"></i> Keisti darbuotoją
                             </a>
-                            <a href="#" class="btn btn-lg btn-warning js-scroll-trigger change"
-                               target="_blank">
-                                <i class="fa fa-clock-o"></i> Keisti laiką
-                            </a>
+                            {#<a href="#" class="btn btn-lg btn-warning js-scroll-trigger change"#}
+                               {#target="_blank">#}
+                                {#<i class="fa fa-clock-o"></i> Keisti laiką#}
+                            {#</a>#}
                         </div>
-                        <a href="https://www.instagram.com/eglesnagustudija/"
-                           class="btn btn-lg btn-outline js-scroll-trigger"
-                           target="_blank">
-                            <i class="fa fa-send"></i> Pabaigti rezervaciją
-                        </a>
+                        {#<a href="https://www.instagram.com/eglesnagustudija/"#}
+                           {#class="btn btn-lg btn-outline js-scroll-trigger"#}
+                           {#target="_blank">#}
+                            {#<i class="fa fa-send"></i> Pabaigti rezervaciją#}
+                        {#</a>#}
                         {% else %}
                         <div class="col-sm-12 text-center" style="padding-top: 20px;">
                             <a id="btn-facebook-login" href="{{ path('app_facebook_connect')  ~ '?content=services' }}"
@@ -74,13 +111,13 @@
                                 <span id="login-text">Prisijungti su Facebook</span>
                             </a>
                         </div>
-                        <div class="col-sm-12 text-center" style="padding: 20px;">
-                            <a id="btn-google-login" href="#services"
-                               class="btn btn-lg btn-danger prisijungti">
-                                <span class="fa fa-google "></span>
-                                <span id="login-text">Prisijungti su Gmail</span>
-                            </a>
-                        </div>
+                        {#<div class="col-sm-12 text-center" style="padding: 20px;">#}
+                            {#<a id="btn-google-login" href="#services"#}
+                               {#class="btn btn-lg btn-danger prisijungti">#}
+                                {#<span class="fa fa-google "></span>#}
+                                {#<span id="login-text">Prisijungti su Gmail</span>#}
+                            {#</a>#}
+                        {#</div>#}
                         <div class="col-sm-12 text-center" style="padding: 20px;">
                             <span id="login-text">ARBA</span>
                             </a>
@@ -96,4 +133,4 @@
             </div>
         </div>
     </div>
-</form>
+{#</form>#}

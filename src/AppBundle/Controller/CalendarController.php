@@ -8,16 +8,13 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\AppBundle;
-use AppBundle\Entity\Reservation;
 use AppBundle\Entity\Schedule;
 use AppBundle\Entity\Service;
-use AppBundle\Entity\User;
-use AppBundle\Entity\Worker;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-
+use Symfony\Component\HttpFoundation\Response;
 
 class CalendarController extends Controller
 {
@@ -51,67 +48,76 @@ class CalendarController extends Controller
         ]);
     }
 
-
-    public function showServiceAction(Request $request){
-
-    }
-
-
     /**
+     * @Route("reservation/service/{serviceId}")
      * @param Request $request
      * @param $serviceId
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
-    public function makeReservationAction(Request $request, $serviceId)
+    public function showAction(Request $request, $serviceId)
     {
-
         $em = $this->getDoctrine()->getManager();
-        $userRepository = $em->getRepository(User::class);
 
-        // first check if a user with the same username already exists.
-        $existingUser = $userRepository->findOneBy(['id'=> $userRepository->find('id')]);
-        var_dump($existingUser);die();
-        $reservation = new Reservation();
-        $reservation->setUser($this->getUser());
-        $reservation->setTitle('$worker->getName() + $schedule->getTitle()');
-//        $userRepository = $this->entityManager->getRepository(User::class);
+        $request->query->get('user');
 
-        // first check if a user with the same username already exists.
-//        $existingUser = $userRepository->findOneBy(['username' => $username]);
-//        $service = $this->getDoctrine()
-//            ->getRepository('AppBundle:Service')
-//            ->findAll();
-//        $userRepo = $this->getDoctrine()
-//            ->getRepository('AppBundle:User');
-//
-//        $user = $userRepo->findOneBy(array('user.name' => $userRepo->getId()));
+        $service = $em
+            -> getRepository('AppBundle:Service')
+            -> findAll();
 
+        $userId = $this->getUser();
 
+        $user = $em
+            ->getRepository('AppBundle:User')
+            ->findAll();
 
+        $worker = $em
+            ->getRepository('AppBundle:Worker')
+            ->findAll();
 
+        $serviceId = $em
+            ->getRepository('AppBundle:Service')
+            ->find($serviceId);
 
-        $em = $this->getDoctrine()->getManager();
-        $serviceId = $em->getRepository(Service::class)->findAll();
+        $repository = $this->getDoctrine()->getRepository(Service::class);
+        $serviceOne = $repository->find($serviceId);
+        //$workerFrom = $repository->find($serviceId);
+        $workersByServices = $repository->findBy(
+            array('id' => $serviceId));
 
-        return $this->render('AppBundle:Reservation:reservation.html.twig',
-            array
-            (
-//              'services'=> $services,
+        return $this->render(
+            'AppBundle:User:user.html.twig',
+            array(
                 'serviceId' => $serviceId,
-                'existingUser' => $existingUser
+                'services' => $service,
+                'workers' => $worker,
+                'users' => $user,
+                'userId' => $userId,
+                'serviceOne' => $serviceOne,
+                'workersByServices' => $workersByServices,
             )
-
         );
     }
 
 
+
 //    /**
-//     * @return EntityManager|object
+//     * @Route("/calendar/reserve-time/{serviceId}", name="make_reservation"
+//     *
+//     * @param $serviceId
+//     * @return \Symfony\Component\HttpFoundation\Response
 //     */
-//    private function getEntitymanager()
+//    public function makeReservationAction($serviceId)
 //    {
-//        return $this->get("doctrine.orm.default_entity_manager");
+//
+//        $em = $this->getDoctrine()->getManager();
+//        $serviceId = $em->getRepository(Service::class)->find('id');
+//
+//        return $this->render($this->generateUrl('make_reservation',array
+//        (
+//            'serviceId'=>array($serviceId->getId())))
+//
+//        );
 //    }
 
     /**

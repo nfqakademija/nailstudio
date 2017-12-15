@@ -12,4 +12,21 @@ use Doctrine\ORM\EntityRepository;
  */
 class ServiceRepository extends EntityRepository
 {
+    /**
+     * @param $serviceId
+     *
+     * @return array
+     */
+    public function findAllGreaterThanPrice($serviceId): array
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT service.title, service.price, service.duration_in_minutes 
+            FROM service 
+            WHERE service.id = :serviceId'
+        )->setParameter($serviceId);
+
+        // returns an array of Product objects
+        return $query->execute();
+    }
 }

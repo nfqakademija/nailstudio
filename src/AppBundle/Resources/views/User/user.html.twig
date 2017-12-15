@@ -9,6 +9,20 @@
 {% block body %}
     <section id="user">
         <div class="container-fluid">
+            <div class="row">
+                {#{% for users in user %}#}
+                <p>Jūs esate: {{ userId }} </p>
+                <p>Jūsų pasirinkta paslauga: {{ serviceOne.title }} </p>
+                <p>Kaina: {{ serviceOne.price }} {{ 'services.money'|trans }} </p>
+                <p style="text-transform: capitalize;">
+                    {{ 'services.time'|trans }}:
+                    {{ serviceOne.durationInMinutes }}
+                    {{ 'services.duration'|trans }}
+                </p>
+
+
+                {#{% endfor %}#}
+            </div>
             {#<div class="row">#}
             {#<div class="col-lg-12 text-center">#}
             {#<div class="row">#}
@@ -30,29 +44,30 @@
             {#</div>#}
             <div class="row">
                 <div class="col-lg-6 text-center">
-                    <form>
-                        <div class="form-group">
-                            <label for="sel1">Pasirinkite paslaugą:</label>
-                            <select class="form-control" id="sel1">
-                                {% for servise in services %}
-                                <option>{{ servise.title }}
-                                    {{ 'services.time'|trans }}
-                                    {{ servise.durationInMinutes }}
-                                    {{ 'services.duration'|trans }}
-                                    nuo
-                                    {{ servise.price }}
-                                    {{ 'services.money'|trans }}
-                                </option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </form>
+                    {#<form>#}
+                        {#<div class="form-group">#}
+                            {#<label for="sel1">Pasirinkite paslaugą:</label>#}
+                            {#<select class="form-control" id="sel1">#}
+                                {#{% for servise in services %}#}
+                                {#<option value="{{ serviceId }}">{{ servise.title }}#}
+                                    {#{{ 'services.time'|trans }}#}
+                                    {#{{ servise.durationInMinutes }}#}
+                                    {#{{ 'services.duration'|trans }}#}
+                                    {#nuo#}
+                                    {#{{ servise.price }}#}
+                                    {#{{ 'services.money'|trans }}#}
+                                {#</option>#}
+                                {#{% endfor %}#}
+                            {#</select>#}
+                        {#</div>#}
+                    {#</form>#}
                     <form>
                         <div class="form-group">
                             <label for="sel1">Pasirinkite darbuotoją:</label>
                             <select class="form-control" id="sel1">
-                                {% for worker in workers %}
-                                    <option>{{ worker.name }}</option>
+                                {% for workerbyService in workersByServices %}
+
+                                    <option>{{ workerbyService.workers }}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -72,18 +87,10 @@
                     </div>
                 </div>
                 <div class="col-lg-6 text-center">
-
                     <div id='wrap'>
-
-
-
                         {% include '@FullCalendar/Calendar/calendar.html.twig' %}
-
                         <div style='clear:both'></div>
-
                     </div>
-
-
                 </div>
             </div>
         </div>

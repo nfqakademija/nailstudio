@@ -29,9 +29,14 @@ class HomeController extends Controller
             ->getRepository('AppBundle:Service')
             ->findAll();
 
+        $user = $this->getDoctrine()
+            ->getRepository('AppBundle:User')
+            ->findAll();
+
         return $this->render('AppBundle:Home:index.html.twig',
             array('workers' => $worker,
-                'services' => $service)
+                'services' => $service,
+                'users' => $user)
         );
     }
 
@@ -40,6 +45,11 @@ class HomeController extends Controller
      */
     public function userAction()
     {
+        //$user = $this->getUser();
+        $user = $this->getDoctrine()
+            ->getRepository('AppBundle:Service')
+            ->findAll();
+
         $service = $this->getDoctrine()
             ->getRepository('AppBundle:Service')
             ->findAll();
@@ -49,9 +59,11 @@ class HomeController extends Controller
             ->findAll();
 
         return $this->render(
-            'AppBundle:User:user.html.twig',
+            'AppBundle:User:user_reservations.html.twig',
             array('services' => $service,
-                'workers' => $worker)
+                'workers' => $worker,
+                'user' => $user
+            )
         );
     }
 }
