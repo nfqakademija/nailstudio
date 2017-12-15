@@ -119,7 +119,7 @@ easy_admin:
                     - 'id'
                     - 'name'
                     - 'email'
-                    - 'reservation'
+                    - 'schedule'
                     - 'created'
                     - 'updated'
                     - 'facebookId'
@@ -140,7 +140,7 @@ easy_admin:
                     - 'position'
                     - 'about'
                     - 'services'
-                    - 'reservation'
+                    - 'schedule'
                     - 'created'
                     - 'updated'
                     - { property: 'image', type: 'image', base_path: '%app.path.workers_images%' }
@@ -151,7 +151,6 @@ easy_admin:
                     - 'position'
                     - 'about'
                     - 'services'
-                    - 'reservation'
                     - 'created'
                     - 'updated'
                     - { property: 'image', type: 'image', base_path: '%app.path.workers_images%' }
@@ -173,7 +172,6 @@ easy_admin:
                     - 'about'
                     - 'durationInMinutes'
                     - 'price'
-                    - 'reservation'
                     - 'created'
                     - 'updated'
             form:
@@ -191,7 +189,9 @@ easy_admin:
                     - 'title'
                     - 'start'
                     - 'end'
-                    - 'reservation'
+                    - 'worker'
+                    - 'schedule'
+                    - 'service'
                     - 'created'
                     - 'updated'
             form:
@@ -199,34 +199,16 @@ easy_admin:
                     - 'title'
                     - 'start'
                     - 'end'
-                    - 'reservation'
-        Reservation:
-            class: AppBundle\Entity\Reservation
-            label: Reservation
-            list:
-                fields:
-                    - 'id'
-                    - 'title'
-                    - 'user'
                     - 'worker'
                     - 'schedule'
                     - 'service'
-                    - 'created'
-                    - 'updated'
-            form:
-                fields:
-                    - 'title'
-                    - 'user'
-                    - 'worker'
-                    - 'schedule'
-                    - 'service'
+
     design:
         menu:
             - { entity: 'Clients', icon: 'users' }
             - { entity: 'Workers', icon: 'user-secret' }
             - { entity: 'Services', icon: 'list' }
             - { entity: 'Schedule', icon: 'clock-o' }
-            - { entity: 'Reservation', icon: 'calendar' }
 
         brand_color: '#DB7093'
 
