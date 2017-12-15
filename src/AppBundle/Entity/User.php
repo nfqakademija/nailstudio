@@ -76,9 +76,9 @@ class User implements UserInterface
     private $facebookToken;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reservation", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Schedule", mappedBy="user")
      */
-    private $reservation;
+    private $schedule;
 
     /**
      * User constructor.
@@ -86,7 +86,7 @@ class User implements UserInterface
     public function __construct()
     {
         $this->apiToken = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
-        $this->reservation = new ArrayCollection();
+        $this->schedule = new ArrayCollection();
     }
 
     /**
@@ -300,9 +300,9 @@ class User implements UserInterface
     /**
      * @return ArrayCollection
      */
-    public function getReservation()
+    public function getSchedule()
     {
-        return $this->reservation;
+        return $this->schedule;
     }
 //
 //    /**

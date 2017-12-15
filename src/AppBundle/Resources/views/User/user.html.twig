@@ -65,9 +65,9 @@
                         <div class="form-group">
                             <label for="sel1">Pasirinkite darbuotoją:</label>
                             <select class="form-control" id="sel1">
-                                {% for workerbyService in workersByServices %}
+                                {% for worker in workers %}
 
-                                    <option>{{ workerbyService.workers }}</option>
+                                    <option>{{ worker.services.get(worker.name) }}</option>
                                 {% endfor %}
                             </select>
                         </div>

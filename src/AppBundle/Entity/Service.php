@@ -42,9 +42,9 @@ class Service
     private $price;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reservation", mappedBy="service")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Schedule", mappedBy="service")
      */
-    private $reservation;
+    private $schedule;
 
     /**
      *
@@ -83,7 +83,7 @@ class Service
     public function __construct()
     {
         $this->workers = new ArrayCollection();
-        $this->reservation = new ArrayCollection();
+        $this->schedule = new ArrayCollection();
     }
 
     /**
@@ -259,8 +259,8 @@ class Service
     /**
      * @return ArrayCollection
      */
-    public function getReservation()
+    public function getSchedule()
     {
-        return $this->reservation;
+        return $this->schedule;
     }
 }

@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Query\AST\Functions\CurrentTimestampFunction;
+use Faker\Provider\zh_TW\DateTime;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
@@ -46,9 +48,22 @@ class Schedule
     private $end;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reservation", mappedBy="schedule")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="schedule")
+     * @ORM\JoinColumn(nullable=true)
      */
-    private $reservation;
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Worker", inversedBy="schedule")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $worker;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Service", inversedBy="schedule")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $service;
 
     /**
      *
@@ -59,7 +74,6 @@ class Schedule
      */
     private $created;
 
-
     /**
      * @var \DateTime $updated
      *
@@ -67,14 +81,6 @@ class Schedule
      * @ORM\Column(type="datetime")
      */
     private $updated;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->reservation = new ArrayCollection();
-    }
 
     /**
      * @return string
@@ -198,19 +204,51 @@ class Schedule
     }
 
     /**
-     * @return ArrayCollection
+     * @return User
      */
-    public function getReservation()
+    public function getUser()
     {
-        return $this->reservation;
+        return $this->user;
     }
 
-//    /**
-//     * @param ArrayCollection $reservation
-//     */
-//    public function setReservation(ArrayCollection $reservation)
-//    {
-//        $this->reservation = $reservation;
-//    }
+    /**
+     * @param User $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return Worker
+     */
+    public function getWorker()
+    {
+        return $this->worker;
+    }
+
+    /**
+     * @param Worker $worker
+     */
+    public function setWorker($worker)
+    {
+        $this->worker = $worker;
+    }
+
+    /**
+     * @return Service
+     */
+    public function getService()
+    {
+        return $this->service;
+    }
+
+    /**
+     * @param Service $service
+     */
+    public function setService($service)
+    {
+        $this->service = $service;
+    }
 }
 
