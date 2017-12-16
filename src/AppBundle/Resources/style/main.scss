@@ -219,6 +219,7 @@ ul.nav:nth-child(2) > li:nth-child(1) > img:nth-child(1) {
 
 //user interface
 #user {
+  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjOWU5ZTllIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=");
   margin: 65px 0;
   padding: 0 15px;
 }
@@ -474,8 +475,10 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 }
 
 #brands a {
- text-decoration: none;
+  text-decoration: none;
   font-size: large;
+  color: black;
+  font-weight: bold;
 }
 
 //Contacts
@@ -603,4 +606,9 @@ footer a:hover {
   color: #fff;
   background-color: #337ab7;
   border-color: #204d74;
+}
+
+#reservation-list {
+  margin-top: 50px;
+  min-height: 520px;
 }

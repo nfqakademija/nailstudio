@@ -33,11 +33,15 @@ class CalendarController extends Controller
         $title = $request->request->get('title');
         $start = $request->request->get('start');
         $end = $request->request->get('end');
-
+        $serviceId = $request->request->get('serviceId');
+        $userId = $this->getUser();
         $schedule = new Schedule();
         $schedule->setTitle($title);
         $schedule->setStart(new \DateTime($start));
         $schedule->setEnd(new \DateTime($end));
+        $schedule->setUser($userId);
+        $schedule->setService($serviceId);
+
         $em->persist($schedule);
         $em->flush();
 
@@ -45,7 +49,9 @@ class CalendarController extends Controller
             'status' => $status,
             'title' => $title,
             'start' => $start,
-            'end' => $end
+            'end' => $end,
+            'userId' => $userId,
+            'serviceId' => $serviceId,
         ]);
     }
 
@@ -63,8 +69,8 @@ class CalendarController extends Controller
         $request->query->get('user');
 
         $service = $em
-            -> getRepository('AppBundle:Service')
-            -> findAll();
+            ->getRepository('AppBundle:Service')
+            ->findAll();
 
         $userId = $this->getUser();
 
@@ -102,61 +108,5 @@ class CalendarController extends Controller
             )
         );
     }
-
-
-
-//    /**
-//     * @Route("/calendar/reserve-time/{serviceId}", name="make_reservation"
-//     *
-//     * @param $serviceId
-//     * @return \Symfony\Component\HttpFoundation\Response
-//     */
-//    public function makeReservationAction($serviceId)
-//    {
-//
-//        $em = $this->getDoctrine()->getManager();
-//        $serviceId = $em->getRepository(Service::class)->find('id');
-//
-//        return $this->render($this->generateUrl('make_reservation',array
-//        (
-//            'serviceId'=>array($serviceId->getId())))
-//
-//        );
-//    }
-
-    /**
-     * @param $start
-     * @param Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
-//    public function updateAction($id, Request $request)
-//    {
-//        $em = $this->getDoctrine()->getManager();
-//
-//        $id = $request->request->get('id');
-//        $title = $request->request->get('title');
-//        $start = $request->request->get('start');
-//        $end = $request->request->get('end');
-//
-//        $schedule = $em->getRepository(Schedule::class)->find($id);
-//var_dump($schedule);die();
-//        if (!$schedule) {
-//            throw $this->createNotFoundException(
-//                'No product found for id '.$start
-//            );
-//        }
-//
-//        $schedule->setTitle($title);
-//        $schedule->setStart($start);
-//        $schedule->setEnd($end);
-//
-//        $em->flush();
-//
-//        return $this->redirectToRoute('update_calendar', [
-//            'start' => $schedule->getStart()
-//        ]);
-//    }
-
 }
 

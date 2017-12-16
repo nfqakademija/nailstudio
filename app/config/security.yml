@@ -47,7 +47,6 @@ security:
                  authenticators:
                      - app.form_authenticator
         secured_area:
-
             anonymous: ~
             logout:
                 path: /logout
@@ -55,7 +54,6 @@ security:
             guard:
                 authenticators:
                     - app.facebook_authenticator
-
 
     access_control:
        - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }

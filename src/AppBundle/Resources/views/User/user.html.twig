@@ -13,23 +13,29 @@
                 <div class=" col-lg-6 text-center">
                     <div class="well row">
                         <div class=" col-lg-12 text-left">
-<div>
-                                <p>Esate: <span style="background-color: aqua; float: right">{{ userId }} </span> </p>
-</div>
-                                <p>Pasirinkote paslaugą: <span style="background-color: aqua; float: right">{{ serviceOne.title }}  </span></p>
+                           <div style="display: none"> {{ app.request.get('serviceId') }}</div>
 
-                                <p>Kaina: <span style="background-color: aqua; float: right">{{ serviceOne.price }} {{ 'services.money'|trans }}  </span></p>
 
-                                <p style="text-transform: capitalize;">
-                                    {{ 'services.time'|trans }}:
-                                    <span style="background-color: aqua; float: right">
+                            {#<div data-user="{{ user.id }}" id="some-user"> Esate: {{ user.id }}</div>#}
+                            <div>
+                                <p>Esate: <span style="background-color: aqua; float: right">{{ userId }} </span></p>
+                            </div>
+                            <p>Pasirinkote paslaugą: <span
+                                        style="background-color: aqua; float: right">{{ serviceOne.title }}  </span></p>
+
+                            <p>Kaina: <span
+                                        style="background-color: aqua; float: right">{{ serviceOne.price }} {{ 'services.money'|trans }}  </span>
+                            </p>
+
+                            <p style="text-transform: capitalize;">
+                                {{ 'services.time'|trans }}:
+                                <span style="background-color: aqua; float: right">
                                     {{ serviceOne.durationInMinutes }}
                                     {{ 'services.duration'|trans }}
                                          </span>
-                                </p>
+                            </p>
 
                         </div>
-
 
 
                     </div>
@@ -43,9 +49,13 @@
                     </div>
                     <div id='external-events'>
                         <h4>Perkelkite laiką</h4>
-                        <div data-title="{{ serviceOne.title }}, {{ userId }}" id="some-title"
-                             class="fc-event ui-draggable ui-draggable">{{ serviceOne.title }} {{ userId }}</div>
-                        <div data-duration="{{ serviceOne.durationInMinutes }}" id="some-duration"></div>
+                        <div data-title="
+{{ serviceOne.title }},
+{{ userId }}" id="some-title"
+                             class="fc-event ui-draggable ui-draggable">
+                            {#{{ serviceOne.title }}#}
+                            {{ userId }}</div>
+                        {#<div data-duration="{{ serviceOne.durationInMinutes }}" id="some-duration"></div>#}
 
                         {#<div class='fc-event'>My Event 1</div>#}
                         {#<div class='fc-event'>My Event 2</div>#}
@@ -54,7 +64,7 @@
                         {#<div class='fc-event'>My Event 5</div>#}
                         {#<p>#}
                         {#<input type='checkbox' id='drop-remove' />#}
-                        <label for='drop-remove'>remove after drop</label>
+                        {#<label for='drop-remove'>remove after drop</label>#}
                         {#</p>#}
                     </div>
                     {#</form>#}

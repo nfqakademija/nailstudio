@@ -14,6 +14,10 @@ $(document).ready(function () {
             end: '18:30',
             dow: [1, 2, 3, 4, 5]
         },
+        // visibleRange: {
+        //     start: nowDate,
+        //     end: nowDate.clone().add(1, 'months')
+        // },
         showNonCurrentDays: false,
         theme: true,
         themeSystem: 'jquery-ui',
@@ -21,25 +25,24 @@ $(document).ready(function () {
         firstDay: 1,
         defaultView: 'agendaWeek',
         constraint: 'businessHours',
-        defaultDate: new Date(),
+        // defaultDate: moment().format('LT'),
         rendering: 'background',
         navLinks: true,
-        dragRevertDuration: 1000,
+        // dragRevertDuration: 1000,
         forceEventDuration: true,
-
         allDay: false,
         allDaySlot: false,
-        startEditable: true,
-        selectable: true,
+        // startEditable: true,
+        // selectable: true,
         selectHelper: true,
         editable: true,
         lazyFetching: true,
         displayEventTime: true,
-        weekends: false, // will hide Saturdays and Sundays
+        // weekends: false, // will hide Saturdays and Sundays
         weekNumbers: true,
         eventLimit: true,
         resizable: true,
-        // droppable: true,
+        droppable: true,
         overflow: false,
         draggable: true, // this allows things to be dropped onto the calendar
         // dayClick: function(date, allDay, jsEvent, view) {
@@ -50,54 +53,66 @@ $(document).ready(function () {
         //         return false;
         //     });
         // },
-        // select: function (start, end, jsEvent, view) {
-        //     // console.log(moment(start).format(), );return false;
-        //     var title = prompt('Event Title:');
-        //     // var start = event.start.format('YYYY-MM-DD');
-        //     // var end = (event.end == null) ? start : event.end.format('YYYY-MM-DD');
-        //     var eventData;
-        //     if (title) {
-        //         eventData = {
-        //             title: title,
-        //             start: start,
-        //             end: end,
-        //             // businessHours: true,
-        //             // allDay: false
-        //         },
-        //             $.ajax({
-        //                 url: '/calendar/reserve-time',
-        //                 data: {
-        //                     "title": title,
-        //                     "start": moment(start).format(),
-        //                     "end": moment(end).format(),
-        //                 },
-        //                 type: "POST",
-        //                 success: function (json) {
-        //                     console.log(json);
-        //                     // alert('OK');
-        //                 }
-        //             });
-        //         $('#calendar-holder').fullCalendar('renderEvent',
-        //             start = moment(start).format('YYYY/MM/DD hh:mm'),
-        //             end = moment(end).format('YYYY/MM/DD hh:mm'),
-        //             eventData, true); // stick? = true
-        //     }
-        //     $('#calendar-holder').fullCalendar('unselect');
-        // },
-        // this allows things to be dropped onto the calendar
-        drop: function () {
-            // is the "remove after drop" checkbox checked?
-            // if ($('#drop-remove').is(':checked')) {
-            // if so, remove the element from the "Draggable Events" list
-            $(this).remove();
-            // }
+        drop: function (start, end, jsEvent, view) {
+
+            // console.log(moment(start).format(), );return false;
+            var title = $('#some-title').data('title');
+            var user = $('#some-user').data('user');
+            var service = $('#some-service').data('service');
+            //  var title = prompt('Event Title:');
+            // var start = event.start.format('YYYY-MM-DD');
+            // var end = (event.end == null) ? start : event.end.format('YYYY-MM-DD');
+            var eventData;
+            if (title) {
+                eventData = {
+                    title: title,
+                    start: start,
+                    end: end,
+                    user: user,
+                    service: service,
+                    overflow: false,
+                    businessHours: true,
+                    allDay: false
+
+                },
+                    $.ajax({
+                        url: '/calendar/reserve-time',
+                        data: {
+                            "title": title,
+                            "start": moment(start).format(),
+                            "end": moment(end).format(),
+                            "user": user,
+                            "service": service,
+                        },
+                        type: "POST",
+                        success: function (json) {
+                            console.log(json);
+                            // alert('OK');
+                        }
+                    });
+                $(this).remove();
+                $('#calendar-holder').fullCalendar('renderEvent',
+                    start = moment(start).format('YYYY/MM/DD hh:mm'),
+                    end = moment(end).format('YYYY/MM/DD hh:mm'),
+                    eventData, true); // stick? = true
+            }
+            $('#calendar-holder').fullCalendar('unselect');
         },
+        // this allows things to be dropped onto the calendar
+        // drop: function () {
+        //     // is the "remove after drop" checkbox checked?
+        //     // if ($('#drop-remove').is(':checked')) {
+        //     // if so, remove the element from the "Draggable Events" list
+        //     $(this).remove();
+        //     // }
+        // },
         eventSources: [
             {
                 url: '/full-calendar/load',
                 allDay: false,
                 constraint: 'businessHours',
                 type: 'POST',
+                timezone: 'Europe/Vilnius',
 
                 // error: function() {
                 //     $('#script-warning').show();
@@ -156,40 +171,40 @@ $(document).ready(function () {
         //
         // },
         //
-        eventDrop: function (event, delta, revertFunc, start) {
-            //var start = event.start.format('YYYY-MM-DD');
-            //var end = (event.end == null) ? start : event.end.format('YYYY-MM-DD');
-            var title = $('#some-title').data('title');
-            var durationtime = $('#some-duration').data('duration');
-            alert(durationtime);
-            var end = event.start.clone().add(durationtime.format());
-            alert(end);
-            var eventData;
-            if (title) {
-                $.ajax({
-                    url: '/calendar/reserve-time',
-                    eventData: {
-                        "title": title,
-                        "start": moment(start).format(),
-                        "end": moment(end).format(),
-                    },
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function (json) {
-                        console.log(json);
-                    },
-                    error: function (e) {
-                        revertFunc();
-                        alert('Error processing your request: ' + e.responseText);
-                    }
-                });
-                $('#calendar-holder').fullCalendar('renderEvent',
-                    start = moment(start).format('YYYY/MM/DD hh:mm'),
-                    end = moment(end).format('YYYY/MM/DD hh:mm'),
-                    eventData, true); // stick? = true
-            }
-            $('#calendar-holder').fullCalendar('unselect');
-        },
+        // eventDrop: function (event, delta, revertFunc, start, end) {
+        //     //var start = event.start.format('YYYY-MM-DD');
+        //     //var end = (event.end == null) ? start : event.end.format('YYYY-MM-DD');
+        //     var title = $('#some-title').data('title');
+        //     var durationtime = $('#some-duration').data('duration');
+        //     alert(durationtime);
+        //     var end = event.start.clone().add(durationtime.format());
+        //     alert(end);
+        //     var eventData;
+        //     if (title) {
+        //         $.ajax({
+        //             url: '/calendar/reserve-time',
+        //             eventData: {
+        //                 "title": title,
+        //                 "start": moment(start).format(),
+        //                 "end": moment(end).format(),
+        //             },
+        //             type: 'POST',
+        //             dataType: 'json',
+        //             success: function (json) {
+        //                 console.log(json);
+        //             },
+        //             error: function (e) {
+        //                 revertFunc();
+        //                 alert('Error processing your request: ' + e.responseText);
+        //             }
+        //         });
+        //         $('#calendar-holder').fullCalendar('renderEvent',
+        //             start = moment(start).format('YYYY/MM/DD hh:mm'),
+        //             end = moment(end).format('YYYY/MM/DD hh:mm'),
+        //             eventData, true); // stick? = true
+        //     }
+        //     $('#calendar-holder').fullCalendar('unselect');
+        // },
         // eventResize: function(event, delta, revertFunc) {
         //
         //     var newData = event.end.format('YYYY-MM-DD');
