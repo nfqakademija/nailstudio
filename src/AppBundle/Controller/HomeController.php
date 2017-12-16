@@ -34,9 +34,12 @@ class HomeController extends Controller
             ->findAll();
 
         return $this->render('AppBundle:Home:index.html.twig',
-            array('workers' => $worker,
+            array(
+                'workers' => $worker,
                 'services' => $service,
-                'users' => $user));
+                'users' => $user
+            )
+        );
     }
 
     /**
@@ -59,7 +62,8 @@ class HomeController extends Controller
 
         return $this->render(
             'AppBundle:User:user_reservations.html.twig',
-            array('services' => $service,
+            array(
+                'services' => $service,
                 'workers' => $worker,
                 'user' => $user
             )

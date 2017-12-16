@@ -103,7 +103,7 @@ class CalendarController extends Controller
                 'users' => $user,
                 'userId' => $userId,
                 'serviceOne' => $serviceOne,
-//                'workersByServices' => $workersByServices,
+                //'workersByServices' => $workersByServices,
                 'workerByService' => $workerByService,
             )
         );

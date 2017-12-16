@@ -33,7 +33,8 @@ class LoadDataListener
      */
     public function loadData(CalendarEvent $calendarEvent)
     {
-        // You can retrieve information from the event dispatcher (eg, You may want which day was selected in the calendar):
+        // You can retrieve information from the event dispatcher
+        // (eg, You may want which day was selected in the calendar):
         // $startDate = $calendarEvent->getStart();
         // $endDate = $calendarEvent->getEnd();
         // $filters = $calendarEvent->getFilters();
