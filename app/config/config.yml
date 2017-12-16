@@ -119,7 +119,7 @@ easy_admin:
                     - 'id'
                     - 'name'
                     - 'email'
-                    - 'reservation'
+                    - 'schedule'
                     - 'created'
                     - 'updated'
                     - 'facebookId'
@@ -129,7 +129,6 @@ easy_admin:
                     - 'name'
                     - 'email'
                     - 'roles'
-                    - 'reservation'
         Workers:
             class: AppBundle\Entity\Worker
             multiple: true
@@ -141,7 +140,7 @@ easy_admin:
                     - 'position'
                     - 'about'
                     - 'services'
-                    - 'reservation'
+                    - 'schedule'
                     - 'created'
                     - 'updated'
                     - { property: 'image', type: 'image', base_path: '%app.path.workers_images%' }
@@ -152,7 +151,6 @@ easy_admin:
                     - 'position'
                     - 'about'
                     - 'services'
-                    - 'reservation'
                     - 'created'
                     - 'updated'
                     - { property: 'image', type: 'image', base_path: '%app.path.workers_images%' }
@@ -162,7 +160,6 @@ easy_admin:
                     - 'position'
                     - 'about'
                     - 'services'
-                    - 'reservation'
                     - { property: 'imageFile', type: 'file' }
         Services:
             class: AppBundle\Entity\Service
@@ -173,17 +170,15 @@ easy_admin:
                     - 'id'
                     - 'title'
                     - 'about'
-                    - 'duration'
+                    - 'durationInMinutes'
                     - 'price'
-                    - 'reservation'
                     - 'created'
                     - 'updated'
             form:
                 fields:
                     - 'title'
                     - 'about'
-                    - 'duration'
-                    - 'reservation'
+                    - 'durationInMinutes'
                     - { property: 'price', type: 'money', type_options: { currency: 'EUR' } }
         Schedule:
             class: AppBundle\Entity\Schedule
@@ -194,7 +189,9 @@ easy_admin:
                     - 'title'
                     - 'start'
                     - 'end'
-                    - 'reservation'
+                    - 'user'
+                    - 'worker'
+                    - 'service'
                     - 'created'
                     - 'updated'
             form:
@@ -202,34 +199,17 @@ easy_admin:
                     - 'title'
                     - 'start'
                     - 'end'
-                    - 'reservation'
-        Reservation:
-            class: AppBundle\Entity\Reservation
-            label: Reservation
-            list:
-                fields:
-                    - 'id'
-                    - 'title'
                     - 'user'
                     - 'worker'
                     - 'schedule'
                     - 'service'
-                    - 'created'
-                    - 'updated'
-            form:
-                fields:
-                    - 'title'
-                    - 'user'
-                    - 'worker'
-                    - 'schedule'
-                    - 'service'
+
     design:
         menu:
             - { entity: 'Clients', icon: 'users' }
             - { entity: 'Workers', icon: 'user-secret' }
             - { entity: 'Services', icon: 'list' }
-            - { entity: 'Schedule', icon: 'calendar' }
-            - { entity: 'Reservation', icon: 'calendar' }
+            - { entity: 'Schedule', icon: 'clock-o' }
 
         brand_color: '#DB7093'
 

@@ -11,11 +11,15 @@ menu.logout: 'Atsijungti'
 
 homepage.title: 'Profesionalios Gelinių Nagų Paslaugos'
 homepage.button: 'DARBŲ GALERIJA'
+homepage.duration: 'minučių'
 
 galery.header: 'SEKITE MUS INSTAGRAM!'
 galery.button: 'APLANKYKITE INSTAGRAM'
 
-services.header: 'PASLAUGOS'
+services.header: 'PASIRINKITE PASLAUGĄ - REZERVUOKITE LAIKĄ'
+services.time: 'trukmė'
+services.duration: ' minučių'
+services.money: '€'
 
 ourteam.header: 'MŪSŲ KOMANDA'
 
@@ -27,5 +31,33 @@ contacts.address: 'Vilniaus g. 134 (2 aukštas) Šiauliai'
 contacts.email: 'musteikyte.egle@gmail.com'
 contacts.place: 'Mes esame čia:'
 
-footer:copyright: '© Eglės Nagų Studija 2017'
+footer.copyright: '© Eglės Nagų Studija 2017'
+
+#EasyAdminBundle
+Clients: 'Klientai'
+Workers: 'Darbuotojai'
+List of %entity_label%: 'Sąrašas'
+Services: 'Paslaugos'
+Schedule: 'Užsakymo Laikas'
+Reservation: 'Rezervacija'
+ID: 'ID'
+Name: 'Vardas'
+Email: 'El. paštas'
+Created: 'Sukurta'
+Updated: 'Atnaujinta'
+Facebook id: 'Facebook id'
+Roles: 'Rolės'
+Title: 'Pavadinimas'
+Start: 'Pradžios laikas'
+End: 'Pabaigos laikas'
+Duration in minutes: 'Trukmė minutėmis'
+Price: 'Kaina'
+About: 'Apie'
+User: 'Vartotojas'
+Service: 'Paslauga'
+Position: 'Pareigos'
+Image: 'Nuotrauka'
+Worker: 'Darbuotojas'
+
+
 

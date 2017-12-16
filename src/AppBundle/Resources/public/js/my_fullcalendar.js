@@ -1,5 +1,6 @@
-$(function () {
+$(document).ready(function () {
     $('#calendar-holder').fullCalendar({
+        locale: "lt",
         header: {
             left: 'prev, next today',
             center: 'title',
@@ -13,49 +14,235 @@ $(function () {
             end: '18:30',
             dow: [1, 2, 3, 4, 5]
         },
+        // visibleRange: {
+        //     start: nowDate,
+        //     end: nowDate.clone().add(1, 'months')
+        // },
+        showNonCurrentDays: false,
+        theme: true,
+        themeSystem: 'jquery-ui',
+        themeName: 'Start',
         firstDay: 1,
         defaultView: 'agendaWeek',
         constraint: 'businessHours',
+        // defaultDate: moment().format('LT'),
+        rendering: 'background',
         navLinks: true,
+        // dragRevertDuration: 1000,
+        forceEventDuration: true,
+        allDay: false,
         allDaySlot: false,
-        selectable: true,
+        // startEditable: true,
+        // selectable: true,
         selectHelper: true,
         editable: true,
         lazyFetching: true,
         displayEventTime: true,
-        weekends: false, // will hide Saturdays and Sundays
+        // weekends: false, // will hide Saturdays and Sundays
         weekNumbers: true,
         eventLimit: true,
         resizable: true,
         droppable: true,
-        select: function(start, end) {
-            var title = prompt('Event Title:');
+        overflow: false,
+        draggable: true, // this allows things to be dropped onto the calendar
+        // dayClick: function(date, allDay, jsEvent, view) {
+        //     $('#calendar-holder').fullCalendar('clientEvents', function(event) {
+        //         if(event.start <= date && event.end >= date) {
+        //             return true;
+        //         }
+        //         return false;
+        //     });
+        // },
+        drop: function (start, end, jsEvent, view) {
+
+            // console.log(moment(start).format(), );return false;
+            var title = $('#some-title').data('title');
+            var user = $('#some-user').data('user');
+            var service = $('#some-service').data('service');
+            //  var title = prompt('Event Title:');
+            // var start = event.start.format('YYYY-MM-DD');
+            // var end = (event.end == null) ? start : event.end.format('YYYY-MM-DD');
             var eventData;
             if (title) {
                 eventData = {
                     title: title,
                     start: start,
                     end: end,
-                    businessHours: true
-                };
-                // $.ajax({
-                //     type: "POST",
-                //     data: { title: title, start: start, end: end }
-                // })
-                $('#calendar-holder').fullCalendar('renderEvent', eventData, true); // stick? = true
+                    user: user,
+                    service: service,
+                    overflow: false,
+                    businessHours: true,
+                    allDay: false
+
+                },
+                    $.ajax({
+                        url: '/calendar/reserve-time',
+                        data: {
+                            "title": title,
+                            "start": moment(start).format(),
+                            "end": moment(end).format(),
+                            "user": user,
+                            "service": service,
+                        },
+                        type: "POST",
+                        success: function (json) {
+                            console.log(json);
+                            // alert('OK');
+                        }
+                    });
+                $(this).remove();
+                $('#calendar-holder').fullCalendar('renderEvent',
+                    start = moment(start).format('YYYY/MM/DD hh:mm'),
+                    end = moment(end).format('YYYY/MM/DD hh:mm'),
+                    eventData, true); // stick? = true
             }
             $('#calendar-holder').fullCalendar('unselect');
         },
-
+        // this allows things to be dropped onto the calendar
+        // drop: function () {
+        //     // is the "remove after drop" checkbox checked?
+        //     // if ($('#drop-remove').is(':checked')) {
+        //     // if so, remove the element from the "Draggable Events" list
+        //     $(this).remove();
+        //     // }
+        // },
         eventSources: [
             {
-                constraint: 'businessHours',
                 url: '/full-calendar/load',
+                allDay: false,
+                constraint: 'businessHours',
                 type: 'POST',
+                timezone: 'Europe/Vilnius',
 
-                error: function () {
-                }
+                // error: function() {
+                //     $('#script-warning').show();
+                // }
             }
-        ]
+        ],
+        // events:
+        //     {
+        //         url:Routing.generate('fullcalendar_loadevents', { month: moment().format('MM'), year: moment().format('YYYY') }),
+        //         color: 'blue',
+        //         textColor:'white',
+        //         error: function() {
+        //             alert('Error receving events');
+        //         }
+        //     },
+        // eventDrop: function(calEvent,event,delta,revertFunc) {
+        //     var start = calEvent.start;
+        //     // var end = event.end.format('YYYY/MM/DD hh:mm');
+        //     var title = calEvent.title;
+        //     // var id = event.id;
+        //     var end = (calEvent.end == null) ? start : calEvent.end;
+        //     $.ajax({
+        //         url: '/calendar/update-time/{start}',
+        //         data: {
+        //             "title": event.title,
+        //             "start": moment(event.start).format(),
+        //             "end": moment(event.end).format(),
+        //         },
+        //         type: 'GET',
+        //         dataType: 'json',
+        //         success: function(response){
+        //             console.log('ok');
+        //         },
+        //         error: function(e){
+        //             revertFunc();
+        //             alert('Error processing your request: '+e.responseText);
+        //         }
+        //     });
+        //
+        // },
+        // eventResize: function(event, delta, revertFunc) {
+        //     var newData = event.end.format('YYYY-MM-DD');
+        //     $.ajax({
+        //         url: Routing.generate('/calendar/update-time'),
+        //         data: { id: event.id, newDate: newData },
+        //         type: 'POST',
+        //         dataType: 'json',
+        //         success: function(response){
+        //             console.log('ok');
+        //         },
+        //         error: function(e){
+        //             revertFunc();
+        //             alert('Error processing your request: '+e.responseText);
+        //         }
+        //     });
+        //
+        // },
+        //
+        // eventDrop: function (event, delta, revertFunc, start, end) {
+        //     //var start = event.start.format('YYYY-MM-DD');
+        //     //var end = (event.end == null) ? start : event.end.format('YYYY-MM-DD');
+        //     var title = $('#some-title').data('title');
+        //     var durationtime = $('#some-duration').data('duration');
+        //     alert(durationtime);
+        //     var end = event.start.clone().add(durationtime.format());
+        //     alert(end);
+        //     var eventData;
+        //     if (title) {
+        //         $.ajax({
+        //             url: '/calendar/reserve-time',
+        //             eventData: {
+        //                 "title": title,
+        //                 "start": moment(start).format(),
+        //                 "end": moment(end).format(),
+        //             },
+        //             type: 'POST',
+        //             dataType: 'json',
+        //             success: function (json) {
+        //                 console.log(json);
+        //             },
+        //             error: function (e) {
+        //                 revertFunc();
+        //                 alert('Error processing your request: ' + e.responseText);
+        //             }
+        //         });
+        //         $('#calendar-holder').fullCalendar('renderEvent',
+        //             start = moment(start).format('YYYY/MM/DD hh:mm'),
+        //             end = moment(end).format('YYYY/MM/DD hh:mm'),
+        //             eventData, true); // stick? = true
+        //     }
+        //     $('#calendar-holder').fullCalendar('unselect');
+        // },
+        // eventResize: function(event, delta, revertFunc) {
+        //
+        //     var newData = event.end.format('YYYY-MM-DD');
+        //     $.ajax({
+        //         url: Routing.generate('fullcalendar_resizedate'),
+        //         data: { id: event.id, newDate: newData },
+        //         type: 'POST',
+        //         dataType: 'json',
+        //         success: function(response){
+        //             console.log('ok');
+        //         },
+        //         error: function(e){
+        //             revertFunc();
+        //             alert('Error processing your request: '+e.responseText);
+        //         }
+        //     });
+
+        // },
+        eventClick: function (calEvent, jsEvent, view) {
+            // console.log('Event: ' + calEvent.id);
+            console.log('Event: ' + calEvent.title);
+            console.log('Event: ' + calEvent.start);
+            console.log('Event: ' + calEvent.end);
+        },
+    });
+    $('#external-events .fc-event').each(function () {
+
+        // store data so the calendar knows to render an event upon drop
+        $(this).data('event', {
+            title: $.trim($(this).text()), // use the element's text as the event title
+            stick: true // maintain when user navigates (see docs on the renderEvent method)
+        });
+
+        // make the event draggable using jQuery UI
+        $(this).draggable({
+            zIndex: 999,
+            revert: true,      // will cause the event to go back to its
+            revertDuration: 0  //  original position after the drag
+        });
     });
 });

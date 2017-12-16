@@ -12,4 +12,21 @@ use Doctrine\ORM\EntityRepository;
  */
 class ServiceRepository extends EntityRepository
 {
+    /**
+     * @param $serviceId
+     *
+     * @return array
+     */
+    public function getWorkerByService($serviceId): array
+    {
+
+        $repository = $this->_em->getRepository('AppBundle:Service');
+        $query = $repository->createQueryBuilder('s')
+            ->innerJoin('s.workers', 'w')
+            ->where('s.id = :serviceId')
+            ->setParameter('serviceId', $serviceId)
+            ->getQuery()->getResult();
+
+        return $query;
+    }
 }

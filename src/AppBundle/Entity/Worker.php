@@ -69,9 +69,9 @@ class Worker
     private $imageFile;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reservation", mappedBy="worker")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Schedule", mappedBy="worker")
      */
-    private $reservation;
+    private $schedule;
 
     /**
      *
@@ -112,7 +112,7 @@ class Worker
     public function __construct()
     {
         $this->services = new ArrayCollection();
-        $this->reservation = new ArrayCollection();
+        $this->schedule = new ArrayCollection();
     }
 
     /**
@@ -299,9 +299,9 @@ class Worker
     /**
      * @return ArrayCollection
      */
-    public function getReservation()
+    public function getSchedule()
     {
-        return $this->reservation;
+        return $this->schedule;
     }
 
 //    /**

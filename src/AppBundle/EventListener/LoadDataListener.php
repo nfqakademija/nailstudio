@@ -33,22 +33,28 @@ class LoadDataListener
      */
     public function loadData(CalendarEvent $calendarEvent)
     {
-
-        // You can retrieve information from the event
-        // dispatcher (eg, You may want which
-        // day was selected in the calendar):
+        // You can retrieve information from the event dispatcher (eg, You may want which day was selected in the calendar):
         // $startDate = $calendarEvent->getStart();
         // $endDate = $calendarEvent->getEnd();
         // $filters = $calendarEvent->getFilters();
         // You may want do a custom query to populate the events
         // $currentEvents = $repository->findByStartDate($startDate);
-        $repository = $this->em->getRepository('AppBundle:Schedule');
+        $repository = $this->em
+            ->getRepository(
+                'AppBundle:Schedule'
+            );
+
         $schedules = $repository->findAll();
         // You may want to add an Event into the Calendar view.
         /** @var Schedule $schedule */
 
         foreach ($schedules as $schedule) {
-            $calendarEvent->addEvent(new Event($schedule->getTitle(), $schedule->getStart(), $schedule->getEnd()));
+            $calendarEvent->addEvent(
+                new Event(
+                    $schedule->getTitle(),
+                    $schedule->getStart(),
+                    $schedule->getEnd())
+            );
         }
     }
 }

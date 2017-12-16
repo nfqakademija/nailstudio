@@ -20,3 +20,23 @@ admin_logout:
 
 ancarebeca_fullcalendar:
     resource: "@FullCalendarBundle/Resources/config/routing.yml"
+
+add_calendar:
+    path: /calendar/reserve-time
+    methods: [POST]
+    defaults: { _controller: AppBundle:Calendar:calendar}
+
+#update_calendar:
+#    path: /calendar/update-time/{id}
+#    methods: [GET]
+#    defaults: { _controller: AppBundle:Calendar:update}
+#
+#make_reservation:
+#    path: /calendar/reserve-time/{serviceId}
+#    methods: [GET]
+#    defaults: { _controller: AppBundle:Calendar:makeReservation}
+
+show_service:
+    path: "reservation/service/{serviceId}"
+    methods: [GET]
+    defaults: { _controller: AppBundle:Calendar:show}

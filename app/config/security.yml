@@ -13,6 +13,7 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_ADMIN]
 
     providers:
+#    $2y$13$.pCzhDX9n.MJDXJ1H2CPauSZMQLd7SePzgGZ3kUnS9PuWpjhCC6k.
         # Simple example of loading users via Doctrine
         # To load users from somewhere else: http://symfony.com/doc/current/cookbook/security/custom_provider.html
         in_memory:
@@ -46,7 +47,6 @@ security:
                  authenticators:
                      - app.form_authenticator
         secured_area:
-
             anonymous: ~
             logout:
                 path: /logout
@@ -54,7 +54,6 @@ security:
             guard:
                 authenticators:
                     - app.facebook_authenticator
-
 
     access_control:
        - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }

@@ -1,0 +1,59 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Homepage - {{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+<!-- Reservation-list Section -->
+<section id="reservation-list" class="reservation-list-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 ">
+                <h2>Čia galite peržiūrėti savo rezervuotą laiką</h2>
+            </div>
+            <div class="col-lg-12 mx-auto text-center">
+                <a href="#" class = "btn btn-sm btn-create create_mem_id"  data-toggle = "modal" data-target="#create_modal" style="font-size:14px"><i class = "fa fa-plus"></i> Create new</a>
+            </div>
+            <table class = "table table-striped bg-info table-hover table-responsive" id="myTable">
+                <thead class="thead-default">
+                <tr>
+                    <th>ID</th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Email address</th>
+                    <th>Phone</th>
+                    <th>Message</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {#<?php#}
+                            {#require 'class.php';#}
+                            {#$conn = new db_class();#}
+                            {#$read = $conn->read();#}
+                {#while($fetch = $read->fetch_array()){#}
+                {#?>#}
+                <tr>
+                    <td><?php echo $fetch['id']?></td>
+                    <td><?php echo $fetch['firstname']?></td>
+                    <td><?php echo $fetch['lastname']?></td>
+                    <td><?php echo $fetch['email']?></td>
+                    <td><?php echo $fetch['phone']?></td>
+                    <td><?php echo $fetch['message']?></td>
+                    <td><?php echo $fetch['date']?></td>
+                    {#<td><a href="#"class = "btn btn-sm btn-update update_mem_id" data-toggle = "modal" data-target = "#update_modal" name = "<?php echo $fetch['id']?>"><i class = "fa fa-edit"></i> Update</a> <a href="#" class = "btn btn-sm btn-delete del_mem_id" name = "<?php echo $fetch['id']?>" data-toggle = "modal" data-target="#del_modal"><i class = "fa fa-trash"></i> Delete</a></td>#}
+                </tr>
+                {#<?php#}
+                            {#}#}
+                            {#?>#}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -31,23 +31,20 @@ class Service
     private $title;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="duration", type="time")
+     * @ORM\Column(type="integer")
      */
-    private $duration;
+    private $durationInMinutes;
 
     /**
-     * @var int
      *
      * @ORM\Column(name="price", type="decimal")
      */
     private $price;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reservation", mappedBy="service")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Schedule", mappedBy="service")
      */
-    private $reservation;
+    private $schedule;
 
     /**
      *
@@ -86,7 +83,7 @@ class Service
     public function __construct()
     {
         $this->workers = new ArrayCollection();
-        $this->reservation = new ArrayCollection();
+        $this->schedule = new ArrayCollection();
     }
 
     /**
@@ -132,34 +129,25 @@ class Service
     }
 
     /**
-     * Set duration
-     *
-     * @param \DateTime $duration
-     *
-     * @return Service
+     * @return integer
      */
-    public function setDuration($duration)
+    public function getDurationInMinutes()
     {
-
-        $this->duration = $duration;
-
-        return $this;
+        return $this->durationInMinutes;
     }
 
     /**
-     * Get duration
-     *
-     * @return \DateTime
+     * @param integer $durationInMinutes
      */
-    public function getDuration()
+    public function setDurationInMinutes($durationInMinutes)
     {
-        return $this->duration;
+        $this->durationInMinutes = $durationInMinutes;
     }
 
     /**
      * Set price
      *
-     * @param integer $price
+     * @param decimal $price
      *
      * @return Service
      */
@@ -173,7 +161,7 @@ class Service
     /**
      * Get price
      *
-     * @return int
+     * @return decimal
      */
     public function getPrice()
     {
@@ -271,16 +259,8 @@ class Service
     /**
      * @return ArrayCollection
      */
-    public function getReservation()
+    public function getSchedule()
     {
-        return $this->reservation;
+        return $this->schedule;
     }
-
-//    /**
-//     * @param ArrayCollection $reservation
-//     */
-//    public function setReservation(ArrayCollection $reservation)
-//    {
-//        $this->reservation = $reservation;
-//    }
 }
