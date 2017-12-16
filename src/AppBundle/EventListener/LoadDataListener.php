@@ -49,14 +49,11 @@ class LoadDataListener
         // You may want to add an Event into the Calendar view.
         /** @var Schedule $schedule */
 
-        foreach ($schedules as $schedule)
-        {
-            $calendarEvent->addEvent(
-                new Event(
+        foreach ($schedules as $schedule) {
+            $calendarEvent->addEvent(new Event(
                 $schedule->getTitle(),
                 $schedule->getStart(),
-                $schedule->getEnd())
-            );
+                $schedule->getEnd()));
         }
     }
 }
