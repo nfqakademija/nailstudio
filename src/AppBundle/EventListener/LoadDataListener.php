@@ -50,10 +50,7 @@ class LoadDataListener
         /** @var Schedule $schedule */
 
         foreach ($schedules as $schedule) {
-            $calendarEvent->addEvent(new Event(
-                $schedule->getTitle(),
-                $schedule->getStart(),
-                $schedule->getEnd()));
+            $calendarEvent->addEvent(new Event($schedule->getTitle(), $schedule->getStart(), $schedule->getEnd()));
         }
     }
 }
