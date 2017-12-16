@@ -10,6 +10,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Schedule;
 use AppBundle\Entity\Service;
+use AppBundle\Entity\Worker;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -82,8 +83,10 @@ class CalendarController extends Controller
         $repository = $this->getDoctrine()->getRepository(Service::class);
         $serviceOne = $repository->find($serviceId);
         //$workerFrom = $repository->find($serviceId);
-        $workersByServices = $repository->findBy(
-            array('id' => $serviceId));
+//        $workersByServices = $repository->findBy(
+//            array('id' => $serviceId));
+        $serviceRepo = $em->getRepository(Service::class);
+        $workerByService = $serviceRepo->getWorkerByService($serviceId->getId());
 
         return $this->render(
             'AppBundle:User:user.html.twig',
@@ -94,7 +97,8 @@ class CalendarController extends Controller
                 'users' => $user,
                 'userId' => $userId,
                 'serviceOne' => $serviceOne,
-                'workersByServices' => $workersByServices,
+//                'workersByServices' => $workersByServices,
+                'workerByService' => $workerByService,
             )
         );
     }

@@ -18,7 +18,7 @@ if (window.location.hash && window.location.hash === '#_=_') {
 // ---------------------------------------------- //
 // Preventing URL update on navigation link click
 // ---------------------------------------------- //
-$('.navbar-nav a, #scroll-down a, .btn a').bind('click', function (e) {
+$('.navbar-nav a, #scroll-down a, a').bind('click', function (e) {
     var anchor = $(this);
     $('html, body').stop().animate({
         scrollTop: $(anchor.attr('href')).offset().top - 50

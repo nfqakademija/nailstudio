@@ -17,16 +17,16 @@ class ServiceRepository extends EntityRepository
      *
      * @return array
      */
-    public function findAllGreaterThanPrice($serviceId): array
+    public function getWorkerByService($serviceId): array
     {
-        $em = $this->getEntityManager();
-        $query = $em->createQuery(
-            'SELECT service.title, service.price, service.duration_in_minutes 
-            FROM service 
-            WHERE service.id = :serviceId'
-        )->setParameter($serviceId);
 
-        // returns an array of Product objects
-        return $query->execute();
+        $repository = $this->_em->getRepository('AppBundle:Service');
+        $query = $repository->createQueryBuilder('s')
+            ->innerJoin('s.workers', 'w')
+            ->where('s.id = :serviceId')
+            ->setParameter('serviceId', $serviceId)
+            ->getQuery()->getResult();
+
+        return $query;
     }
 }

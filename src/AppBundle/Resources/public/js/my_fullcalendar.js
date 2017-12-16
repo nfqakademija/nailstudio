@@ -22,8 +22,11 @@ $(document).ready(function () {
         defaultView: 'agendaWeek',
         constraint: 'businessHours',
         defaultDate: new Date(),
-        // rendering: 'background',
+        rendering: 'background',
         navLinks: true,
+        dragRevertDuration: 1000,
+        forceEventDuration: true,
+
         allDay: false,
         allDaySlot: false,
         startEditable: true,
@@ -36,7 +39,7 @@ $(document).ready(function () {
         weekNumbers: true,
         eventLimit: true,
         resizable: true,
-        droppable: true,
+        // droppable: true,
         overflow: false,
         draggable: true, // this allows things to be dropped onto the calendar
         // dayClick: function(date, allDay, jsEvent, view) {
@@ -47,40 +50,40 @@ $(document).ready(function () {
         //         return false;
         //     });
         // },
-        select: function (start, end, jsEvent, view) {
-            // console.log(moment(start).format(), );return false;
-            var title = prompt('Event Title:');
-            // var start = event.start.format('YYYY-MM-DD');
-            // var end = (event.end == null) ? start : event.end.format('YYYY-MM-DD');
-            var eventData;
-            if (title) {
-                eventData = {
-                    title: title,
-                    start: start,
-                    end: end,
-                    // businessHours: true,
-                    // allDay: false
-                },
-                    $.ajax({
-                        url: '/calendar/reserve-time',
-                        data: {
-                            "title": title,
-                            "start": moment(start).format(),
-                            "end": moment(end).format(),
-                        },
-                        type: "POST",
-                        success: function (json) {
-                            console.log(json);
-                            // alert('OK');
-                        }
-                    });
-                $('#calendar-holder').fullCalendar('renderEvent',
-                    start = moment(start).format('YYYY/MM/DD hh:mm'),
-                    end = moment(end).format('YYYY/MM/DD hh:mm'),
-                    eventData, true); // stick? = true
-            }
-            $('#calendar-holder').fullCalendar('unselect');
-        },
+        // select: function (start, end, jsEvent, view) {
+        //     // console.log(moment(start).format(), );return false;
+        //     var title = prompt('Event Title:');
+        //     // var start = event.start.format('YYYY-MM-DD');
+        //     // var end = (event.end == null) ? start : event.end.format('YYYY-MM-DD');
+        //     var eventData;
+        //     if (title) {
+        //         eventData = {
+        //             title: title,
+        //             start: start,
+        //             end: end,
+        //             // businessHours: true,
+        //             // allDay: false
+        //         },
+        //             $.ajax({
+        //                 url: '/calendar/reserve-time',
+        //                 data: {
+        //                     "title": title,
+        //                     "start": moment(start).format(),
+        //                     "end": moment(end).format(),
+        //                 },
+        //                 type: "POST",
+        //                 success: function (json) {
+        //                     console.log(json);
+        //                     // alert('OK');
+        //                 }
+        //             });
+        //         $('#calendar-holder').fullCalendar('renderEvent',
+        //             start = moment(start).format('YYYY/MM/DD hh:mm'),
+        //             end = moment(end).format('YYYY/MM/DD hh:mm'),
+        //             eventData, true); // stick? = true
+        //     }
+        //     $('#calendar-holder').fullCalendar('unselect');
+        // },
         // this allows things to be dropped onto the calendar
         drop: function () {
             // is the "remove after drop" checkbox checked?
@@ -95,6 +98,7 @@ $(document).ready(function () {
                 allDay: false,
                 constraint: 'businessHours',
                 type: 'POST',
+
                 // error: function() {
                 //     $('#script-warning').show();
                 // }
@@ -109,31 +113,31 @@ $(document).ready(function () {
         //             alert('Error receving events');
         //         }
         //     },
-        eventDrop: function(calEvent,event,delta,revertFunc) {
-            var start = calEvent.start;
-            // var end = event.end.format('YYYY/MM/DD hh:mm');
-            var title = calEvent.title;
-            // var id = event.id;
-            var end = (calEvent.end == null) ? start : calEvent.end;
-            $.ajax({
-                url: '/calendar/update-time/{start}',
-                data: {
-                    "title": event.title,
-                    "start": moment(event.start).format(),
-                    "end": moment(event.end).format(),
-                },
-                type: 'GET',
-                dataType: 'json',
-                success: function(response){
-                    console.log('ok');
-                },
-                error: function(e){
-                    revertFunc();
-                    alert('Error processing your request: '+e.responseText);
-                }
-            });
-
-        },
+        // eventDrop: function(calEvent,event,delta,revertFunc) {
+        //     var start = calEvent.start;
+        //     // var end = event.end.format('YYYY/MM/DD hh:mm');
+        //     var title = calEvent.title;
+        //     // var id = event.id;
+        //     var end = (calEvent.end == null) ? start : calEvent.end;
+        //     $.ajax({
+        //         url: '/calendar/update-time/{start}',
+        //         data: {
+        //             "title": event.title,
+        //             "start": moment(event.start).format(),
+        //             "end": moment(event.end).format(),
+        //         },
+        //         type: 'GET',
+        //         dataType: 'json',
+        //         success: function(response){
+        //             console.log('ok');
+        //         },
+        //         error: function(e){
+        //             revertFunc();
+        //             alert('Error processing your request: '+e.responseText);
+        //         }
+        //     });
+        //
+        // },
         // eventResize: function(event, delta, revertFunc) {
         //     var newData = event.end.format('YYYY-MM-DD');
         //     $.ajax({
@@ -151,39 +155,41 @@ $(document).ready(function () {
         //     });
         //
         // },
-        // eventDrop: function (event, delta, revertFunc) {
-        //     // console.log(moment(start).format(), );return false;
         //
-        //     // var start = event.start.format('YYYY-MM-DD');
-        //     var start = event.start.format('YYYY/MM/DD hh:mm');
-        //     var end = event.end.format('YYYY/MM/DD hh:mm');
-        //     var title = event.title;
-        //
-        //     //var end = (event.end == null) ? start : event.end.format('YYYY-MM-DD');
-        //     $.ajax({
-        //         url: '/calendar/update-time',
-        //         data: {
-        //             id: event.id,
-        //             title: event.title,
-        //             start: event.start,
-        //             end: event.end
-        //         },
-        //         type: 'POST',
-        //         dataType: 'json',
-        //         success: function (response) {
-        //             console.log('ok');
-        //         },
-        //         // error: function (e) {
-        //         //     revertFunc();
-        //         //     alert('Error processing your request: ' + e.responseText);
-        //         // }
-        //     });
-        //     // $('#calendar-holder').fullCalendar('renderEvent',
-        //     //     start = moment(start).format('YYYY/MM/DD hh:mm'),
-        //     //     end = moment(end).format('YYYY/MM/DD hh:mm'),
-        //     //     eventData, true) // stick? = true
-        //
-        // },
+        eventDrop: function (event, delta, revertFunc, start) {
+            //var start = event.start.format('YYYY-MM-DD');
+            //var end = (event.end == null) ? start : event.end.format('YYYY-MM-DD');
+            var title = $('#some-title').data('title');
+            var durationtime = $('#some-duration').data('duration');
+            alert(durationtime);
+            var end = event.start.clone().add(durationtime.format());
+            alert(end);
+            var eventData;
+            if (title) {
+                $.ajax({
+                    url: '/calendar/reserve-time',
+                    eventData: {
+                        "title": title,
+                        "start": moment(start).format(),
+                        "end": moment(end).format(),
+                    },
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (json) {
+                        console.log(json);
+                    },
+                    error: function (e) {
+                        revertFunc();
+                        alert('Error processing your request: ' + e.responseText);
+                    }
+                });
+                $('#calendar-holder').fullCalendar('renderEvent',
+                    start = moment(start).format('YYYY/MM/DD hh:mm'),
+                    end = moment(end).format('YYYY/MM/DD hh:mm'),
+                    eventData, true); // stick? = true
+            }
+            $('#calendar-holder').fullCalendar('unselect');
+        },
         // eventResize: function(event, delta, revertFunc) {
         //
         //     var newData = event.end.format('YYYY-MM-DD');
@@ -203,7 +209,7 @@ $(document).ready(function () {
 
         // },
         eventClick: function (calEvent, jsEvent, view) {
-            console.log('Event: ' + calEvent.id);
+            // console.log('Event: ' + calEvent.id);
             console.log('Event: ' + calEvent.title);
             console.log('Event: ' + calEvent.start);
             console.log('Event: ' + calEvent.end);

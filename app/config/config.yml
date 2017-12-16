@@ -190,7 +190,6 @@ easy_admin:
                     - 'start'
                     - 'end'
                     - 'worker'
-                    - 'schedule'
                     - 'service'
                     - 'created'
                     - 'updated'
