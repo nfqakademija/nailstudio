@@ -63,7 +63,8 @@ class HomeController extends Controller
 
         $schedule = $this->getDoctrine()
             ->getRepository('AppBundle:Schedule')
-            ->findBy(array('user' => $userBySchedule));
+            ->findBy(array('user' => $userBySchedule),
+                array('start'=> 'ASC'));
 
         return $this->render(
             'AppBundle:User:user_reservations.html.twig',

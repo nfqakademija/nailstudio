@@ -99,6 +99,12 @@ $(document).ready(function () {
                         type: "POST",
                         success: function (json) {
                             console.log(json);
+                            alert(' Jūs sėkmigai užsiregistravote.' +
+                                '\n Lauksime jūsų atvykstant!' +
+                                '\n Paslauga: ' + title +
+                                '\n Atvykimo laikas: ' + moment(start).format('YYYY/MM/DD hh:mm'));
+
+                            window.location.replace("http://nailstudio.projektai.nfqakademija.lt/user");
                             // alert('OK');
                         }
                     });
@@ -143,10 +149,5 @@ $(document).ready(function () {
             revert: true,      // will cause the event to go back to its
             revertDuration: 0  //  original position after the drag
         });
-        $("#endTime").html(moment(event.end).format('MMM Do h:mm A'));
-        $("#eventInfo").html(event.description);
-        $("#eventLink").attr('href', event.url);
-        $("#eventContent").dialog({ modal: true, title: event.title, width:350});
     });
-
 });
