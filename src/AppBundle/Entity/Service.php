@@ -235,11 +235,11 @@ class Service
     /**
      * Add worker
      *
-     * @param \AppBundle\Entity\Worker $worker
+     * @param Worker $worker
      *
      * @return Service
      */
-    public function addWorker(\AppBundle\Entity\Worker $worker)
+    public function addWorker(Worker $worker)
     {
         $this->workers[] = $worker;
 
@@ -249,9 +249,9 @@ class Service
     /**
      * Remove worker
      *
-     * @param \AppBundle\Entity\Worker $worker
+     * @param Worker $worker
      */
-    public function removeWorker(\AppBundle\Entity\Worker $worker)
+    public function removeWorker(Worker $worker)
     {
         $this->workers->removeElement($worker);
     }

@@ -190,8 +190,6 @@ easy_admin:
                     - 'start'
                     - 'end'
                     - 'user'
-                    - 'worker'
-                    - 'service'
                     - 'created'
                     - 'updated'
             form:
@@ -200,9 +198,7 @@ easy_admin:
                     - 'start'
                     - 'end'
                     - 'user'
-                    - 'worker'
-                    - 'schedule'
-                    - 'service'
+
 
     design:
         menu:

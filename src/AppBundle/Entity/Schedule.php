@@ -211,8 +211,10 @@ class Schedule
 
     /**
      * @param User $user
+     *
+     * @return Schedule
      */
-    public function setUser($user)
+    public function setUser(User $user)
     {
         $this->user = $user;
     }
@@ -227,8 +229,9 @@ class Schedule
 
     /**
      * @param Worker $worker
+     * @return Schedule
      */
-    public function setWorker($worker)
+    public function setWorker(Worker $worker)
     {
         $this->worker = $worker;
     }
@@ -243,8 +246,9 @@ class Schedule
 
     /**
      * @param Service $service
+     * @return Schedule
      */
-    public function setService($service)
+    public function setService(Service $service)
     {
         $this->service = $service;
     }

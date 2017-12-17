@@ -2,6 +2,7 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Schedule;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -12,4 +13,25 @@ use Doctrine\ORM\EntityRepository;
  */
 class ScheduleRepository extends EntityRepository
 {
+    /**
+     * @param int $userId
+     *
+     * @return Schedule[]
+     */
+    public function getUserSchedule($userId)
+    {
+        $repository = $this->getEntityManager()
+            ->getRepository(Schedule::class);
+
+        $query = $repository->createQueryBuilder('s')
+            ->select('s.title', 's.start')
+            ->leftJoin('s.user', 'u')
+            ->where('s.user = :userId')
+            ->andWhere('s.end > TIME(NOW())')
+            ->setParameter('userId', $userId)
+            ->getQuery();
+
+        $schedule = $query->getResult();
+        return $schedule;
+    }
 }

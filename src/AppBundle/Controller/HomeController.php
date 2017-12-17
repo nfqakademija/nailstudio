@@ -48,7 +48,7 @@ class HomeController extends Controller
      */
     public function userAction()
     {
-        //$user = $this->getUser();
+        $userBySchedule = $this->getUser()->getId();
         $user = $this->getDoctrine()
             ->getRepository('AppBundle:Service')
             ->findAll();
@@ -61,12 +61,17 @@ class HomeController extends Controller
             ->getRepository('AppBundle:Worker')
             ->findAll();
 
+        $schedule = $this->getDoctrine()
+            ->getRepository('AppBundle:Schedule')
+            ->findBy(array('user' => $userBySchedule));
+
         return $this->render(
             'AppBundle:User:user_reservations.html.twig',
             array(
                 'services' => $service,
                 'workers' => $worker,
-                'user' => $user
+                'user' => $user,
+                'schedule' => $schedule,
             )
         );
     }

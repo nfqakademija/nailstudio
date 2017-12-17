@@ -1,24 +1,34 @@
 $(document).ready(function () {
+    var initialLocaleCode = 'lt';
+
     $('#calendar-holder').fullCalendar({
-        locale: "lt",
+        locale: initialLocaleCode,
         header: {
             left: 'prev, next today',
             center: 'title',
-            right: 'month, agendaWeek, agendaDay, listWeek'
+            right: 'agendaWeek, agendaDay, listWeek'
         },
-        minTime: '09:00',
-        maxTime: '20:00',
+        events: [
+            {
+                start: '2014-11-10T10:00:00',
+                end: '2017-12-17T24:00:00',
+                rendering: 'background',
+                overlap: false,
+            }
+        ],
+        minTime: '09:30',
+        maxTime: '19:00',
         timezone: 'Europe/Vilnius',
         businessHours: {
+
             start: '09:30',
             end: '18:30',
             dow: [1, 2, 3, 4, 5]
         },
-        // visibleRange: {
-        //     start: nowDate,
-        //     end: nowDate.clone().add(1, 'months')
-        // },
+        slotEventOverlap: false,
+        selectOverlap: false,
         showNonCurrentDays: false,
+        weekNumbersWithinDays:true,
         theme: true,
         themeSystem: 'jquery-ui',
         themeName: 'Start',
@@ -32,16 +42,16 @@ $(document).ready(function () {
         forceEventDuration: true,
         allDay: false,
         allDaySlot: false,
-        // startEditable: true,
-        // selectable: true,
+        startEditable: true,
+        selectable: true,
         selectHelper: true,
         editable: true,
         lazyFetching: true,
         displayEventTime: true,
-        // weekends: false, // will hide Saturdays and Sundays
+        weekends: false, // will hide Saturdays and Sundays
         weekNumbers: true,
         eventLimit: true,
-        resizable: true,
+        // resizable: true,
         droppable: true,
         overflow: false,
         draggable: true, // this allows things to be dropped onto the calendar
@@ -54,11 +64,13 @@ $(document).ready(function () {
         //     });
         // },
         drop: function (start, end, jsEvent, view) {
-
             // console.log(moment(start).format(), );return false;
             var title = $('#some-title').data('title');
             var user = $('#some-user').data('user');
             var service = $('#some-service').data('service');
+            // var duration = moment.duration($('#some-duration').data('duration'), 'minutes');
+            // var startas = moment(start).format('YYYY/MM/DD hh:mm');
+            // var end = startas + duration;
             //  var title = prompt('Event Title:');
             // var start = event.start.format('YYYY-MM-DD');
             // var end = (event.end == null) ? start : event.end.format('YYYY-MM-DD');
@@ -91,6 +103,7 @@ $(document).ready(function () {
                         }
                     });
                 $(this).remove();
+
                 $('#calendar-holder').fullCalendar('renderEvent',
                     start = moment(start).format('YYYY/MM/DD hh:mm'),
                     end = moment(end).format('YYYY/MM/DD hh:mm'),
@@ -98,131 +111,17 @@ $(document).ready(function () {
             }
             $('#calendar-holder').fullCalendar('unselect');
         },
-        // this allows things to be dropped onto the calendar
-        // drop: function () {
-        //     // is the "remove after drop" checkbox checked?
-        //     // if ($('#drop-remove').is(':checked')) {
-        //     // if so, remove the element from the "Draggable Events" list
-        //     $(this).remove();
-        //     // }
-        // },
         eventSources: [
             {
                 url: '/full-calendar/load',
                 allDay: false,
+                overflow: false,
                 constraint: 'businessHours',
                 type: 'POST',
                 timezone: 'Europe/Vilnius',
-
-                // error: function() {
-                //     $('#script-warning').show();
-                // }
+                color: '#257e4a'
             }
         ],
-        // events:
-        //     {
-        //         url:Routing.generate('fullcalendar_loadevents', { month: moment().format('MM'), year: moment().format('YYYY') }),
-        //         color: 'blue',
-        //         textColor:'white',
-        //         error: function() {
-        //             alert('Error receving events');
-        //         }
-        //     },
-        // eventDrop: function(calEvent,event,delta,revertFunc) {
-        //     var start = calEvent.start;
-        //     // var end = event.end.format('YYYY/MM/DD hh:mm');
-        //     var title = calEvent.title;
-        //     // var id = event.id;
-        //     var end = (calEvent.end == null) ? start : calEvent.end;
-        //     $.ajax({
-        //         url: '/calendar/update-time/{start}',
-        //         data: {
-        //             "title": event.title,
-        //             "start": moment(event.start).format(),
-        //             "end": moment(event.end).format(),
-        //         },
-        //         type: 'GET',
-        //         dataType: 'json',
-        //         success: function(response){
-        //             console.log('ok');
-        //         },
-        //         error: function(e){
-        //             revertFunc();
-        //             alert('Error processing your request: '+e.responseText);
-        //         }
-        //     });
-        //
-        // },
-        // eventResize: function(event, delta, revertFunc) {
-        //     var newData = event.end.format('YYYY-MM-DD');
-        //     $.ajax({
-        //         url: Routing.generate('/calendar/update-time'),
-        //         data: { id: event.id, newDate: newData },
-        //         type: 'POST',
-        //         dataType: 'json',
-        //         success: function(response){
-        //             console.log('ok');
-        //         },
-        //         error: function(e){
-        //             revertFunc();
-        //             alert('Error processing your request: '+e.responseText);
-        //         }
-        //     });
-        //
-        // },
-        //
-        // eventDrop: function (event, delta, revertFunc, start, end) {
-        //     //var start = event.start.format('YYYY-MM-DD');
-        //     //var end = (event.end == null) ? start : event.end.format('YYYY-MM-DD');
-        //     var title = $('#some-title').data('title');
-        //     var durationtime = $('#some-duration').data('duration');
-        //     alert(durationtime);
-        //     var end = event.start.clone().add(durationtime.format());
-        //     alert(end);
-        //     var eventData;
-        //     if (title) {
-        //         $.ajax({
-        //             url: '/calendar/reserve-time',
-        //             eventData: {
-        //                 "title": title,
-        //                 "start": moment(start).format(),
-        //                 "end": moment(end).format(),
-        //             },
-        //             type: 'POST',
-        //             dataType: 'json',
-        //             success: function (json) {
-        //                 console.log(json);
-        //             },
-        //             error: function (e) {
-        //                 revertFunc();
-        //                 alert('Error processing your request: ' + e.responseText);
-        //             }
-        //         });
-        //         $('#calendar-holder').fullCalendar('renderEvent',
-        //             start = moment(start).format('YYYY/MM/DD hh:mm'),
-        //             end = moment(end).format('YYYY/MM/DD hh:mm'),
-        //             eventData, true); // stick? = true
-        //     }
-        //     $('#calendar-holder').fullCalendar('unselect');
-        // },
-        // eventResize: function(event, delta, revertFunc) {
-        //
-        //     var newData = event.end.format('YYYY-MM-DD');
-        //     $.ajax({
-        //         url: Routing.generate('fullcalendar_resizedate'),
-        //         data: { id: event.id, newDate: newData },
-        //         type: 'POST',
-        //         dataType: 'json',
-        //         success: function(response){
-        //             console.log('ok');
-        //         },
-        //         error: function(e){
-        //             revertFunc();
-        //             alert('Error processing your request: '+e.responseText);
-        //         }
-        //     });
-
-        // },
         eventClick: function (calEvent, jsEvent, view) {
             // console.log('Event: ' + calEvent.id);
             console.log('Event: ' + calEvent.title);
@@ -244,5 +143,10 @@ $(document).ready(function () {
             revert: true,      // will cause the event to go back to its
             revertDuration: 0  //  original position after the drag
         });
+        $("#endTime").html(moment(event.end).format('MMM Do h:mm A'));
+        $("#eventInfo").html(event.description);
+        $("#eventLink").attr('href', event.url);
+        $("#eventContent").dialog({ modal: true, title: event.title, width:350});
     });
+
 });

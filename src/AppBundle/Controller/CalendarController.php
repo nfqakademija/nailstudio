@@ -33,14 +33,17 @@ class CalendarController extends Controller
         $title = $request->request->get('title');
         $start = $request->request->get('start');
         $end = $request->request->get('end');
-        $serviceId = $request->request->get('serviceId');
+//        $serviceId = $request->request->get('service');
+//        $service = $em->getRepository('AppBundle:Service')->findOneBy(['id' => $serviceId]);
+//        $existingService = $em->getRepository('AppBundle:Service')
+//            ->findOneBy(['title' => $serviceId]);
         $userId = $this->getUser();
         $schedule = new Schedule();
         $schedule->setTitle($title);
         $schedule->setStart(new \DateTime($start));
         $schedule->setEnd(new \DateTime($end));
         $schedule->setUser($userId);
-        $schedule->setService($serviceId);
+//        $schedule->setService($service);
 
         $em->persist($schedule);
         $em->flush();
@@ -51,7 +54,9 @@ class CalendarController extends Controller
             'start' => $start,
             'end' => $end,
             'userId' => $userId,
-            'serviceId' => $serviceId,
+//            'service' => $service,
+//            'serviceId' => $serviceId,
+
         ]);
     }
 
@@ -100,11 +105,39 @@ class CalendarController extends Controller
                 'serviceId' => $serviceId,
                 'services' => $service,
                 'workers' => $worker,
-                'users' => $user,
+                //'users' => $user,
                 'userId' => $userId,
                 'serviceOne' => $serviceOne,
                 //'workersByServices' => $workersByServices,
                 'workerByService' => $workerByService,
+            )
+        );
+    }
+
+    /**
+     * @Route("/user", name="user_page")
+     */
+    public function userAction()
+    {
+        //$user = $this->getUser();
+        $user = $this->getDoctrine()
+            ->getRepository('AppBundle:Service')
+            ->findAll();
+
+        $service = $this->getDoctrine()
+            ->getRepository('AppBundle:Service')
+            ->findAll();
+
+        $worker = $this->getDoctrine()
+            ->getRepository('AppBundle:Worker')
+            ->findAll();
+
+        return $this->render(
+            'AppBundle:User:user_reservations.html.twig',
+            array(
+                'services' => $service,
+                'workers' => $worker,
+                'user' => $user
             )
         );
     }

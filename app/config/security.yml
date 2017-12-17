@@ -51,6 +51,7 @@ security:
             logout:
                 path: /logout
             provider: database_users
+
             guard:
                 authenticators:
                     - app.facebook_authenticator

@@ -40,3 +40,7 @@ show_service:
     path: "reservation/service/{serviceId}"
     methods: [GET]
     defaults: { _controller: AppBundle:Calendar:show}
+
+show_services:
+    path: "/#services"
+
